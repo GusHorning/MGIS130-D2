@@ -1,4 +1,12 @@
 # MGIS130-D2
-Draw facts and quotes from multiple places: athletes/sports, various philosophies, and pop culture/film.
-Separate each quote and fact into different categories, which will relate to where each quote and fact were pulled from
-3 categories to choose from at the top, each will have a relevant background relating to its topic, and each will have a clear refresh button.
+1.What Info Goes In:
+Quotes and facts from multiple places: athletes/sports, various philosophies, and film.
+Philosophers, Athletes, Films, and Actors.
+Additional facts regarding each categories history.
+What do you do with it:
+Pull information from the data collected
+Connect/combine facts and quotes that relate to each other
+How should it look:
+3 categories to choose from at the top: Sports, Film, and Philosophy.
+Large generation and refresh button for each category.
+Relevant pictures or videos of each category.
