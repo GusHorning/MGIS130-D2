@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Disciplinary Insight Synthesizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- App Header -->
+        <header>
+            <h1>Insight Synthesizer</h1>
+            <p class="subtitle">Connecting wisdom across Sports, Film, and Philosophy</p>
+        </header>
+
+        <!-- Category Controls -->
+        <nav class="category-selector" role="tablist">
+            <button class="tab-btn active" data-category="sports" onclick="selectCategory('sports')">
+                🏆 Sports
+            </button>
+            <button class="tab-btn" data-category="film" onclick="selectCategory('film')">
+                🎬 Film
+            </button>
+            <button class="tab-btn" data-category="philosophy" onclick="selectCategory('philosophy')">
+                🏛️ Philosophy
+            </button>
+        </nav>
+
+        <!-- Generation Trigger -->
+        <div class="action-area">
+            <button id="generateBtn" class="generate-btn theme-sports" onclick="generateInsight()">
+                ✨ Synthesize Sports Insight
+            </button>
+        </div>
+
+        <!-- Main Display Card -->
+        <main id="displayCard" class="card theme-sports">
+            <!-- Dynamic Visual Header -->
+            <div class="media-container">
+                <div id="categoryBadge" class="category-badge">Sports & Athletics</div>
+                <div id="mediaViewer"></div>
+                <div class="media-overlay"></div>
+            </div>
+
+            <!-- Card Dynamic Content Body -->
+            <div class="card-body">
+                <!-- Quote Block -->
+                <div class="quote-block">
+                    <div id="quoteText" class="quote-text">"Loading..."</div>
+                    <div id="quoteAuthor" class="quote-author">---</div>
+                </div>
+
+                <!-- Conceptual Synthesis Block -->
+                <div class="synthesis-box">
+                    <div class="synthesis-header">
+                        💡 Conceptual Connection
+                    </div>
+                    <div id="synthesisText" class="synthesis-text">---</div>
+                </div>
+
+                <!-- Category Historical Fact Block -->
+                <div class="fact-block">
+                    <div class="fact-title">Historical Fact</div>
+                    <div id="factText" class="fact-text">---</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- App Footer -->
+        <footer>
+            Cross-Disciplinary Insight Engine &bull; Vanilla JS & CSS
+        </footer>
+    </div>
+
+    <!-- Script Import -->
+    <script src="script.js"></script>
+</body>
+</html>
