@@ -3,48 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cross-Disciplinary Insight Synthesizer</title>
+    <title>Daily Sparks — Cross-Domain Wisdom</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Dynamic Category Background Image Container -->
+    <div id="bgImageLayer" class="bg-image-layer bg-sports"></div>
+    <div class="bg-overlay"></div>
+
     <div class="app-container">
-        <!-- App Header -->
-        <header>
-            <h1>Insight Synthesizer</h1>
-            <p class="subtitle">Connecting wisdom across Sports, Film, and Philosophy</p>
+        <!-- Main Application Header -->
+        <header class="app-header">
+            <span class="motto-pill">✨ Quote & Fact of the Day</span>
+            <h1>Daily Sparks</h1>
+            <p class="subtitle">Unexpected wisdom across Athletics, Cinema, and Philosophy</p>
         </header>
 
         <!-- Category Controls -->
         <nav class="category-selector" role="tablist">
             <button class="tab-btn active" data-category="sports" onclick="selectCategory('sports')">
-                🏆 Sports
+                <span class="tab-icon">⚡</span> Sports
             </button>
             <button class="tab-btn" data-category="film" onclick="selectCategory('film')">
-                🎬 Film
+                <span class="tab-icon">🎬</span> Film
             </button>
             <button class="tab-btn" data-category="philosophy" onclick="selectCategory('philosophy')">
-                🏛️ Philosophy
+                <span class="tab-icon">🏛️</span> Philosophy
             </button>
         </nav>
 
         <!-- Generation Trigger -->
         <div class="action-area">
             <button id="generateBtn" class="generate-btn theme-sports" onclick="generateInsight()">
-                ✨ Synthesize Sports Insight
+                🎲 Discover Today's Spark
             </button>
         </div>
 
-        <!-- Main Display Card -->
-        <main id="displayCard" class="card theme-sports">
-            <!-- Dynamic Visual Header -->
+        <!-- Main Display Card with Asymmetric Slanted Corners -->
+        <main id="displayCard" class="card theme-sports custom-corners">
+            <!-- Card Visual Header -->
             <div class="media-container">
                 <div id="categoryBadge" class="category-badge">Sports & Athletics</div>
                 <div id="mediaViewer"></div>
                 <div class="media-overlay"></div>
             </div>
 
-            <!-- Card Dynamic Content Body -->
+            <!-- Card Body Content -->
             <div class="card-body">
                 <!-- Quote Block -->
                 <div class="quote-block">
@@ -53,28 +58,70 @@
                 </div>
 
                 <!-- Conceptual Synthesis Block -->
-                <div class="synthesis-box">
+                <div class="synthesis-box custom-corners-sm">
                     <div class="synthesis-header">
-                        💡 Conceptual Connection
+                        💡 Mindset Connection
                     </div>
                     <div id="synthesisText" class="synthesis-text">---</div>
                 </div>
 
-                <!-- Category Historical Fact Block -->
-                <div class="fact-block">
-                    <div class="fact-title">Historical Fact</div>
+                <!-- Historical Fact Block -->
+                <div class="fact-block custom-corners-sm">
+                    <div class="fact-title">Historical Snapshot</div>
                     <div id="factText" class="fact-text">---</div>
                 </div>
+
+                <!-- Deep Dive Exploration Trigger Button -->
+                <button id="exploreBtn" class="explore-btn custom-corners-sm" onclick="openDetailView()">
+                    🔍 Learn More About This Mind & Quote →
+                </button>
             </div>
         </main>
 
-        <!-- App Footer -->
-        <footer>
-            Cross-Disciplinary Insight Engine &bull; Vanilla JS & CSS
+        <!-- Application Footer -->
+        <footer class="app-footer">
+            Daily Sparks &bull; Interdisciplinary Wisdom Engine
         </footer>
     </div>
 
-    <!-- Script Import -->
+    <!-- Full-Screen Deep Dive Exploration View -->
+    <div id="detailModal" class="detail-modal" aria-hidden="true">
+        <div class="modal-content custom-corners">
+            <button class="close-modal-btn" onclick="closeDetailView()" aria-label="Close modal">✕</button>
+            
+            <header class="modal-header">
+                <span id="modalCategoryBadge" class="category-badge">Category</span>
+                <h2 id="modalAuthorName">Author Name</h2>
+                <p id="modalAuthorRole" class="modal-author-role">Role / Profession</p>
+            </header>
+
+            <div class="modal-body">
+                <!-- Core Philosophy & Beliefs -->
+                <section class="modal-section custom-corners-sm">
+                    <h3>🧠 Typical Beliefs & Mindset</h3>
+                    <p id="modalBeliefs">Details about core philosophies...</p>
+                </section>
+
+                <!-- Context & Achievements -->
+                <section class="modal-section custom-corners-sm">
+                    <h3>🏆 Key Achievements & Impact</h3>
+                    <p id="modalAchievements">Key career moments and background...</p>
+                </section>
+
+                <!-- Quote Context & Fun Fact -->
+                <section class="modal-section custom-corners-sm">
+                    <h3>🍿 Context & Trivia</h3>
+                    <p id="modalTrivia">Trivia related to quote and historical fact...</p>
+                </section>
+            </div>
+
+            <button class="back-btn custom-corners-sm" onclick="closeDetailView()">
+                ← Back to Quote Generator
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript logic file -->
     <script src="script.js"></script>
 </body>
 </html>
