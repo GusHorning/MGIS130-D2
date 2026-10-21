@@ -14,7 +14,7 @@ const APP_DATA = {
                 quote: "I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game-winning shot and missed. I've failed over and over again. And that is why I succeed.",
                 author: "Michael Jordan",
                 leagueBadge: "🏀 NBA INSIGHT",
-                authorImg: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
+                authorImg: "https://upload.wikimedia.org/wikipedia/commons/8/88/Jordan_by_Lipofsky_16577_%28high_quality%29.jpg",
                 synthesis: "High performance requires embracing failure as a necessary calibration tool rather than an endpoint.",
                 fact: "Direct context: During the 1993 NBA Finals, Michael Jordan scored an unprecedented average of 41 points per game while securing his third consecutive championship ring.",
                 details: {
@@ -42,7 +42,7 @@ const APP_DATA = {
                 quote: "The more difficult the victory, the greater the happiness in winning.",
                 author: "Pelé",
                 leagueBadge: "⚽ FIFA INSIGHT",
-                authorImg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80",
+                authorImg: "https://upload.wikimedia.org/wikipedia/commons/5/54/Pele_by_John_Mathew_Smith.jpg",
                 synthesis: "Value is intrinsically tied to friction; ease rarely yields deep psychological satisfaction.",
                 fact: "Direct context: Pelé became the youngest player ever to win a FIFA World Cup in 1958 at just 17 years old, scoring two goals in the final.",
                 details: {
@@ -114,7 +114,7 @@ const APP_DATA = {
                 quote: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
                 author: "Aristotle",
                 leagueBadge: "🏛️ ANCIENT GREECE",
-                authorImg: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+                authorImg: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Aristotle_Altemps_Inv8575.jpg",
                 synthesis: "Character and identity are emergent properties derived from daily routines rather than singular highlights.",
                 fact: "Direct context: Recorded in the 'Nicomachean Ethics', written around 350 BCE as a foundational framework for human virtue.",
                 details: {
@@ -166,6 +166,13 @@ let activeItem = null;
 let lastIndices = { sports: -1, film: -1, philosophy: -1 };
 
 /**
+ * Image error fallback handling to ensure robust presentation
+ */
+function handleImageError(imgElement) {
+    imgElement.src = 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80';
+}
+
+/**
  * Returns a unique random item from the list, avoiding consecutive repeats
  */
 function getRandomUniqueItem(list, categoryKey) {
@@ -194,11 +201,15 @@ function selectCategory(categoryName) {
  */
 function toggleMindsetConnection() {
     const box = document.getElementById('synthesisBox');
-    const btn = document.getElementById('synthesisToggleBtn');
+    const btnIcon = document.getElementById('synthesisToggleIcon');
+    
+    if (!box) return;
     
     box.classList.toggle('hidden-synthesis');
     const isHidden = box.classList.contains('hidden-synthesis');
-    btn.innerHTML = `💡 Mindset Connection (Optional) <span class="toggle-icon">${isHidden ? '▼ Reveal' : '▲ Hide'}</span>`;
+    if (btnIcon) {
+        btnIcon.textContent = isHidden ? '▼ Reveal' : '▲ Hide';
+    }
 }
 
 /* =======================================================================
@@ -240,47 +251,58 @@ function generateInsight() {
     activeItem = getRandomUniqueItem(categoryData.items, currentCategory);
 
     // Update themes and backgrounds
-    DOM.bgLayer.className = `bg-image-layer bg-${currentCategory}`;
-    DOM.displayCard.className = `card ${categoryData.themeClass}`;
-    DOM.generateBtn.className = `generate-btn ${categoryData.themeClass}`;
-    DOM.generateBtn.textContent = categoryData.buttonText;
-    DOM.categoryBadge.textContent = categoryData.badgeText;
+    if (DOM.bgLayer) DOM.bgLayer.className = `bg-image-layer bg-${currentCategory}`;
+    if (DOM.displayCard) DOM.displayCard.className = `card ${categoryData.themeClass}`;
+    if (DOM.generateBtn) {
+        DOM.generateBtn.className = `generate-btn ${categoryData.themeClass}`;
+        DOM.generateBtn.textContent = categoryData.buttonText;
+    }
+    if (DOM.categoryBadge) DOM.categoryBadge.textContent = categoryData.badgeText;
 
     // Trigger visual reflow animation
-    DOM.displayCard.classList.remove('fade-in');
-    void DOM.displayCard.offsetWidth;
-    DOM.displayCard.classList.add('fade-in');
+    if (DOM.displayCard) {
+        DOM.displayCard.classList.remove('fade-in');
+        void DOM.displayCard.offsetWidth;
+        DOM.displayCard.classList.add('fade-in');
+    }
 
     // Populate elements
-    DOM.authorAvatar.src = activeItem.authorImg;
-    DOM.authorAvatar.alt = activeItem.author;
-    DOM.leagueOverlayBadge.textContent = activeItem.leagueBadge;
-    DOM.quoteText.textContent = `"${activeItem.quote}"`;
-    DOM.quoteAuthor.textContent = `— ${activeItem.author}`;
-    DOM.synthesisText.textContent = activeItem.synthesis;
-    DOM.factText.textContent = activeItem.fact;
+    if (DOM.authorAvatar) {
+        DOM.authorAvatar.src = activeItem.authorImg;
+        DOM.authorAvatar.alt = activeItem.author;
+    }
+    if (DOM.leagueOverlayBadge) DOM.leagueOverlayBadge.textContent = activeItem.leagueBadge;
+    if (DOM.quoteText) DOM.quoteText.textContent = `"${activeItem.quote}"`;
+    if (DOM.quoteAuthor) DOM.quoteAuthor.textContent = `— ${activeItem.author}`;
+    if (DOM.synthesisText) DOM.synthesisText.textContent = activeItem.synthesis;
+    if (DOM.factText) DOM.factText.textContent = activeItem.fact;
 }
 
 function openDetailView() {
-    if (!activeItem) return;
+    if (!activeItem || !DOM.detailModal) return;
 
-    DOM.modalCategoryBadge.textContent = APP_DATA[currentCategory].badgeText;
-    DOM.modalAuthorImg.src = activeItem.authorImg;
-    DOM.modalAuthorName.textContent = activeItem.author;
-    DOM.modalAuthorRole.textContent = activeItem.details.role;
-    DOM.modalBeliefs.textContent = activeItem.details.beliefs;
-    DOM.modalAchievements.textContent = activeItem.details.achievements;
-    DOM.modalTrivia.textContent = activeItem.details.trivia;
+    if (DOM.modalCategoryBadge) DOM.modalCategoryBadge.textContent = APP_DATA[currentCategory].badgeText;
+    if (DOM.modalAuthorImg) {
+        DOM.modalAuthorImg.src = activeItem.authorImg;
+        DOM.modalAuthorImg.alt = activeItem.author;
+    }
+    if (DOM.modalAuthorName) DOM.modalAuthorName.textContent = activeItem.author;
+    if (DOM.modalAuthorRole) DOM.modalAuthorRole.textContent = activeItem.details.role;
+    if (DOM.modalBeliefs) DOM.modalBeliefs.textContent = activeItem.details.beliefs;
+    if (DOM.modalAchievements) DOM.modalAchievements.textContent = activeItem.details.achievements;
+    if (DOM.modalTrivia) DOM.modalTrivia.textContent = activeItem.details.trivia;
 
     DOM.detailModal.classList.add('active');
     DOM.detailModal.setAttribute('aria-hidden', 'false');
 }
 
 function closeDetailView() {
+    if (!DOM.detailModal) return;
     DOM.detailModal.classList.remove('active');
     DOM.detailModal.setAttribute('aria-hidden', 'true');
 }
 
+// Initial initialization when DOM is fully loaded
 window.addEventListener('DOMContentLoaded', () => {
     generateInsight();
 });
