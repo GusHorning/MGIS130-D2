@@ -3,24 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Sparks — Cross-Domain Wisdom</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Daily Sparks — Vibrant Cross-Domain Wisdom</title>
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --card-glass: rgba(15, 23, 42, 0.75);
+            --border-color: rgba(255, 255, 255, 0.12);
+            
+            /* Category Theme Colors */
+            --sports-primary: #38bdf8;
+            --sports-accent: #0284c7;
+            --sports-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #f43f5e 100%);
+            --sports-glow: rgba(56, 189, 248, 0.4);
+
+            --film-primary: #fb7185;
+            --film-accent: #e11d48;
+            --film-gradient: linear-gradient(135deg, #e11d48 0%, #fb7185 50%, #818cf8 100%);
+            --film-glow: rgba(251, 113, 133, 0.4);
+
+            --philosophy-primary: #34d399;
+            --philosophy-accent: #059669;
+            --philosophy-gradient: linear-gradient(135deg, #059669 0%, #34d399 50%, #fbbf24 100%);
+            --philosophy-glow: rgba(52, 211, 153, 0.4);
+
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 2rem 1rem;
+        }
+
+        /* Background image & gradient layer */
+        .bg-image-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            transition: all 0.6s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4) blur(8px);
+        }
+
+        .bg-sports {
+            background-image: radial-gradient(circle at 20% 20%, #0284c7 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, #f43f5e 0%, transparent 50%),
+                              linear-gradient(180deg, #0f172a 0%, #0284c7 100%);
+        }
+
+        .bg-film {
+            background-image: radial-gradient(circle at 20% 20%, #be123c 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, #6366f1 0%, transparent 50%),
+                              linear-gradient(180deg, #111827 0%, #881337 100%);
+        }
+
+        .bg-philosophy {
+            background-image: radial-gradient(circle at 20% 20%, #047857 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, #d97706 0%, transparent 50%),
+                              linear-gradient(180deg, #022c22 0%, #065f46 100%);
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: rgba(11, 15, 25, 0.65);
+            backdrop-filter: blur(12px);
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 1;
+        }
+
+        .app-header {
+            text-align: center;
+        }
+
+        .app-header h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+
+        /* Category Navigation Selector */
+        .category-selector {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.6rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-btn.active[data-category="sports"] {
+            background: var(--sports-gradient);
+            color: #fff;
+            box-shadow: 0 0 15px var(--sports-glow);
+        }
+
+        .tab-btn.active[data-category="film"] {
+            background: var(--film-gradient);
+            color: #fff;
+            box-shadow: 0 0 15px var(--film-glow);
+        }
+
+        .tab-btn.active[data-category="philosophy"] {
+            background: var(--philosophy-gradient);
+            color: #fff;
+            box-shadow: 0 0 15px var(--philosophy-glow);
+        }
+
+        /* Action Trigger Button */
+        .action-area {
+            display: flex;
+            justify-content: center;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .generate-btn.theme-sports { background: var(--sports-gradient); }
+        .generate-btn.theme-film { background: var(--film-gradient); }
+        .generate-btn.theme-philosophy { background: var(--philosophy-gradient); }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.15);
+        }
+
+        .card {
+            background: var(--card-glass);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(16px);
+            transition: border-color 0.4s ease;
+        }
+
+        .card.theme-sports { border-top: 4px solid var(--sports-primary); }
+        .card.theme-film { border-top: 4px solid var(--film-primary); }
+        .card.theme-philosophy { border-top: 4px solid var(--philosophy-primary); }
+
+        .media-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .author-avatar {
+            transform: scale(1.03);
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text-primary);
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(8px);
+        }
+
+        .league-overlay-badge {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+        }
+
+        .media-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(180deg, transparent 0%, var(--card-glass) 100%);
+        }
+
+        .card-body {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .quote-block {
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+
+        .quote-text {
+            font-size: 1.35rem;
+            line-height: 1.6;
+            font-weight: 600;
+            color: #f8fafc;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+
+        .synthesis-toggle-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.65rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .synthesis-toggle-btn:hover, .synthesis-toggle-btn.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-style: solid;
+        }
+
+        .synthesis-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .synthesis-box.hidden-synthesis {
+            display: none;
+        }
+
+        .synthesis-header {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #38bdf8;
+            margin-bottom: 0.4rem;
+        }
+
+        .synthesis-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+        }
+
+        .fact-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 3px solid #f43f5e;
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .card.theme-sports .fact-block { border-left-color: var(--sports-primary); }
+        .card.theme-film .fact-block { border-left-color: var(--film-primary); }
+        .card.theme-philosophy .fact-block { border-left-color: var(--philosophy-primary); }
+
+        .fact-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 0.35rem;
+        }
+
+        .fact-text {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .explore-btn {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.85rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .app-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(16px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+            padding: 1.5rem;
+        }
+
+        .detail-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 580px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-author-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0.75rem auto;
+            border: 2px solid var(--border-color);
+        }
+
+        .modal-author-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .modal-section h3 {
+            font-size: 0.9rem;
+            color: var(--sports-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .modal-section p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        .back-btn {
+            width: 100%;
+            background: var(--sports-gradient);
+            border: none;
+            color: white;
+            padding: 0.85rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Dynamic Category Background Image Container -->
+    <!-- Dynamic Background Layer -->
     <div id="bgImageLayer" class="bg-image-layer bg-sports"></div>
     <div class="bg-overlay"></div>
 
     <div class="app-container">
-        <!-- Main Application Header -->
         <header class="app-header">
-            <span class="motto-pill">✨ Quote & Fact of the Day</span>
             <h1>Daily Sparks</h1>
             <p class="subtitle">Unexpected wisdom across Athletics, Cinema, and Philosophy</p>
         </header>
 
-        <!-- Category Controls -->
+        <!-- Category Selector -->
         <nav class="category-selector" role="tablist">
             <button class="tab-btn active" data-category="sports" onclick="selectCategory('sports')">
                 <span class="tab-icon">⚡</span> Sports
@@ -33,52 +543,47 @@
             </button>
         </nav>
 
-        <!-- Generation Trigger -->
+        <!-- Action Trigger -->
         <div class="action-area">
             <button id="generateBtn" class="generate-btn theme-sports" onclick="generateInsight()">
-                🎲 Discover Today's Spark
+                ⚡ Discover Today's Spark
             </button>
         </div>
 
-        <!-- Main Display Card with Asymmetric Slanted Corners -->
-        <main id="displayCard" class="card theme-sports custom-corners">
-            <!-- Card Visual Header -->
+        <!-- Main Display Card -->
+        <main id="displayCard" class="card theme-sports">
             <div class="media-container">
                 <div id="categoryBadge" class="category-badge">Sports & Athletics</div>
-                <div id="mediaViewer"></div>
+                <img id="authorAvatar" class="author-avatar" src="" alt="Author Image" />
+                <div id="leagueOverlayBadge" class="league-overlay-badge">🏀 NBA INSIGHT</div>
                 <div class="media-overlay"></div>
             </div>
 
-            <!-- Card Body Content -->
             <div class="card-body">
-                <!-- Quote Block -->
                 <div class="quote-block">
                     <div id="quoteText" class="quote-text">"Loading..."</div>
                     <div id="quoteAuthor" class="quote-author">---</div>
                 </div>
 
-                <!-- Conceptual Synthesis Block -->
-                <div class="synthesis-box custom-corners-sm">
-                    <div class="synthesis-header">
-                        💡 Mindset Connection
-                    </div>
+                <button id="synthesisToggleBtn" class="synthesis-toggle-btn" onclick="toggleMindsetConnection()">
+                    💡 Mindset Connection (Optional) <span class="toggle-icon">▼ Reveal</span>
+                </button>
+                <div id="synthesisBox" class="synthesis-box hidden-synthesis">
+                    <div class="synthesis-header">Mindset Connection</div>
                     <div id="synthesisText" class="synthesis-text">---</div>
                 </div>
 
-                <!-- Historical Fact Block -->
-                <div class="fact-block custom-corners-sm">
-                    <div class="fact-title">Historical Snapshot</div>
+                <div class="fact-block">
+                    <div class="fact-title">Direct Historical Snapshot</div>
                     <div id="factText" class="fact-text">---</div>
                 </div>
 
-                <!-- Deep Dive Exploration Trigger Button -->
-                <button id="exploreBtn" class="explore-btn custom-corners-sm" onclick="openDetailView()">
-                    🔍 Learn More About This Mind & Quote →
+                <button id="exploreBtn" class="explore-btn" onclick="openDetailView()">
+                    🔍 Learn More About This Mind & Context →
                 </button>
             </div>
         </main>
 
-        <!-- Application Footer -->
         <footer class="app-footer">
             Daily Sparks &bull; Interdisciplinary Wisdom Engine
         </footer>
@@ -86,42 +591,299 @@
 
     <!-- Full-Screen Deep Dive Exploration View -->
     <div id="detailModal" class="detail-modal" aria-hidden="true">
-        <div class="modal-content custom-corners">
+        <div class="modal-content">
             <button class="close-modal-btn" onclick="closeDetailView()" aria-label="Close modal">✕</button>
             
             <header class="modal-header">
                 <span id="modalCategoryBadge" class="category-badge">Category</span>
+                <img id="modalAuthorImg" class="modal-author-img" src="" alt="Author" />
                 <h2 id="modalAuthorName">Author Name</h2>
                 <p id="modalAuthorRole" class="modal-author-role">Role / Profession</p>
             </header>
 
             <div class="modal-body">
-                <!-- Core Philosophy & Beliefs -->
-                <section class="modal-section custom-corners-sm">
-                    <h3>🧠 Typical Beliefs & Mindset</h3>
+                <section class="modal-section">
+                    <h3>🧠 Mindset & Philosophy</h3>
                     <p id="modalBeliefs">Details about core philosophies...</p>
                 </section>
 
-                <!-- Context & Achievements -->
-                <section class="modal-section custom-corners-sm">
+                <section class="modal-section">
                     <h3>🏆 Key Achievements & Impact</h3>
                     <p id="modalAchievements">Key career moments and background...</p>
                 </section>
 
-                <!-- Quote Context & Fun Fact -->
-                <section class="modal-section custom-corners-sm">
+                <section class="modal-section">
                     <h3>🍿 Context & Trivia</h3>
                     <p id="modalTrivia">Trivia related to quote and historical fact...</p>
                 </section>
             </div>
 
-            <button class="back-btn custom-corners-sm" onclick="closeDetailView()">
+            <button class="back-btn" onclick="closeDetailView()">
                 ← Back to Quote Generator
             </button>
         </div>
     </div>
 
-    <!-- JavaScript logic file -->
-    <script src="script.js"></script>
+    <script>
+        const APP_DATA = {
+            sports: {
+                title: "Sports",
+                themeClass: "theme-sports",
+                badgeText: "Sports & Athletics",
+                buttonText: "⚡ Discover Sports Spark",
+                items: [
+                    {
+                        quote: "I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game-winning shot and missed. I've failed over and over again. And that is why I succeed.",
+                        author: "Michael Jordan",
+                        leagueBadge: "🏀 NBA INSIGHT",
+                        authorImg: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "High performance requires embracing failure as a necessary calibration tool rather than an endpoint.",
+                        fact: "Direct context: During the 1993 NBA Finals, Michael Jordan scored an unprecedented average of 41 points per game while securing his third consecutive championship ring.",
+                        details: {
+                            role: "6-Time NBA Champion & Hall of Famer",
+                            beliefs: "Unrelenting competitive mindset, ruthless work ethic, and converting self-doubt into focused execution.",
+                            achievements: "6 NBA Championships, 5 MVP Awards, 10 Scoring Titles, and widely considered the greatest basketball player of all time.",
+                            trivia: "Jordan was famously cut from his high school varsity basketball team as a sophomore, using that rejection as lifelong motivation."
+                        }
+                    },
+                    {
+                        quote: "It's not whether you get knocked down, it's whether you get up.",
+                        author: "Vince Lombardi",
+                        leagueBadge: "🏈 NFL INSIGHT",
+                        authorImg: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Resilience in competitive environments mirrors stoic fortitude: shift focus from external blows to internal response.",
+                        fact: "Direct context: Lombardi led the Green Bay Packers to victory in the first two Super Bowls in NFL history (1967 and 1968).",
+                        details: {
+                            role: "Legendary NFL Coach & Super Bowl Trophy Namesake",
+                            beliefs: "Discipline, execution, unity, and refusal to accept defeat under any condition.",
+                            achievements: "Won 5 NFL Championships in 7 years, including Super Bowls I & II. The NFL Championship trophy bears his name.",
+                            trivia: "Lombardi never had a losing season as a head coach in the NFL."
+                        }
+                    },
+                    {
+                        quote: "The more difficult the victory, the greater the happiness in winning.",
+                        author: "Pelé",
+                        leagueBadge: "⚽ FIFA INSIGHT",
+                        authorImg: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Value is intrinsically tied to friction; ease rarely yields deep psychological satisfaction.",
+                        fact: "Direct context: Pelé became the youngest player ever to win a FIFA World Cup in 1958 at just 17 years old, scoring two goals in the final.",
+                        details: {
+                            role: "Global Football Ambassador & 3-Time World Cup Champion",
+                            beliefs: "Joyful creativity ('Joga Bonito'), humble persistence, and dedication to team synergy over individualism.",
+                            achievements: "Only player in history to win three FIFA World Cups (1958, 1962, 1970) and scored over 1,200 career goals.",
+                            trivia: "In 1967, a 48-hour ceasefire was declared in the Nigerian Civil War so both sides could watch Pelé play an exhibition match."
+                        }
+                    }
+                ]
+            },
+            film: {
+                title: "Film",
+                themeClass: "theme-film",
+                badgeText: "Cinema & Drama",
+                buttonText: "🎬 Discover Film Spark",
+                items: [
+                    {
+                        quote: "Do or do not. There is no try.",
+                        author: "Yoda (The Empire Strikes Back)",
+                        leagueBadge: "🌌 SCI-FI CINEMA",
+                        authorImg: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Eliminating tentative mindsets converts abstract intent into decisive commitment.",
+                        fact: "Direct context: Spoken during Luke Skywalker's training on Dagobah in 1980, this line redefined cinematic archetypes of mentorship.",
+                        details: {
+                            role: "Jedi Master & Cinematic Cultural Icon",
+                            beliefs: "Mindfulness, mastery over inner impulse, and total harmony between spirit and action.",
+                            achievements: "Trained Jedi for over 800 years and remains one of film history's most quoted fictional characters.",
+                            trivia: "Master Yoda's iconic face design was partially inspired by Albert Einstein to evoke wisdom and intellect."
+                        }
+                    },
+                    {
+                        quote: "Our lives are defined by opportunities, even the ones we miss.",
+                        author: "Benjamin Button",
+                        leagueBadge: "🍿 DRAMA & NARRATIVE",
+                        authorImg: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Non-events and lost paths shape human identity as profoundly as conscious achievements.",
+                        fact: "Direct context: Directed by David Fincher in 2008, the film adapted F. Scott Fitzgerald's tale, earning 13 Oscar nominations.",
+                        details: {
+                            role: "Literary & Cinematic Protagonist",
+                            beliefs: "Acceptance of time's inexorable flow and finding wonder in fleeting moments.",
+                            achievements: "Pioneered revolutionary aging CGI visual effects that won the Academy Award for Best Visual Effects.",
+                            trivia: "Brad Pitt spent up to 5 hours daily in makeup before CGI was layered onto his face for earlier stages of aging."
+                        }
+                    },
+                    {
+                        quote: "It's what you do right now that makes a difference.",
+                        author: "Aragorn (The Lord of the Rings)",
+                        leagueBadge: "⚔️ EPIC FANTASY",
+                        authorImg: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Agency exists exclusively in the immediate present; legacy is merely the byproduct of immediate execution.",
+                        fact: "Direct context: Delivered prior to the Battle of the Black Gate, symbolizing ultimate duty in J.R.R. Tolkien's legendary saga.",
+                        details: {
+                            role: "Ranger of the North & King of Gondor",
+                            beliefs: "Servant leadership, honor through sacrifice, and standing firm against overwhelming darkness.",
+                            achievements: "Unrivaled swordsman who united the fractured kingdoms of Men in Middle-earth.",
+                            trivia: "Actor Viggo Mortensen did all his own stunts and insisted on carrying a real steel sword throughout filming."
+                        }
+                    }
+                ]
+            },
+            philosophy: {
+                title: "Philosophy",
+                themeClass: "theme-philosophy",
+                badgeText: "Philosophy & Mind",
+                buttonText: "🏛️ Discover Philosophy Spark",
+                items: [
+                    {
+                        quote: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+                        author: "Aristotle",
+                        leagueBadge: "🏛️ ANCIENT GREECE",
+                        authorImg: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Character and identity are emergent properties derived from daily routines rather than singular highlights.",
+                        fact: "Direct context: Recorded in the 'Nicomachean Ethics', written around 350 BCE as a foundational framework for human virtue.",
+                        details: {
+                            role: "Classical Greek Philosopher & Polymath",
+                            beliefs: "Virtue ethics, the Golden Mean (balance), and empirical observation of nature.",
+                            achievements: "Student of Plato and tutor to Alexander the Great; laid foundations for formal logic, biology, and political theory.",
+                            trivia: "Aristotle created one of the world's earliest known botanical and zoological libraries in Athens."
+                        }
+                    },
+                    {
+                        quote: "He who has a why to live can bear almost any how.",
+                        author: "Friedrich Nietzsche",
+                        leagueBadge: "⚡ EXISTENTIALISM",
+                        authorImg: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Purpose acts as a powerful cognitive buffer against existential hardship and physical strain.",
+                        fact: "Direct context: Published in 'Twilight of the Idols' in 1889, exploring human endurance through psychological intent.",
+                        details: {
+                            role: "19th-Century German Philosopher & Cultural Critic",
+                            beliefs: "Self-overcoming (Übermensch), Amor Fati (love of fate), and personal creation of meaning.",
+                            achievements: "Profoundly influenced 20th-century literature, psychology, and existentialist thought.",
+                            trivia: "Nietzsche wrote many of his greatest works while hiking long distances through the Swiss Alps."
+                        }
+                    },
+                    {
+                        quote: "The unexamined life is not worth living.",
+                        author: "Socrates",
+                        leagueBadge: "⚖️ CLASSICAL LOGIC",
+                        authorImg: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80",
+                        synthesis: "Self-reflection is the prerequisite for intentional living; without it, actions are automated responses.",
+                        fact: "Direct context: Spoken during Socrates' trial in Athens in 399 BCE as he defended his practice of questioning dogma.",
+                        details: {
+                            role: "Father of Western Philosophy",
+                            beliefs: "Socratic Method (relentless questioning), pursuit of wisdom over material wealth, and intellectual humility.",
+                            achievements: "Transformed philosophical inquiry from studying physics to evaluating ethics and human behavior.",
+                            trivia: "Socrates wrote down none of his own teachings; everything known about him comes from Plato and Xenophon."
+                        }
+                    }
+                ]
+            }
+        };
+
+        let currentCategory = 'sports';
+        let activeItem = null;
+        let lastIndices = { sports: -1, film: -1, philosophy: -1 };
+
+        function getRandomUniqueItem(list, categoryKey) {
+            if (list.length <= 1) return list[0];
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * list.length);
+            } while (newIndex === lastIndices[categoryKey]);
+
+            lastIndices[categoryKey] = newIndex;
+            return list[newIndex];
+        }
+
+        function selectCategory(categoryName) {
+            if (!APP_DATA[categoryName]) return;
+            currentCategory = categoryName;
+            updateTabUI();
+            generateInsight();
+        }
+
+        function toggleMindsetConnection() {
+            const box = document.getElementById('synthesisBox');
+            const btn = document.getElementById('synthesisToggleBtn');
+            
+            box.classList.toggle('hidden-synthesis');
+            const isHidden = box.classList.contains('hidden-synthesis');
+            btn.innerHTML = `💡 Mindset Connection (Optional) <span class="toggle-icon">${isHidden ? '▼ Reveal' : '▲ Hide'}</span>`;
+        }
+
+        const DOM = {
+            bgLayer: document.getElementById('bgImageLayer'),
+            generateBtn: document.getElementById('generateBtn'),
+            displayCard: document.getElementById('displayCard'),
+            categoryBadge: document.getElementById('categoryBadge'),
+            leagueOverlayBadge: document.getElementById('leagueOverlayBadge'),
+            authorAvatar: document.getElementById('authorAvatar'),
+            quoteText: document.getElementById('quoteText'),
+            quoteAuthor: document.getElementById('quoteAuthor'),
+            synthesisText: document.getElementById('synthesisText'),
+            factText: document.getElementById('factText'),
+            tabButtons: document.querySelectorAll('.tab-btn'),
+            
+            detailModal: document.getElementById('detailModal'),
+            modalCategoryBadge: document.getElementById('modalCategoryBadge'),
+            modalAuthorImg: document.getElementById('modalAuthorImg'),
+            modalAuthorName: document.getElementById('modalAuthorName'),
+            modalAuthorRole: document.getElementById('modalAuthorRole'),
+            modalBeliefs: document.getElementById('modalBeliefs'),
+            modalAchievements: document.getElementById('modalAchievements'),
+            modalTrivia: document.getElementById('modalTrivia')
+        };
+
+        function updateTabUI() {
+            DOM.tabButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === currentCategory);
+            });
+        }
+
+        function generateInsight() {
+            const categoryData = APP_DATA[currentCategory];
+            activeItem = getRandomUniqueItem(categoryData.items, currentCategory);
+
+            DOM.bgLayer.className = `bg-image-layer bg-${currentCategory}`;
+            DOM.displayCard.className = `card ${categoryData.themeClass}`;
+            DOM.generateBtn.className = `generate-btn ${categoryData.themeClass}`;
+            DOM.generateBtn.textContent = categoryData.buttonText;
+            DOM.categoryBadge.textContent = categoryData.badgeText;
+
+            DOM.displayCard.classList.remove('fade-in');
+            void DOM.displayCard.offsetWidth;
+            DOM.displayCard.classList.add('fade-in');
+
+            DOM.authorAvatar.src = activeItem.authorImg;
+            DOM.authorAvatar.alt = activeItem.author;
+            DOM.leagueOverlayBadge.textContent = activeItem.leagueBadge;
+            DOM.quoteText.textContent = `"${activeItem.quote}"`;
+            DOM.quoteAuthor.textContent = `— ${activeItem.author}`;
+            DOM.synthesisText.textContent = activeItem.synthesis;
+            DOM.factText.textContent = activeItem.fact;
+        }
+
+        function openDetailView() {
+            if (!activeItem) return;
+
+            DOM.modalCategoryBadge.textContent = APP_DATA[currentCategory].badgeText;
+            DOM.modalAuthorImg.src = activeItem.authorImg;
+            DOM.modalAuthorName.textContent = activeItem.author;
+            DOM.modalAuthorRole.textContent = activeItem.details.role;
+            DOM.modalBeliefs.textContent = activeItem.details.beliefs;
+            DOM.modalAchievements.textContent = activeItem.details.achievements;
+            DOM.modalTrivia.textContent = activeItem.details.trivia;
+
+            DOM.detailModal.classList.add('active');
+            DOM.detailModal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeDetailView() {
+            DOM.detailModal.classList.remove('active');
+            DOM.detailModal.setAttribute('aria-hidden', 'true');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            generateInsight();
+        });
+    </script>
 </body>
 </html>
