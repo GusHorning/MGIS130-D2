@@ -3,29 +3,30 @@
 VIBRANT COLOR PALETTES & THEME DEFINITIONS
 ======================================================================= */
 :root {
---bg-dark: #0b0f19;
---text-primary: #f8fafc;
---text-secondary: #94a3b8;
---card-glass: rgba(15, 23, 42, 0.75);
---border-color: rgba(255, 255, 255, 0.12);
+--bg-dark: #090d16;
+--text-primary: #ffffff;
+--text-secondary: #cbd5e1;
+--card-glass: rgba(15, 23, 42, 0.85);
+--border-color: rgba(255, 255, 255, 0.18);
 
-/* Category Theme Colors: High energy & vibrant */
+/* Category Theme Colors: Electric & high saturation */
 --sports-primary: #38bdf8;
 --sports-accent: #0284c7;
 --sports-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #f43f5e 100%);
---sports-glow: rgba(56, 189, 248, 0.4);
+--sports-glow: rgba(56, 189, 248, 0.5);
 
 --film-primary: #fb7185;
 --film-accent: #e11d48;
 --film-gradient: linear-gradient(135deg, #e11d48 0%, #fb7185 50%, #818cf8 100%);
---film-glow: rgba(251, 113, 133, 0.4);
+--film-glow: rgba(251, 113, 133, 0.5);
 
 --philosophy-primary: #34d399;
 --philosophy-accent: #059669;
 --philosophy-gradient: linear-gradient(135deg, #059669 0%, #34d399 50%, #fbbf24 100%);
---philosophy-glow: rgba(52, 211, 153, 0.4);
+--philosophy-glow: rgba(52, 211, 153, 0.5);
 
---font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+--font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+--font-serif: 'Playfair Display', Georgia, serif;
 
 
 }
@@ -49,7 +50,7 @@ overflow-x: hidden;
 padding: 2rem 1rem;
 }
 
-/* Background image & vibrant gradient overlay layer */
+/* Highly vibrant background gradient layers */
 .bg-image-layer {
 position: fixed;
 top: 0;
@@ -60,24 +61,26 @@ z-index: -2;
 transition: all 0.6s ease-in-out;
 background-size: cover;
 background-position: center;
-filter: brightness(0.4) blur(8px);
 }
 
 .bg-sports {
-background-image: radial-gradient(circle at 20% 20%, #0284c7 0%, transparent 50%),
-radial-gradient(circle at 80% 80%, #f43f5e 0%, transparent 50%),
+background-image: radial-gradient(circle at 20% 20%, #0284c7 0%, transparent 60%),
+radial-gradient(circle at 80% 80%, #f43f5e 0%, transparent 60%),
+radial-gradient(circle at 50% 50%, #38bdf8 0%, transparent 70%),
 linear-gradient(180deg, #0f172a 0%, #0284c7 100%);
 }
 
 .bg-film {
-background-image: radial-gradient(circle at 20% 20%, #be123c 0%, transparent 50%),
-radial-gradient(circle at 80% 80%, #6366f1 0%, transparent 50%),
+background-image: radial-gradient(circle at 20% 20%, #be123c 0%, transparent 60%),
+radial-gradient(circle at 80% 80%, #6366f1 0%, transparent 60%),
+radial-gradient(circle at 50% 50%, #fb7185 0%, transparent 70%),
 linear-gradient(180deg, #111827 0%, #881337 100%);
 }
 
 .bg-philosophy {
-background-image: radial-gradient(circle at 20% 20%, #047857 0%, transparent 50%),
-radial-gradient(circle at 80% 80%, #d97706 0%, transparent 50%),
+background-image: radial-gradient(circle at 20% 20%, #047857 0%, transparent 60%),
+radial-gradient(circle at 80% 80%, #d97706 0%, transparent 60%),
+radial-gradient(circle at 50% 50%, #34d399 0%, transparent 70%),
 linear-gradient(180deg, #022c22 0%, #065f46 100%);
 }
 
@@ -88,11 +91,11 @@ left: 0;
 width: 100vw;
 height: 100vh;
 z-index: -1;
-background: rgba(11, 15, 25, 0.65);
-backdrop-filter: blur(12px);
+background: rgba(9, 13, 22, 0.45);
+backdrop-filter: blur(8px);
 }
 
-/* STREAMING_CHUNK:Styling main app layout, title header, and vibrant navigation... */
+/* STREAMING_CHUNK:Styling layout structure, title banner, and category selection tabs... */
 .app-container {
 width: 100%;
 max-width: 680px;
@@ -107,39 +110,42 @@ text-align: center;
 }
 
 .app-header h1 {
-font-size: 2.75rem;
+font-size: 2.85rem;
 font-weight: 800;
 letter-spacing: -0.02em;
-background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 margin-bottom: 0.25rem;
+text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
 font-size: 1.05rem;
 color: var(--text-secondary);
+font-weight: 600;
 }
 
-/* Category Navigation Selector */
+/* Category Selector Navigation */
 .category-selector {
 display: flex;
 justify-content: center;
 gap: 0.75rem;
-background: rgba(255, 255, 255, 0.05);
+background: rgba(255, 255, 255, 0.08);
 padding: 0.5rem;
 border-radius: 999px;
 border: 1px solid var(--border-color);
+backdrop-filter: blur(12px);
 }
 
 .tab-btn {
 background: transparent;
 border: none;
 color: var(--text-secondary);
-padding: 0.6rem 1.25rem;
+padding: 0.65rem 1.35rem;
 border-radius: 999px;
 font-size: 0.95rem;
-font-weight: 600;
+font-weight: 700;
 cursor: pointer;
 transition: all 0.3s ease;
 display: flex;
@@ -149,25 +155,25 @@ gap: 0.5rem;
 
 .tab-btn:hover {
 color: var(--text-primary);
-background: rgba(255, 255, 255, 0.08);
+background: rgba(255, 255, 255, 0.12);
 }
 
 .tab-btn.active[data-category="sports"] {
 background: var(--sports-gradient);
 color: #fff;
-box-shadow: 0 0 15px var(--sports-glow);
+box-shadow: 0 0 20px var(--sports-glow);
 }
 
 .tab-btn.active[data-category="film"] {
 background: var(--film-gradient);
 color: #fff;
-box-shadow: 0 0 15px var(--film-glow);
+box-shadow: 0 0 20px var(--film-glow);
 }
 
 .tab-btn.active[data-category="philosophy"] {
 background: var(--philosophy-gradient);
 color: #fff;
-box-shadow: 0 0 15px var(--philosophy-glow);
+box-shadow: 0 0 20px var(--philosophy-glow);
 }
 
 /* Action Trigger Button */
@@ -178,15 +184,16 @@ justify-content: center;
 
 .generate-btn {
 width: 100%;
-padding: 1rem 2rem;
+padding: 1.1rem 2rem;
 border: none;
-border-radius: 12px;
+border-radius: 14px;
 font-size: 1.1rem;
-font-weight: 700;
+font-weight: 800;
 color: white;
 cursor: pointer;
-transition: all 0.3s ease;
-box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+letter-spacing: 0.02em;
 }
 
 .generate-btn.theme-sports {
@@ -202,28 +209,29 @@ background: var(--philosophy-gradient);
 .generate-btn:hover {
 transform: translateY(-2px);
 filter: brightness(1.15);
+box-shadow: 0 14px 30px rgba(0,0,0,0.5);
 }
 
-/* STREAMING_CHUNK:Styling main card display, author image headers, and theme accents... /
+/* STREAMING_CHUNK:Styling main card display, author image viewer, and dynamic badges... /
 / Card Main Component */
 .card {
 background: var(--card-glass);
-border-radius: 20px;
+border-radius: 22px;
 border: 1px solid var(--border-color);
 overflow: hidden;
-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-backdrop-filter: blur(16px);
+box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(20px);
 transition: border-color 0.4s ease;
 }
 
-.card.theme-sports { border-top: 4px solid var(--sports-primary); }
-.card.theme-film { border-top: 4px solid var(--film-primary); }
-.card.theme-philosophy { border-top: 4px solid var(--philosophy-primary); }
+.card.theme-sports { border-top: 5px solid var(--sports-primary); }
+.card.theme-film { border-top: 5px solid var(--film-primary); }
+.card.theme-philosophy { border-top: 5px solid var(--philosophy-primary); }
 
 .media-container {
 position: relative;
 width: 100%;
-height: 220px;
+height: 260px;
 overflow: hidden;
 background: #020617;
 display: flex;
@@ -236,42 +244,45 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 object-position: center top;
-transition: transform 0.5s ease;
+transition: transform 0.6s ease;
+filter: contrast(1.05) brightness(0.95);
 }
 
 .card:hover .author-avatar {
-transform: scale(1.03);
+transform: scale(1.04);
 }
 
 .category-badge {
 position: absolute;
 top: 1rem;
 left: 1rem;
-background: rgba(15, 23, 42, 0.85);
+background: rgba(15, 23, 42, 0.9);
 color: var(--text-primary);
-padding: 0.35rem 0.85rem;
+padding: 0.4rem 0.95rem;
 border-radius: 999px;
 font-size: 0.75rem;
-font-weight: 700;
-letter-spacing: 0.05em;
+font-weight: 800;
+letter-spacing: 0.06em;
 text-transform: uppercase;
 border: 1px solid var(--border-color);
 backdrop-filter: blur(8px);
+box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .league-overlay-badge {
 position: absolute;
 bottom: 1rem;
 right: 1rem;
-background: rgba(0, 0, 0, 0.8);
+background: rgba(0, 0, 0, 0.85);
 color: #fff;
-padding: 0.4rem 0.9rem;
+padding: 0.45rem 1rem;
 border-radius: 8px;
-font-size: 0.8rem;
+font-size: 0.82rem;
 font-weight: 800;
-letter-spacing: 0.04em;
-border: 1px solid rgba(255, 255, 255, 0.2);
+letter-spacing: 0.05em;
+border: 1px solid rgba(255, 255, 255, 0.25);
 backdrop-filter: blur(6px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .media-overlay {
@@ -279,49 +290,52 @@ position: absolute;
 bottom: 0;
 left: 0;
 width: 100%;
-height: 60%;
+height: 50%;
 background: linear-gradient(180deg, transparent 0%, var(--card-glass) 100%);
 }
 
 .card-body {
-padding: 1.75rem;
+padding: 1.85rem;
 display: flex;
 flex-direction: column;
-gap: 1.25rem;
+gap: 1.35rem;
 }
 
 .quote-block {
 text-align: center;
-padding: 0.5rem 0;
+padding: 0.25rem 0;
 }
 
 .quote-text {
-font-size: 1.35rem;
-line-height: 1.6;
+font-family: var(--font-serif);
+font-size: 1.45rem;
+line-height: 1.55;
 font-weight: 600;
-color: #f8fafc;
+color: #ffffff;
 font-style: italic;
-margin-bottom: 0.75rem;
+margin-bottom: 0.85rem;
+text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 .quote-author {
-font-size: 1rem;
-font-weight: 700;
-color: var(--text-secondary);
-letter-spacing: 0.02em;
+font-family: var(--font-main);
+font-size: 1.05rem;
+font-weight: 800;
+color: #e2e8f0;
+letter-spacing: 0.03em;
 }
 
-/* STREAMING_CHUNK:Styling mindset toggle box, context facts, and interactive triggers... /
-/ Synthesis Toggle Controls & Content Box */
+/* STREAMING_CHUNK:Styling "Further Insight" toggle box, historical facts, and modal popup... /
+/ Further Insight Toggle Controls & Content Box */
 .synthesis-toggle-btn {
 width: 100%;
-background: rgba(255, 255, 255, 0.05);
-border: 1px dashed var(--border-color);
-color: var(--text-secondary);
-padding: 0.65rem 1rem;
-border-radius: 10px;
-font-size: 0.85rem;
-font-weight: 600;
+background: rgba(255, 255, 255, 0.06);
+border: 1px solid var(--border-color);
+color: var(--text-primary);
+padding: 0.75rem 1.1rem;
+border-radius: 12px;
+font-size: 0.9rem;
+font-weight: 700;
 cursor: pointer;
 display: flex;
 justify-content: space-between;
@@ -329,17 +343,16 @@ align-items: center;
 transition: all 0.3s ease;
 }
 
-.synthesis-toggle-btn:hover, .synthesis-toggle-btn.active {
-background: rgba(255, 255, 255, 0.1);
-color: var(--text-primary);
-border-style: solid;
+.synthesis-toggle-btn:hover {
+background: rgba(255, 255, 255, 0.12);
+border-color: rgba(255, 255, 255, 0.3);
 }
 
 .synthesis-box {
-background: rgba(255, 255, 255, 0.04);
+background: rgba(255, 255, 255, 0.05);
 border: 1px solid var(--border-color);
 border-radius: 12px;
-padding: 1rem 1.25rem;
+padding: 1.1rem 1.25rem;
 transition: all 0.3s ease;
 }
 
@@ -349,25 +362,29 @@ display: none;
 
 .synthesis-header {
 font-size: 0.8rem;
-font-weight: 700;
+font-weight: 800;
 text-transform: uppercase;
-letter-spacing: 0.05em;
-color: #38bdf8;
-margin-bottom: 0.4rem;
+letter-spacing: 0.06em;
+color: var(--sports-primary);
+margin-bottom: 0.45rem;
 }
+
+.card.theme-sports .synthesis-header { color: var(--sports-primary); }
+.card.theme-film .synthesis-header { color: var(--film-primary); }
+.card.theme-philosophy .synthesis-header { color: var(--philosophy-primary); }
 
 .synthesis-text {
-font-size: 0.95rem;
-line-height: 1.5;
-color: #e2e8f0;
+font-size: 0.98rem;
+line-height: 1.55;
+color: #f1f5f9;
 }
 
-/* Directly Linked Historical Fact Block */
+/* Contextual Fact Block */
 .fact-block {
-background: rgba(0, 0, 0, 0.3);
-border-left: 3px solid #f43f5e;
-padding: 1rem 1.25rem;
-border-radius: 0 12px 12px 0;
+background: rgba(0, 0, 0, 0.35);
+padding: 1.1rem 1.25rem;
+border-radius: 0 14px 14px 0;
+border-left: 4px solid var(--sports-primary);
 }
 
 .card.theme-sports .fact-block { border-left-color: var(--sports-primary); }
@@ -378,57 +395,58 @@ border-radius: 0 12px 12px 0;
 font-size: 0.8rem;
 font-weight: 800;
 text-transform: uppercase;
-letter-spacing: 0.05em;
+letter-spacing: 0.06em;
 color: var(--text-secondary);
-margin-bottom: 0.35rem;
+margin-bottom: 0.4rem;
 }
 
 .fact-text {
-font-size: 0.92rem;
-line-height: 1.5;
-color: #cbd5e1;
+font-size: 0.95rem;
+line-height: 1.55;
+color: #e2e8f0;
 }
 
 .explore-btn {
 width: 100%;
-background: rgba(255, 255, 255, 0.06);
+background: rgba(255, 255, 255, 0.08);
 border: 1px solid var(--border-color);
 color: var(--text-primary);
-padding: 0.85rem;
-border-radius: 10px;
-font-size: 0.9rem;
-font-weight: 600;
+padding: 0.9rem;
+border-radius: 12px;
+font-size: 0.92rem;
+font-weight: 700;
 cursor: pointer;
 transition: all 0.3s ease;
 }
 
 .explore-btn:hover {
-background: rgba(255, 255, 255, 0.15);
+background: rgba(255, 255, 255, 0.18);
+border-color: rgba(255, 255, 255, 0.35);
 }
 
 .app-footer {
 text-align: center;
-font-size: 0.8rem;
+font-size: 0.82rem;
 color: var(--text-secondary);
-opacity: 0.6;
+opacity: 0.8;
 }
 
-/* STREAMING_CHUNK:Styling modal dialog view and responsive design... /
-/ Full Screen Exploratory Modal */
+/* STREAMING_CHUNK:Styling detail modal popup dialog and responsiveness... /
+/ Deep Dive Detail View Overlay Modal */
 .detail-modal {
 position: fixed;
 top: 0;
 left: 0;
 width: 100vw;
 height: 100vh;
-background: rgba(2, 6, 23, 0.85);
-backdrop-filter: blur(16px);
+background: rgba(2, 6, 23, 0.88);
+backdrop-filter: blur(20px);
 display: flex;
 justify-content: center;
 align-items: center;
 opacity: 0;
 pointer-events: none;
-transition: opacity 0.3s ease;
+transition: opacity 0.35s ease;
 z-index: 100;
 padding: 1.5rem;
 }
@@ -441,28 +459,33 @@ pointer-events: auto;
 .modal-content {
 background: #0f172a;
 border: 1px solid var(--border-color);
-border-radius: 20px;
+border-radius: 24px;
 width: 100%;
-max-width: 580px;
-max-height: 90vh;
+max-width: 600px;
+max-height: 88vh;
 overflow-y: auto;
-padding: 2rem;
+padding: 2.25rem;
 position: relative;
-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
 }
 
 .close-modal-btn {
 position: absolute;
 top: 1.25rem;
 right: 1.25rem;
-background: rgba(255, 255, 255, 0.1);
+background: rgba(255, 255, 255, 0.12);
 border: none;
 color: white;
-width: 32px;
-height: 32px;
+width: 36px;
+height: 36px;
 border-radius: 50%;
-font-size: 1.1rem;
+font-size: 1.2rem;
 cursor: pointer;
+transition: background 0.2s ease;
+}
+
+.close-modal-btn:hover {
+background: rgba(255, 255, 255, 0.25);
 }
 
 .modal-header {
@@ -471,42 +494,44 @@ margin-bottom: 1.5rem;
 }
 
 .modal-author-img {
-width: 90px;
-height: 90px;
+width: 110px;
+height: 110px;
 border-radius: 50%;
 object-fit: cover;
-margin: 0.75rem auto;
-border: 2px solid var(--border-color);
+margin: 0.85rem auto;
+border: 3px solid var(--border-color);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .modal-author-role {
-font-size: 0.9rem;
+font-size: 0.95rem;
 color: var(--text-secondary);
+font-weight: 600;
 }
 
 .modal-body {
 display: flex;
 flex-direction: column;
-gap: 1rem;
-margin-bottom: 1.5rem;
+gap: 1.1rem;
+margin-bottom: 1.75rem;
 }
 
 .modal-section {
-background: rgba(255, 255, 255, 0.03);
+background: rgba(255, 255, 255, 0.04);
 border: 1px solid var(--border-color);
-padding: 1rem;
-border-radius: 12px;
+padding: 1.1rem;
+border-radius: 14px;
 }
 
 .modal-section h3 {
-font-size: 0.9rem;
+font-size: 0.92rem;
 color: var(--sports-primary);
-margin-bottom: 0.4rem;
+margin-bottom: 0.45rem;
 }
 
 .modal-section p {
-font-size: 0.9rem;
-line-height: 1.5;
+font-size: 0.95rem;
+line-height: 1.55;
 color: #cbd5e1;
 }
 
@@ -515,17 +540,23 @@ width: 100%;
 background: var(--sports-gradient);
 border: none;
 color: white;
-padding: 0.85rem;
-border-radius: 10px;
-font-weight: 700;
+padding: 0.95rem;
+border-radius: 12px;
+font-weight: 800;
 cursor: pointer;
+font-size: 1rem;
+transition: opacity 0.2s ease;
+}
+
+.back-btn:hover {
+opacity: 0.9;
 }
 
 .fade-in {
-animation: fadeIn 0.4s ease forwards;
+animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes fadeIn {
-from { opacity: 0; transform: translateY(10px); }
+from { opacity: 0; transform: translateY(12px); }
 to { opacity: 1; transform: translateY(0); }
 }
