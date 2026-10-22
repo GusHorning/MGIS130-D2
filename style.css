@@ -1,43 +1,45 @@
 /* =======================================================================
-VIBRANT COLOR PALETTES & THEME DEFINITIONS
+DAILY SPARKS - VIBRANT & RESPONSIVE STYLES
+Categories: Sports, Film, Philosophy
 ======================================================================= */
+
 :root {
 --bg-dark: #070a12;
 --text-primary: #ffffff;
---text-secondary: #e2e8f0;
+--text-secondary: #cbd5e1;
 --card-glass: rgba(15, 23, 42, 0.88);
---border-color: rgba(255, 255, 255, 0.22);
+--border-color: rgba(255, 255, 255, 0.18);
 
-/* Category Theme Colors: High energy, electric & radiant */
+/* Sports Theme Colors (Electric Blue / Cyan) */
 --sports-primary: #38bdf8;
---sports-accent: #0284c7;
 --sports-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 50%, #ec4899 100%);
---sports-glow: rgba(56, 189, 248, 0.6);
+--sports-glow: rgba(56, 189, 248, 0.5);
 
+/* Film Theme Colors (Crimson / Violet) */
 --film-primary: #fb7185;
---film-accent: #e11d48;
 --film-gradient: linear-gradient(135deg, #e11d48 0%, #fb7185 50%, #818cf8 100%);
---film-glow: rgba(251, 113, 133, 0.6);
+--film-glow: rgba(251, 113, 133, 0.5);
 
+/* Philosophy Theme Colors (Emerald / Gold) */
 --philosophy-primary: #34d399;
---philosophy-accent: #059669;
 --philosophy-gradient: linear-gradient(135deg, #059669 0%, #34d399 50%, #f59e0b 100%);
---philosophy-glow: rgba(52, 211, 153, 0.6);
+--philosophy-glow: rgba(52, 211, 153, 0.5);
 
---font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+--font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 --font-serif: 'Playfair Display', Georgia, serif;
 
 
 }
 
-{
+/* Base resets */
+*, *::before, *::after {
 box-sizing: border-box;
 margin: 0;
 padding: 0;
 }
 
 body {
-font-family: var(--font-main);
+font-family: var(--font-sans);
 background-color: var(--bg-dark);
 color: var(--text-primary);
 min-height: 100vh;
@@ -46,513 +48,362 @@ justify-content: center;
 align-items: center;
 position: relative;
 overflow-x: hidden;
-padding: 2rem 1rem;
+padding: 1rem;
 }
 
-/* Bright, highly saturated background layers */
-.bg-image-layer {
+/* Vibrant Fullscreen Dynamic Backgrounds */
+.bg-layer {
 position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
+inset: 0;
 z-index: -2;
-transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-background-size: cover;
-background-position: center;
+transition: opacity 0.8s ease-in-out, background 0.8s ease-in-out;
 }
 
-.bg-sports {
-background-image: radial-gradient(circle at 15% 15%, #0284c7 0%, transparent 60%),
-radial-gradient(circle at 85% 85%, #f43f5e 0%, transparent 60%),
-radial-gradient(circle at 50% 50%, #06b6d4 0%, transparent 70%),
-linear-gradient(180deg, #0b132b 0%, #0369a1 100%);
+.bg-sports-layer {
+background: radial-gradient(circle at 10% 15%, rgba(2, 132, 199, 0.75) 0%, transparent 55%),
+radial-gradient(circle at 90% 85%, rgba(236, 72, 153, 0.6) 0%, transparent 55%),
+linear-gradient(180deg, #070d18 0%, #032b45 100%);
 }
 
-.bg-film {
-background-image: radial-gradient(circle at 15% 15%, #e11d48 0%, transparent 60%),
-radial-gradient(circle at 85% 85%, #6366f1 0%, transparent 60%),
-radial-gradient(circle at 50% 50%, #f43f5e 0%, transparent 70%),
-linear-gradient(180deg, #111827 0%, #9f1239 100%);
+.bg-film-layer {
+background: radial-gradient(circle at 15% 15%, rgba(225, 29, 72, 0.75) 0%, transparent 55%),
+radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.6) 0%, transparent 55%),
+linear-gradient(180deg, #0a0712 0%, #320a18 100%);
 }
 
-.bg-philosophy {
-background-image: radial-gradient(circle at 15% 15%, #059669 0%, transparent 60%),
-radial-gradient(circle at 85% 85%, #d97706 0%, transparent 60%),
-radial-gradient(circle at 50% 50%, #10b981 0%, transparent 70%),
-linear-gradient(180deg, #022c22 0%, #047857 100%);
+.bg-philosophy-layer {
+background: radial-gradient(circle at 15% 15%, rgba(5, 150, 105, 0.75) 0%, transparent 55%),
+radial-gradient(circle at 85% 85%, rgba(245, 158, 11, 0.6) 0%, transparent 55%),
+linear-gradient(180deg, #040e0b 0%, #032e1e 100%);
 }
 
-.bg-overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-z-index: -1;
-background: rgba(7, 10, 18, 0.35);
-backdrop-filter: blur(6px);
+/* Glassmorphism Panels */
+.glass-panel {
+background: var(--card-glass);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid var(--border-color);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* Layout container & Title banner */
+/* App Layout Container */
 .app-container {
 width: 100%;
 max-width: 680px;
 display: flex;
 flex-direction: column;
-gap: 1.5rem;
+gap: 1.25rem;
 z-index: 1;
 }
 
+/* Header */
 .app-header {
 text-align: center;
 }
 
-.app-header h1 {
-font-size: 2.85rem;
+.app-title {
+font-size: clamp(2.2rem, 6vw, 3.2rem);
 font-weight: 800;
 letter-spacing: -0.02em;
 background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-margin-bottom: 0.25rem;
 filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
 }
 
-.subtitle {
-font-size: 1.05rem;
+.app-subtitle {
+font-size: clamp(0.85rem, 2.5vw, 1rem);
 color: var(--text-secondary);
-font-weight: 600;
+font-weight: 500;
+margin-top: 0.25rem;
 }
 
-/* Category Navigation Selector */
-.category-selector {
+/* Navigation Tabs */
+.category-nav {
 display: flex;
 justify-content: center;
-gap: 0.75rem;
-background: rgba(255, 255, 255, 0.12);
-padding: 0.5rem;
-border-radius: 999px;
-border: 1px solid var(--border-color);
-backdrop-filter: blur(14px);
+gap: 0.5rem;
+padding: 0.4rem;
+border-radius: 18px;
+width: 100%;
 }
 
-.tab-btn {
+.cat-tab {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.4rem;
+padding: 0.75rem 0.5rem;
+border-radius: 12px;
+font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+font-weight: 700;
+color: var(--text-secondary);
 background: transparent;
 border: none;
-color: var(--text-secondary);
-padding: 0.65rem 1.35rem;
-border-radius: 999px;
-font-size: 0.95rem;
-font-weight: 700;
 cursor: pointer;
 transition: all 0.3s ease;
-display: flex;
-align-items: center;
-gap: 0.5rem;
 }
 
-.tab-btn:hover {
-color: var(--text-primary);
-background: rgba(255, 255, 255, 0.18);
+.cat-tab:hover {
+color: #ffffff;
+background: rgba(255, 255, 255, 0.1);
 }
 
-.tab-btn.active[data-category="sports"] {
+.cat-tab.active[data-cat="sports"] {
 background: var(--sports-gradient);
-color: #fff;
-box-shadow: 0 0 22px var(--sports-glow);
+color: #ffffff;
+box-shadow: 0 0 18px var(--sports-glow);
 }
 
-.tab-btn.active[data-category="film"] {
+.cat-tab.active[data-cat="film"] {
 background: var(--film-gradient);
-color: #fff;
-box-shadow: 0 0 22px var(--film-glow);
+color: #ffffff;
+box-shadow: 0 0 18px var(--film-glow);
 }
 
-.tab-btn.active[data-category="philosophy"] {
+.cat-tab.active[data-cat="philosophy"] {
 background: var(--philosophy-gradient);
-color: #fff;
-box-shadow: 0 0 22px var(--philosophy-glow);
+color: #ffffff;
+box-shadow: 0 0 18px var(--philosophy-glow);
 }
 
-/* Generator Action Trigger */
-.action-area {
-display: flex;
-justify-content: center;
-}
-
-.generate-btn {
-width: 100%;
-padding: 1.15rem 2rem;
-border: none;
-border-radius: 14px;
-font-size: 1.1rem;
-font-weight: 800;
-color: white;
-cursor: pointer;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-letter-spacing: 0.02em;
-}
-
-.generate-btn.theme-sports {
-background: var(--sports-gradient);
-}
-.generate-btn.theme-film {
-background: var(--film-gradient);
-}
-.generate-btn.theme-philosophy {
-background: var(--philosophy-gradient);
-}
-
-.generate-btn:hover {
-transform: translateY(-2px);
-filter: brightness(1.15);
-box-shadow: 0 14px 30px rgba(0,0,0,0.6);
-}
-
-/* Card Main Component */
-.card {
-background: var(--card-glass);
-border-radius: 22px;
-border: 1px solid var(--border-color);
+/* Main Display Card */
+.display-card {
+border-radius: 24px;
 overflow: hidden;
-box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65);
-backdrop-filter: blur(20px);
-transition: border-color 0.4s ease;
+position: relative;
 }
 
-.card.theme-sports { border-top: 5px solid var(--sports-primary); }
-.card.theme-film { border-top: 5px solid var(--film-primary); }
-.card.theme-philosophy { border-top: 5px solid var(--philosophy-primary); }
-
-.media-container {
+/* Image & Portrait Container */
+.portrait-container {
 position: relative;
 width: 100%;
-height: 270px;
+height: clamp(220px, 40vw, 300px);
+background-color: #030712;
 overflow: hidden;
-background: #020617;
-display: flex;
-align-items: center;
-justify-content: center;
 }
 
-.author-avatar {
+.author-portrait {
 width: 100%;
 height: 100%;
 object-fit: cover;
 object-position: center top;
 transition: transform 0.6s ease;
-filter: contrast(1.08) brightness(1);
 }
 
-.card:hover .author-avatar {
-transform: scale(1.04);
+.display-card:hover .author-portrait {
+transform: scale(1.03);
 }
 
-.category-badge {
+.portrait-gradient-overlay {
+position: absolute;
+inset: 0;
+background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, var(--card-glass) 100%);
+}
+
+/* Card Badges */
+.badge-category {
 position: absolute;
 top: 1rem;
 left: 1rem;
-background: rgba(15, 23, 42, 0.92);
-color: var(--text-primary);
-padding: 0.4rem 0.95rem;
+padding: 0.4rem 0.85rem;
 border-radius: 999px;
-font-size: 0.75rem;
+font-size: 0.72rem;
 font-weight: 800;
-letter-spacing: 0.06em;
+letter-spacing: 0.05em;
 text-transform: uppercase;
+background: rgba(15, 23, 42, 0.9);
 border: 1px solid var(--border-color);
-backdrop-filter: blur(8px);
-box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+color: var(--text-primary);
 }
 
-.league-overlay-badge {
+.badge-league {
 position: absolute;
 bottom: 1rem;
 right: 1rem;
-background: rgba(0, 0, 0, 0.88);
-color: #fff;
-padding: 0.45rem 1rem;
+padding: 0.4rem 0.85rem;
 border-radius: 8px;
-font-size: 0.82rem;
+font-size: 0.75rem;
 font-weight: 800;
-letter-spacing: 0.05em;
-border: 1px solid rgba(255, 255, 255, 0.3);
-backdrop-filter: blur(6px);
-box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+background: rgba(0, 0, 0, 0.85);
+border: 1px solid rgba(255, 255, 255, 0.25);
+color: var(--text-primary);
 }
 
-.media-overlay {
-position: absolute;
-bottom: 0;
-left: 0;
-width: 100%;
-height: 50%;
-background: linear-gradient(180deg, transparent 0%, var(--card-glass) 100%);
-}
-
-.card-body {
-padding: 1.85rem;
+/* Card Body */
+.card-content {
+padding: 1.5rem;
 display: flex;
 flex-direction: column;
-gap: 1.35rem;
+gap: 1.25rem;
 }
 
-.quote-block {
+.quote-container {
 text-align: center;
-padding: 0.25rem 0;
 }
 
-.quote-text {
+.quote-body {
 font-family: var(--font-serif);
-font-size: 1.45rem;
-line-height: 1.55;
-font-weight: 600;
-color: #ffffff;
+font-size: clamp(1.15rem, 3.5vw, 1.45rem);
 font-style: italic;
-margin-bottom: 0.85rem;
-text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+line-height: 1.5;
+color: #ffffff;
+margin-bottom: 0.5rem;
 }
 
-.quote-author {
-font-family: var(--font-main);
-font-size: 1.05rem;
+.quote-author-name {
+font-size: clamp(0.9rem, 2.5vw, 1.05rem);
 font-weight: 800;
-color: #e2e8f0;
-letter-spacing: 0.03em;
+color: var(--text-secondary);
 }
 
-/* Further Insight Toggle Controls & Content Box */
-.synthesis-toggle-btn {
-width: 100%;
+/* Action Controls */
+.action-grid {
+display: flex;
+gap: 0.75rem;
+}
+
+.btn-spark {
+flex: 1;
+padding: 1rem 1.25rem;
+border-radius: 14px;
+font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+font-weight: 800;
+color: #ffffff;
+border: none;
+cursor: pointer;
+transition: all 0.3s ease;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-spark.theme-sports { background: var(--sports-gradient); }
+.btn-spark.theme-film { background: var(--film-gradient); }
+.btn-spark.theme-philosophy { background: var(--philosophy-gradient); }
+
+.btn-spark:hover {
+transform: translateY(-2px);
+filter: brightness(1.1);
+}
+
+.btn-bookmark {
+padding: 0.9rem 1.25rem;
+border-radius: 14px;
+font-size: 0.9rem;
+font-weight: 700;
+color: var(--text-primary);
 background: rgba(255, 255, 255, 0.08);
 border: 1px solid var(--border-color);
-color: var(--text-primary);
-padding: 0.8rem 1.15rem;
-border-radius: 12px;
-font-size: 0.92rem;
-font-weight: 700;
 cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.btn-bookmark:hover {
+background: rgba(255, 255, 255, 0.18);
+}
+
+/* Interactive Dropdown & Context Boxes */
+.insight-toggle-btn {
+width: 100%;
+padding: 0.85rem 1.1rem;
+border-radius: 12px;
+background: rgba(255, 255, 255, 0.06);
+border: 1px solid var(--border-color);
+color: var(--text-primary);
+font-size: 0.88rem;
+font-weight: 700;
 display: flex;
 justify-content: space-between;
 align-items: center;
-transition: all 0.3s ease;
+cursor: pointer;
+transition: background 0.3s ease;
 }
 
-.synthesis-toggle-btn:hover {
-background: rgba(255, 255, 255, 0.16);
-border-color: rgba(255, 255, 255, 0.35);
+.insight-toggle-btn:hover {
+background: rgba(255, 255, 255, 0.12);
 }
 
-.synthesis-box {
-background: rgba(255, 255, 255, 0.06);
-border: 1px solid var(--border-color);
+.insight-content-box {
+padding: 1rem 1.1rem;
 border-radius: 12px;
-padding: 1.15rem 1.3rem;
-transition: all 0.3s ease;
+background: rgba(0, 0, 0, 0.35);
+border: 1px solid var(--border-color);
+font-size: 0.9rem;
+line-height: 1.55;
+color: var(--text-secondary);
 }
 
-.synthesis-box.hidden-synthesis {
+.insight-content-box.hidden {
 display: none;
 }
 
-.synthesis-header {
-font-size: 0.82rem;
-font-weight: 800;
-text-transform: uppercase;
-letter-spacing: 0.06em;
-color: var(--sports-primary);
-margin-bottom: 0.45rem;
-}
-
-.card.theme-sports .synthesis-header { color: var(--sports-primary); }
-.card.theme-film .synthesis-header { color: var(--film-primary); }
-.card.theme-philosophy .synthesis-header { color: var(--philosophy-primary); }
-
-.synthesis-text {
-font-size: 0.98rem;
-line-height: 1.55;
-color: #f8fafc;
-}
-
-/* Contextual Historical Fact Block */
-.fact-block {
+.fact-box {
+padding: 1rem 1.1rem;
+border-radius: 0 12px 12px 0;
 background: rgba(0, 0, 0, 0.4);
-padding: 1.15rem 1.3rem;
-border-radius: 0 14px 14px 0;
 border-left: 4px solid var(--sports-primary);
 }
 
-.card.theme-sports .fact-block { border-left-color: var(--sports-primary); }
-.card.theme-film .fact-block { border-left-color: var(--film-primary); }
-.card.theme-philosophy .fact-block { border-left-color: var(--philosophy-primary); }
+.theme-sports .fact-box { border-left-color: var(--sports-primary); }
+.theme-film .fact-box { border-left-color: var(--film-primary); }
+.theme-philosophy .fact-box { border-left-color: var(--philosophy-primary); }
 
 .fact-title {
-font-size: 0.8rem;
+font-size: 0.75rem;
 font-weight: 800;
 text-transform: uppercase;
-letter-spacing: 0.06em;
+letter-spacing: 0.05em;
 color: var(--text-secondary);
-margin-bottom: 0.4rem;
+margin-bottom: 0.25rem;
 }
 
-.fact-text {
-font-size: 0.95rem;
-line-height: 1.55;
+.fact-desc {
+font-size: 0.88rem;
+line-height: 1.5;
 color: #e2e8f0;
 }
 
-.explore-btn {
+.btn-modal-trigger {
 width: 100%;
-background: rgba(255, 255, 255, 0.1);
+padding: 0.85rem;
+border-radius: 12px;
+background: rgba(255, 255, 255, 0.08);
 border: 1px solid var(--border-color);
 color: var(--text-primary);
-padding: 0.9rem;
-border-radius: 12px;
-font-size: 0.92rem;
 font-weight: 700;
+font-size: 0.88rem;
 cursor: pointer;
-transition: all 0.3s ease;
+transition: background 0.3s ease;
 }
 
-.explore-btn:hover {
-background: rgba(255, 255, 255, 0.2);
-border-color: rgba(255, 255, 255, 0.4);
+.btn-modal-trigger:hover {
+background: rgba(255, 255, 255, 0.16);
 }
 
-.app-footer {
-text-align: center;
-font-size: 0.82rem;
-color: var(--text-secondary);
-opacity: 0.85;
-}
-
-/* Detail View Modal Popup */
-.detail-modal {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background: rgba(2, 6, 23, 0.9);
-backdrop-filter: blur(20px);
-display: flex;
-justify-content: center;
-align-items: center;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.35s ease;
-z-index: 100;
-padding: 1.5rem;
-}
-
-.detail-modal.active {
-opacity: 1;
-pointer-events: auto;
-}
-
-.modal-content {
-background: #0f172a;
-border: 1px solid var(--border-color);
-border-radius: 24px;
-width: 100%;
-max-width: 600px;
-max-height: 88vh;
-overflow-y: auto;
-padding: 2.25rem;
-position: relative;
-box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85);
-}
-
-.close-modal-btn {
-position: absolute;
-top: 1.25rem;
-right: 1.25rem;
-background: rgba(255, 255, 255, 0.12);
-border: none;
-color: white;
-width: 36px;
-height: 36px;
-border-radius: 50%;
-font-size: 1.2rem;
-cursor: pointer;
-transition: background 0.2s ease;
-}
-
-.close-modal-btn:hover {
-background: rgba(255, 255, 255, 0.25);
-}
-
-.modal-header {
-text-align: center;
-margin-bottom: 1.5rem;
-}
-
-.modal-author-img {
-width: 110px;
-height: 110px;
-border-radius: 50%;
-object-fit: cover;
-margin: 0.85rem auto;
-border: 3px solid var(--border-color);
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-}
-
-.modal-author-role {
-font-size: 0.95rem;
-color: var(--text-secondary);
-font-weight: 600;
-}
-
-.modal-body {
-display: flex;
-flex-direction: column;
-gap: 1.1rem;
-margin-bottom: 1.75rem;
-}
-
-.modal-section {
-background: rgba(255, 255, 255, 0.05);
-border: 1px solid var(--border-color);
-padding: 1.15rem;
-border-radius: 14px;
-}
-
-.modal-section h3 {
-font-size: 0.92rem;
-color: var(--sports-primary);
-margin-bottom: 0.45rem;
-}
-
-.modal-section p {
-font-size: 0.95rem;
-line-height: 1.55;
-color: #cbd5e1;
-}
-
-.back-btn {
-width: 100%;
-background: var(--sports-gradient);
-border: none;
-color: white;
-padding: 0.95rem;
-border-radius: 12px;
-font-weight: 800;
-cursor: pointer;
-font-size: 1rem;
-transition: opacity 0.2s ease;
-}
-
-.back-btn:hover {
-opacity: 0.9;
-}
-
+/* Animations */
 .card-entry-animation {
-animation: cardAppear 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+animation: cardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes cardAppear {
-from { opacity: 0; transform: translateY(18px) scale(0.98); }
+from { opacity: 0; transform: translateY(16px) scale(0.98); }
 to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Mobile Devices (320px - 480px) */
+@media (max-width: 480px) {
+body {
+padding: 0.5rem;
+}
+.card-content {
+padding: 1.15rem;
+gap: 1rem;
+}
+.badge-category, .badge-league {
+font-size: 0.65rem;
+padding: 0.3rem 0.65rem;
+}
+.action-grid {
+flex-direction: column;
+}
 }
