@@ -1,16 +1,19 @@
 /* =======================================================================
-   SECTION 1: DATA SECTION
-   Quotes, directly linked historical snapshots, subject imagery, and modal data
+   DAILY SPARKS - LOGIC & DATA SCRIPT
+   Categories: Sports, Film, Philosophy
    ======================================================================= */
 
+// Comprehensive Dataset containing verified entries for Sports, Film, and Philosophy
 const APP_DATA = {
     sports: {
         title: "Sports",
         themeClass: "theme-sports",
+        bgClass: "bg-sports-layer",
         badgeText: "Sports & Athletics",
         buttonText: "⚡ Discover Sports Spark",
         items: [
             {
+                id: "sports-1",
                 quote: "I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game-winning shot and missed. I've failed over and over again. And that is why I succeed.",
                 author: "Michael Jordan",
                 leagueBadge: "🏀 NBA INSIGHT",
@@ -25,6 +28,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "sports-2",
                 quote: "It's not whether you get knocked down, it's whether you get up.",
                 author: "Vince Lombardi",
                 leagueBadge: "🏈 NFL INSIGHT",
@@ -39,6 +43,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "sports-3",
                 quote: "The more difficult the victory, the greater the happiness in winning.",
                 author: "Pelé",
                 leagueBadge: "⚽ FIFA INSIGHT",
@@ -53,6 +58,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "sports-4",
                 quote: "Float like a butterfly, sting like a bee. His hands can't hit what his eyes can't see.",
                 author: "Muhammad Ali",
                 leagueBadge: "🥊 BOXING INSIGHT",
@@ -67,6 +73,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "sports-5",
                 quote: "You miss 100% of the shots you don't take.",
                 author: "Wayne Gretzky",
                 leagueBadge: "🏒 NHL INSIGHT",
@@ -85,10 +92,12 @@ const APP_DATA = {
     film: {
         title: "Film",
         themeClass: "theme-film",
+        bgClass: "bg-film-layer",
         badgeText: "Cinema & Drama",
         buttonText: "🎬 Discover Film Spark",
         items: [
             {
+                id: "film-1",
                 quote: "Do or do not. There is no try.",
                 author: "Yoda (The Empire Strikes Back)",
                 leagueBadge: "🌌 SCI-FI CINEMA",
@@ -103,6 +112,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "film-2",
                 quote: "Our lives are defined by opportunities, even the ones we miss.",
                 author: "Benjamin Button",
                 leagueBadge: "🍿 DRAMA & NARRATIVE",
@@ -117,6 +127,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "film-3",
                 quote: "It's what you do right now that makes a difference.",
                 author: "Aragorn (The Lord of the Rings)",
                 leagueBadge: "⚔️ EPIC FANTASY",
@@ -131,6 +142,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "film-4",
                 quote: "Get busy living, or get busy dying.",
                 author: "Andy Dufresne (The Shawshank Redemption)",
                 leagueBadge: "🎥 CLASSIC CINEMA",
@@ -145,6 +157,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "film-5",
                 quote: "All we have to decide is what to do with the time that is given us.",
                 author: "Gandalf (The Fellowship of the Ring)",
                 leagueBadge: "🧙‍♂️ CINEMATIC FANTASY",
@@ -163,10 +176,12 @@ const APP_DATA = {
     philosophy: {
         title: "Philosophy",
         themeClass: "theme-philosophy",
+        bgClass: "bg-philosophy-layer",
         badgeText: "Philosophy & Mind",
         buttonText: "🏛️ Discover Philosophy Spark",
         items: [
             {
+                id: "philosophy-1",
                 quote: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
                 author: "Aristotle",
                 leagueBadge: "🏛️ ANCIENT GREECE",
@@ -181,6 +196,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "philosophy-2",
                 quote: "He who has a why to live can bear almost any how.",
                 author: "Friedrich Nietzsche",
                 leagueBadge: "⚡ EXISTENTIALISM",
@@ -195,6 +211,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "philosophy-3",
                 quote: "The unexamined life is not worth living.",
                 author: "Socrates",
                 leagueBadge: "⚖️ CLASSICAL LOGIC",
@@ -209,6 +226,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "philosophy-4",
                 quote: "You have power over your mind - not outside events. Realize this, and you will find strength.",
                 author: "Marcus Aurelius",
                 leagueBadge: "🏛️ STOICISM",
@@ -223,6 +241,7 @@ const APP_DATA = {
                 }
             },
             {
+                id: "philosophy-5",
                 quote: "Waste no more time arguing about what a good man should be. Be one.",
                 author: "Epictetus",
                 leagueBadge: "📜 LATE STOICISM",
@@ -241,26 +260,34 @@ const APP_DATA = {
 };
 
 /* =======================================================================
-   SECTION 2: RULES SECTION
-   State management, non-repeating index rules, and category switching
+   STATE MANAGEMENT & NON-REPEATING LOGIC
    ======================================================================= */
 
 let currentCategory = 'sports';
 let activeItem = null;
-let lastIndices = { sports: -1, film: -1, philosophy: -1 };
+let savedBookmarks = [];
+const lastIndices = { sports: -1, film: -1, philosophy: -1 };
 
 /**
- * Image error fallback handling to ensure robust presentation
+ * Image Error Fallback: Generates a styled SVG avatar if image fails to load
  */
 function handleImageError(imgElement) {
-    imgElement.src = 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80';
+    const initials = activeItem ? activeItem.author.split(' ').map(n => n[0]).join('') : 'DS';
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+        <rect width="100%" height="100%" fill="#0f172a"/>
+        <circle cx="400" cy="400" r="280" fill="#1e293b" stroke="rgba(255,255,255,0.2)" stroke-width="8"/>
+        <text x="50%" y="54%" font-family="sans-serif" font-weight="900" font-size="160" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">${initials}</text>
+    </svg>`;
+    imgElement.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 }
 
 /**
- * Returns a unique random item from the list, avoiding consecutive repeats
+ * Ensures non-repeating quote selection on consecutive button presses
  */
 function getRandomUniqueItem(list, categoryKey) {
-    if (list.length <= 1) return list[0];
+    if (!list || list.length === 0) return null;
+    if (list.length === 1) return list[0];
+    
     let newIndex;
     do {
         newIndex = Math.floor(Math.random() * list.length);
@@ -271,138 +298,218 @@ function getRandomUniqueItem(list, categoryKey) {
 }
 
 /**
- * Changes active category and refreshes UI
+ * Updates selected category and regenerates UI
  */
 function selectCategory(categoryName) {
     if (!APP_DATA[categoryName]) return;
     currentCategory = categoryName;
-    updateTabUI();
+    
+    // Update active tab styling
+    document.querySelectorAll('.cat-tab').forEach(btn => {
+        const cat = btn.dataset.cat || btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+        if (cat === categoryName) {
+            btn.className = "cat-tab active px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition-all duration-300 bg-sky-500/20 text-sky-300 border border-sky-400/30 shadow-lg shadow-sky-500/20";
+        } else {
+            btn.className = "cat-tab px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition-all duration-300 text-slate-400 hover:text-white hover:bg-white/5";
+        }
+    });
+
     generateInsight();
 }
 
 /**
- * Toggles visibility of the Further Insight box
+ * Toggles the Further Insight dropdown section
  */
 function toggleFurtherInsight() {
     const box = document.getElementById('synthesisBox');
-    const btnIcon = document.getElementById('synthesisToggleIcon');
-    
+    const icon = document.getElementById('synthesisToggleIcon');
     if (!box) return;
-    
-    box.classList.toggle('hidden-synthesis');
-    const isHidden = box.classList.contains('hidden-synthesis');
-    if (btnIcon) {
-        btnIcon.textContent = isHidden ? '▼ Reveal' : '▲ Hide';
+
+    const isHidden = box.classList.contains('hidden');
+    if (isHidden) {
+        box.classList.remove('hidden');
+        if (icon) icon.textContent = '▲ Hide';
+    } else {
+        box.classList.add('hidden');
+        if (icon) icon.textContent = '▼ Reveal';
     }
 }
 
-/* =======================================================================
-   SECTION 3: DISPLAY SECTION
-   DOM references, card updates, theme application, and modal screens
-   ======================================================================= */
-
-const DOM = {
-    bgLayer: document.getElementById('bgImageLayer') || document.getElementById('bgLayer'),
-    generateBtn: document.getElementById('generateBtn'),
-    generateBtnLabel: document.getElementById('generateBtnLabel'),
-    displayCard: document.getElementById('displayCard'),
-    categoryBadge: document.getElementById('categoryBadge'),
-    leagueOverlayBadge: document.getElementById('leagueOverlayBadge'),
-    authorAvatar: document.getElementById('authorAvatar'),
-    quoteText: document.getElementById('quoteText'),
-    quoteAuthor: document.getElementById('quoteAuthor'),
-    synthesisText: document.getElementById('synthesisText'),
-    factText: document.getElementById('factText'),
-    tabButtons: document.querySelectorAll('.tab-btn, .cat-tab'),
-    
-    detailModal: document.getElementById('detailModal'),
-    modalCategoryBadge: document.getElementById('modalCategoryBadge'),
-    modalAuthorImg: document.getElementById('modalAuthorImg'),
-    modalAuthorName: document.getElementById('modalAuthorName'),
-    modalAuthorRole: document.getElementById('modalAuthorRole'),
-    modalBeliefs: document.getElementById('modalBeliefs'),
-    modalAchievements: document.getElementById('modalAchievements'),
-    modalTrivia: document.getElementById('modalTrivia')
-};
-
-function updateTabUI() {
-    if (DOM.tabButtons) {
-        DOM.tabButtons.forEach(btn => {
-            const cat = btn.dataset.category || btn.dataset.cat;
-            btn.classList.toggle('active', cat === currentCategory);
-        });
-    }
-}
-
+/**
+ * Main function to generate and render a new wisdom spark
+ */
 function generateInsight() {
     const categoryData = APP_DATA[currentCategory];
     if (!categoryData) return;
 
     activeItem = getRandomUniqueItem(categoryData.items, currentCategory);
+    if (!activeItem) return;
 
-    // Update vibrant theme backgrounds and button classes
-    if (DOM.bgLayer) {
-        DOM.bgLayer.className = `fixed inset-0 z-0 bg-${currentCategory}-layer bg-${currentCategory} transition-all duration-700`;
-    }
-    if (DOM.displayCard) {
-        DOM.displayCard.className = `glass-panel rounded-3xl overflow-hidden shadow-2xl border border-white/20 card ${categoryData.themeClass} card-entry-animation`;
-    }
-    if (DOM.generateBtn) {
-        DOM.generateBtn.className = `generate-btn ${categoryData.themeClass} flex-1 py-4 px-6 rounded-xl font-extrabold text-base text-white shadow-xl hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2`;
-    }
-    if (DOM.generateBtnLabel) {
-        DOM.generateBtnLabel.textContent = categoryData.buttonText;
-    }
-    if (DOM.categoryBadge) {
-        DOM.categoryBadge.textContent = categoryData.badgeText;
+    // Update dynamic background class
+    const bgLayer = document.getElementById('bgLayer');
+    if (bgLayer) {
+        bgLayer.className = `fixed inset-0 z-0 ${categoryData.bgClass} transition-all duration-700`;
     }
 
-    // Trigger visual reflow animation
-    if (DOM.displayCard) {
-        DOM.displayCard.classList.remove('card-entry-animation');
-        void DOM.displayCard.offsetWidth;
-        DOM.displayCard.classList.add('card-entry-animation');
+    // Update generate button text
+    const btnLabel = document.getElementById('generateBtnLabel');
+    if (btnLabel) {
+        btnLabel.textContent = categoryData.buttonText;
     }
 
-    // Populate element data safely
-    if (DOM.authorAvatar) {
-        DOM.authorAvatar.src = activeItem.authorImg;
-        DOM.authorAvatar.alt = activeItem.author;
+    // Update badges and image
+    const categoryBadge = document.getElementById('categoryBadge');
+    if (categoryBadge) categoryBadge.textContent = categoryData.badgeText;
+
+    const leagueBadge = document.getElementById('leagueOverlayBadge');
+    if (leagueBadge) leagueBadge.textContent = activeItem.leagueBadge;
+
+    const avatar = document.getElementById('authorAvatar');
+    if (avatar) {
+        avatar.src = activeItem.authorImg;
+        avatar.alt = activeItem.author;
     }
-    if (DOM.leagueOverlayBadge) DOM.leagueOverlayBadge.textContent = activeItem.leagueBadge;
-    if (DOM.quoteText) DOM.quoteText.textContent = `"${activeItem.quote}"`;
-    if (DOM.quoteAuthor) DOM.quoteAuthor.textContent = `— ${activeItem.author}`;
-    if (DOM.synthesisText) DOM.synthesisText.textContent = activeItem.synthesis;
-    if (DOM.factText) DOM.factText.textContent = activeItem.fact;
+
+    // Update quote and authors
+    const quoteText = document.getElementById('quoteText');
+    if (quoteText) quoteText.textContent = `"${activeItem.quote}"`;
+
+    const quoteAuthor = document.getElementById('quoteAuthor');
+    if (quoteAuthor) quoteAuthor.textContent = `— ${activeItem.author}`;
+
+    // Update Further Insight and Historical Context
+    const synthesisText = document.getElementById('synthesisText');
+    if (synthesisText) synthesisText.textContent = activeItem.synthesis;
+
+    const factText = document.getElementById('factText');
+    if (factText) factText.textContent = activeItem.fact;
+
+    // Reset bookmark button state
+    updateBookmarkButtonState();
+
+    // Trigger card entry animation
+    const card = document.getElementById('displayCard');
+    if (card) {
+        card.classList.remove('card-entry-animation');
+        void card.offsetWidth; // Force reflow
+        card.classList.add('card-entry-animation');
+    }
 }
 
-function openDetailView() {
-    if (!activeItem || !DOM.detailModal) return;
+/* =======================================================================
+   MODAL DIALOG MANAGEMENT & BOOKMARKS
+   ======================================================================= */
 
-    if (DOM.modalCategoryBadge) DOM.modalCategoryBadge.textContent = APP_DATA[currentCategory].badgeText;
-    if (DOM.modalAuthorImg) {
-        DOM.modalAuthorImg.src = activeItem.authorImg;
-        DOM.modalAuthorImg.alt = activeItem.author;
+function openDetailModal() {
+    if (!activeItem) return;
+    const modal = document.getElementById('detailModal');
+    if (!modal) return;
+
+    document.getElementById('modalCategoryBadge').textContent = APP_DATA[currentCategory].badgeText;
+    document.getElementById('modalAuthorImg').src = activeItem.authorImg;
+    document.getElementById('modalAuthorName').textContent = activeItem.author;
+    document.getElementById('modalAuthorRole').textContent = activeItem.details.role;
+    document.getElementById('modalBeliefs').textContent = activeItem.details.beliefs;
+    document.getElementById('modalAchievements').textContent = activeItem.details.achievements;
+    document.getElementById('modalTrivia').textContent = activeItem.details.trivia;
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+}
+
+function closeDetailModal() {
+    const modal = document.getElementById('detailModal');
+    if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+}
+
+function toggleBookmarkCurrent() {
+    if (!activeItem) return;
+
+    const index = savedBookmarks.findIndex(b => b.id === activeItem.id);
+    if (index > -1) {
+        savedBookmarks.splice(index, 1);
+    } else {
+        savedBookmarks.push(activeItem);
     }
-    if (DOM.modalAuthorName) DOM.modalAuthorName.textContent = activeItem.author;
-    if (DOM.modalAuthorRole) DOM.modalAuthorRole.textContent = activeItem.details.role;
-    if (DOM.modalBeliefs) DOM.modalBeliefs.textContent = activeItem.details.beliefs;
-    if (DOM.modalAchievements) DOM.modalAchievements.textContent = activeItem.details.achievements;
-    if (DOM.modalTrivia) DOM.modalTrivia.textContent = activeItem.details.trivia;
 
-    DOM.detailModal.classList.add('active');
-    DOM.detailModal.classList.remove('opacity-0', 'pointer-events-none');
-    DOM.detailModal.setAttribute('aria-hidden', 'false');
+    updateBookmarkButtonState();
+    updateBookmarkCount();
 }
 
-function closeDetailView() {
-    if (!DOM.detailModal) return;
-    DOM.detailModal.classList.remove('active');
-    DOM.detailModal.classList.add('opacity-0', 'pointer-events-none');
-    DOM.detailModal.setAttribute('aria-hidden', 'true');
+function updateBookmarkButtonState() {
+    const btn = document.getElementById('bookmarkBtn');
+    if (!btn || !activeItem) return;
+
+    const isBookmarked = savedBookmarks.some(b => b.id === activeItem.id);
+    btn.innerHTML = isBookmarked ? '★' : '☆';
+    btn.className = isBookmarked
+        ? "absolute top-4 right-4 w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-bold flex items-center justify-center transition-all shadow-lg"
+        : "absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-900/80 border border-white/20 text-slate-300 hover:text-amber-400 flex items-center justify-center transition-all backdrop-blur-md";
 }
 
-// Initial initialization when DOM is fully loaded
+function updateBookmarkCount() {
+    const countEl = document.getElementById('bookmarkCount');
+    if (countEl) countEl.textContent = savedBookmarks.length;
+}
+
+function openBookmarksModal() {
+    const modal = document.getElementById('bookmarksModal');
+    const list = document.getElementById('bookmarksList');
+    if (!modal || !list) return;
+
+    if (savedBookmarks.length === 0) {
+        list.innerHTML = `<p class="text-slate-400 text-sm italic">No saved sparks yet. Click the star icon on any card to save it!</p>`;
+    } else {
+        list.innerHTML = savedBookmarks.map(item => `
+            <div class="p-4 rounded-xl bg-white/5 border border-white/10 flex items-start justify-between gap-4">
+                <div>
+                    <p class="font-serif italic text-sm text-slate-100">"${item.quote}"</p>
+                    <p class="text-xs font-bold text-sky-400 mt-1">— ${item.author}</p>
+                </div>
+                <button onclick="removeBookmark('${item.id}')" class="text-rose-400 hover:text-rose-300 text-xs font-bold">Remove</button>
+            </div>
+        `).join('');
+    }
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+}
+
+function closeBookmarksModal() {
+    const modal = document.getElementById('bookmarksModal');
+    if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+}
+
+function removeBookmark(id) {
+    savedBookmarks = savedBookmarks.filter(b => b.id !== id);
+    updateBookmarkCount();
+    openBookmarksModal();
+    updateBookmarkButtonState();
+}
+
+/**
+ * Text-to-Speech narration engine
+ */
+function playAudioNarration() {
+    if (!activeItem || !('speechSynthesis' in window)) {
+        alert("Audio narration is not supported on this device/browser.");
+        return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(`${activeItem.quote}. Spoken by ${activeItem.author}.`);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    
+    const status = document.getElementById('ttsStatus');
+    if (status) status.textContent = "Playing narration...";
+
+    utterance.onend = () => {
+        if (status) status.textContent = "Listen to audio narration";
+    };
+
+    window.speechSynthesis.speak(utterance);
+}
+
+// Initial kickoff on DOM ready
 window.addEventListener('DOMContentLoaded', () => {
     generateInsight();
 });
