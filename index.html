@@ -10,6 +10,11 @@
 <div id="bgLayer" class="bg-layer bg-sports"></div>
 
 <div class="app-container">
+  <div class="top-actions">
+    <button id="savedBtn" class="pill-btn" aria-haspopup="dialog">♥ Saved <span id="savedCount" class="count">0</span></button>
+    <button id="helpBtn" class="pill-btn" aria-haspopup="dialog">? How it works</button>
+  </div>
+
   <header class="app-header">
     <h1>Daily Sparks</h1>
     <p class="subtitle">Unexpected wisdom from athletes, films, and philosophers</p>
@@ -28,6 +33,7 @@
       <img id="mediaBlur" class="media-blur" alt="" aria-hidden="true">
       <img id="authorAvatar" class="author-avatar" alt="">
       <span id="categoryBadge" class="category-badge"></span>
+      <button id="favBtn" class="fav-btn" aria-pressed="false" aria-label="Save to favorites">♡</button>
       <span id="leagueBadge" class="league-badge"></span>
     </div>
 
@@ -54,9 +60,12 @@
     </div>
   </main>
 
-  <footer class="app-footer">Daily Sparks • Timeless Wisdom & Mental Models</footer>
+  <footer class="app-footer">Daily Sparks • Photos from Wikipedia when available • Favorites stay on this device</footer>
 </div>
 
+<p id="liveStatus" class="sr-only" aria-live="polite"></p>
+
+<!-- Mind & context detail -->
 <div id="detailModal" class="detail-modal" aria-hidden="true">
   <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalName">
     <button id="closeModal" class="close-modal-btn" aria-label="Close">✕</button>
@@ -72,6 +81,43 @@
       <section class="modal-section"><h3>🍿 Context &amp; Trivia</h3><p id="modalTrivia"></p></section>
     </div>
     <button id="backBtn" class="back-btn">← Back to quotes</button>
+  </div>
+</div>
+
+<!-- Saved quotes -->
+<div id="savedModal" class="detail-modal" aria-hidden="true">
+  <div class="modal-content saved-content" role="dialog" aria-modal="true" aria-labelledby="savedTitle">
+    <button id="closeSaved" class="close-modal-btn" aria-label="Close">✕</button>
+    <header class="modal-header">
+      <h2 id="savedTitle">Saved quotes</h2>
+      <p class="modal-role">Your favorites, kept on this device.</p>
+    </header>
+    <div class="filter-row" role="group" aria-label="Filter saved quotes">
+      <button class="filter-chip active" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-chip" data-filter="sports" aria-pressed="false">⚡ Sports</button>
+      <button class="filter-chip" data-filter="film" aria-pressed="false">🎬 Film</button>
+      <button class="filter-chip" data-filter="philosophy" aria-pressed="false">🏛️ Philosophy</button>
+    </div>
+    <div id="savedList" class="saved-list"></div>
+    <button id="savedBack" class="back-btn">← Back to quotes</button>
+  </div>
+</div>
+
+<!-- Onboarding -->
+<div id="tourModal" class="detail-modal" aria-hidden="true">
+  <div class="modal-content tour-content" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+    <p id="tourIcon" class="tour-icon" aria-hidden="true"></p>
+    <p id="tourStep" class="tour-step"></p>
+    <h2 id="tourTitle"></h2>
+    <p id="tourText" class="tour-text"></p>
+    <div id="tourDots" class="tour-dots" aria-hidden="true"></div>
+    <div class="tour-actions">
+      <button id="tourSkip" class="ghost-btn">Skip</button>
+      <span class="tour-nav">
+        <button id="tourBack" class="ghost-btn">Back</button>
+        <button id="tourNext" class="primary-btn">Next</button>
+      </span>
+    </div>
   </div>
 </div>
 
