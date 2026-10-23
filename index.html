@@ -76,8 +76,9 @@
       <p id="modalRole" class="modal-role"></p>
     </header>
     <div class="modal-body">
-      <section class="modal-section"><h3>🧠 The idea</h3><p id="modalIdea"></p></section>
-      <section class="modal-section"><h3>📜 Historical context</h3><p id="modalContext"></p></section>
+      <section id="secMindset" class="modal-section"><h3>🧠 Mindset &amp; philosophy</h3><p id="modalMindset"></p></section>
+      <section id="secAchievements" class="modal-section"><h3>🏆 Key achievements &amp; impact</h3><p id="modalAchievements"></p></section>
+      <section id="secTrivia" class="modal-section"><h3>🍿 Trivia</h3><p id="modalTrivia"></p></section>
       <a id="modalLink" class="modal-link" target="_blank" rel="noopener noreferrer">Read more on Wikipedia ↗</a>
     </div>
     <button id="backBtn" class="back-btn">← Back to quotes</button>
@@ -121,6 +122,13 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+  // If the app script crashes, say so on the page instead of failing silently.
+  window.addEventListener('error', function (e) {
+    var q = document.getElementById('quoteText');
+    if (q && !q.textContent) q.textContent = 'Something went wrong while starting the app: ' + e.message;
+  });
+</script>
+<script src="script.js?v=3" onerror="document.getElementById('quoteText').textContent='Could not load script.js. Make sure a file named exactly script.js (lowercase) sits in the same folder as index.html.'"></script>
 </body>
 </html>
