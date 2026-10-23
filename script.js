@@ -3,7 +3,9 @@
    Quotes live in sports.json, film.json, and philosophy.json.
    To add a quote, copy any item there, give it a new unique `id`, and set
    `wiki` to the exact Wikipedia article title (used for the photo and the
-   "Read more" link). `wiki` is optional.
+   "Read more" link). `wiki` is optional. Use one quote per person.
+   `mindset`, `achievements`, and `trivia` fill the "Learn more" popup;
+   any that are missing are simply hidden.
    ===================================================================== */
 
 /* ---------- Category settings ---------- */
@@ -16,7 +18,8 @@ const CATEGORIES = {
 /* ---------- State ---------- */
 const APP_DATA = {};          // { sports: {badge, items}, film: {...}, philosophy: {...} }
 const ITEM_INDEX = {};        // id -> { cat, item }
-const lastId = {};            // last quote shown per category, to avoid repeats
+const lastId = {};            // last quote shown per category
+const bags = {};              // shuffled quotes not yet shown, per category
 const photoCache = {};
 let currentCategory = 'sports';
 let activeItem = null;
@@ -52,7 +55,9 @@ const DOM = {
   savedBtn: $('savedBtn'), savedCount: $('savedCount'), helpBtn: $('helpBtn'), live: $('liveStatus'),
   modal: $('detailModal'), modalBadge: $('modalBadge'), modalImg: $('modalImg'),
   modalName: $('modalName'), modalRole: $('modalRole'),
-  modalIdea: $('modalIdea'), modalContext: $('modalContext'), modalLink: $('modalLink'),
+  modalLink: $('modalLink'),
+  modalSections: [['secMindset', 'modalMindset', 'mindset'], ['secAchievements', 'modalAchievements', 'achievements'], ['secTrivia', 'modalTrivia', 'trivia']]
+    .map(([sec, p, field]) => ({ sec: $(sec), p: $(p), field })),
   savedModal: $('savedModal'), savedList: $('savedList'), chips: document.querySelectorAll('.filter-chip'),
   tour: $('tourModal'), tourIcon: $('tourIcon'), tourStep: $('tourStep'), tourTitle: $('tourTitle'),
   tourText: $('tourText'), tourDots: $('tourDots'), tourBack: $('tourBack'), tourNext: $('tourNext')
@@ -79,6 +84,7 @@ async function loadData() {
   names.forEach((name, i) => {
     APP_DATA[name] = results[i];
     lastId[name] = null;
+    bags[name] = [];
     results[i].items.forEach(item => { ITEM_INDEX[item.id] = { cat: name, item }; });
   });
 }
@@ -147,12 +153,25 @@ async function showPhoto(item, cat) {
 /* =====================================================================
    CARD DISPLAY
    ===================================================================== */
+// Shuffle-bag: every quote is shown once before any repeats, and a new round
+// never opens with the person who was just shown.
+function refillBag(cat) {
+  const items = [...APP_DATA[cat].items];
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  const last = ITEM_INDEX[lastId[cat]];
+  if (last && items.length > 1 && items[0].author === last.item.author) {
+    const k = items.findIndex(it => it.author !== last.item.author);
+    if (k > 0) [items[0], items[k]] = [items[k], items[0]];
+  }
+  bags[cat] = items;
+}
+
 function pickItem(cat) {
-  const list = APP_DATA[cat].items;
-  let item;
-  do { item = list[Math.floor(Math.random() * list.length)]; }
-  while (list.length > 1 && item.id === lastId[cat]);
-  return item;
+  if (!bags[cat].length) refillBag(cat);
+  return bags[cat].shift();
 }
 
 function setInsightOpen(open) {
@@ -291,8 +310,11 @@ function openDetailView() {
   DOM.modalBadge.textContent = APP_DATA[currentCategory].badge || CATEGORIES[currentCategory].label;
   DOM.modalName.textContent = activeItem.author;
   DOM.modalRole.textContent = activeItem.role || '';
-  DOM.modalIdea.textContent = activeItem.deeperInsight || '';
-  DOM.modalContext.textContent = activeItem.historicalContext || '';
+  DOM.modalSections.forEach(({ sec, p, field }) => {
+    const text = activeItem[field] || '';
+    p.textContent = text;
+    sec.hidden = !text;
+  });
   DOM.modalLink.href = activeItem.wiki
     ? 'https://en.wikipedia.org/wiki/' + encodeURIComponent(activeItem.wiki)
     : 'https://en.wikipedia.org/w/index.php?search=' + encodeURIComponent(activeItem.author);
