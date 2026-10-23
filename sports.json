@@ -9,7 +9,10 @@
       "role": "6-Time NBA Champion & Basketball Legend",
       "deeperInsight": "Failure is the primary calibration engine for mastery. Treating errors as valuable feedback rather than identity damage destroys performance anxiety.",
       "historicalContext": "Famous quote from an iconic 1997 Nike commercial. Cut from his high school varsity team as a sophomore, Jordan used rejection to fuel six Chicago Bulls championships.",
-      "wiki": "Michael_Jordan"
+      "wiki": "Michael_Jordan",
+      "mindset": "Famously competitive and obsessive about preparation, he treated practices like games and used perceived slights as fuel.",
+      "achievements": "6 NBA championships, 6 Finals MVPs, 5 regular-season MVPs, 10 scoring titles, and 14 All-Star selections.",
+      "trivia": "He starred alongside the Looney Tunes in the 1996 film Space Jam."
     },
     {
       "id": "sp-2",
@@ -18,7 +21,10 @@
       "role": "Legendary NFL Coach",
       "deeperInsight": "Resilience is not a static personality trait, but a recovery latency metric: how fast you transition from setback back to execution.",
       "historicalContext": "Lombardi coached the Green Bay Packers to wins in the first two Super Bowls (1967, 1968), instilling a culture of relentless fundamentals.",
-      "wiki": "Vince_Lombardi"
+      "wiki": "Vince_Lombardi",
+      "mindset": "He demanded flawless execution of simple fundamentals and preached discipline and team over self.",
+      "achievements": "Five NFL championships in seven years (1961–67) with Green Bay. The Super Bowl trophy is named in his honor.",
+      "trivia": "As a guard at Fordham in the 1930s, he was one of the line known as the “Seven Blocks of Granite.”"
     },
     {
       "id": "sp-3",
@@ -27,7 +33,10 @@
       "role": "3-Time World Cup Winner",
       "deeperInsight": "Effortless success is an illusion. Deep intrinsic joy in the daily practice transforms grueling repetition into sustainable mastery.",
       "historicalContext": "Pelé became the youngest World Cup winner in 1958 at age 17. By one widely cited count that includes friendlies, he scored 1,279 goals in 1,363 games.",
-      "wiki": "Pelé"
+      "wiki": "Pelé",
+      "mindset": "Joyful, creative play and humility. He treated football as a team game and a form of expression.",
+      "achievements": "The only player to win three World Cups (1958, 1962, 1970). He later served as Brazil’s minister for sport in the 1990s.",
+      "trivia": "His birth name is Edson Arantes do Nascimento. He reportedly disliked the nickname Pelé at first."
     },
     {
       "id": "sp-4",
@@ -36,7 +45,10 @@
       "role": "Heavyweight World Boxing Champion",
       "deeperInsight": "Short-term voluntary discomfort purchases long-term personal sovereignty. Champions forge their identity through chosen hardship.",
       "historicalContext": "Ali reclaimed the heavyweight title in 1974's 'Rumble in the Jungle' against George Foreman using his famous 'rope-a-dope' tactical endurance.",
-      "wiki": "Muhammad_Ali"
+      "wiki": "Muhammad_Ali",
+      "mindset": "Conviction over comfort: he used loud self-belief as a weapon and spoke his goals aloud before achieving them.",
+      "achievements": "Olympic gold in 1960, three-time world heavyweight champion, and a global humanitarian figure.",
+      "trivia": "Born Cassius Clay, he changed his name in 1964 and lit the Olympic cauldron at the 1996 Atlanta Games."
     },
     {
       "id": "sp-5",
@@ -45,7 +57,10 @@
       "role": "23-Time Grand Slam Singles Champion",
       "deeperInsight": "Emotional control under pressure prevents cognitive bandwidth from leaking into frustration, keeping focus squarely on tactical execution.",
       "historicalContext": "Williams won her 23rd Grand Slam singles title at the 2017 Australian Open while eight weeks pregnant, cementing her legacy as one of tennis's greatest athletes.",
-      "wiki": "Serena_Williams"
+      "wiki": "Serena_Williams",
+      "mindset": "Fierce self-belief, constant reinvention, and turning setbacks into motivation.",
+      "achievements": "Four Olympic gold medals in singles and doubles, and 319 weeks ranked world No. 1.",
+      "trivia": "She and her sister Venus learned the game on public courts in Compton, California, coached by their father, Richard."
     },
     {
       "id": "sp-6",
@@ -54,7 +69,10 @@
       "role": "Hall of Fame NFL Receiver",
       "deeperInsight": "Asymmetrical effort in the present creates compounding competitive advantages over time that competitors cannot bridge.",
       "historicalContext": "Known for his legendary offseason training regimen running 'The Hill' in San Carlos, Rice set NFL career records for receptions, yards, and touchdowns that still stand.",
-      "wiki": "Jerry_Rice"
+      "wiki": "Jerry_Rice",
+      "mindset": "A relentless work ethic. Teammates and coaches described him as outworking everyone in practice and the offseason.",
+      "achievements": "Three Super Bowl titles with the 49ers, MVP of Super Bowl XXIII, and induction into the Pro Football Hall of Fame in 2010.",
+      "trivia": "He caught passes from both Joe Montana and Steve Young, after rising from little-known Mississippi Valley State."
     },
     {
       "id": "sp-7",
@@ -63,7 +81,10 @@
       "role": "All-Time NHL Scoring Leader",
       "deeperInsight": "Inaction carries a guaranteed 0% success rate. The risk of passive failure outweighs the discomfort of active execution.",
       "historicalContext": "Nicknamed 'The Great One', Gretzky retired with 1,963 career assists, more than any other player has career points.",
-      "wiki": "Wayne_Gretzky"
+      "wiki": "Wayne_Gretzky",
+      "mindset": "He believed in anticipation over speed: skate to where the puck is going, not where it has been.",
+      "achievements": "Four Stanley Cups with the Edmonton Oilers, nine Hart Trophies as league MVP, and ten Art Ross Trophies as top scorer.",
+      "trivia": "In 2000 the NHL retired his No. 99 for every team, an honor no other player has received."
     },
     {
       "id": "sp-8",
@@ -72,16 +93,10 @@
       "role": "8-Time Olympic Gold Medalist",
       "deeperInsight": "Perceived physical boundaries are usually mental ceilings imposed by current comfort zones. Removing mental limits reveals untapped capacity.",
       "historicalContext": "Bolt set the 100-meter world record of 9.58 seconds in Berlin in 2009, hitting a top speed of 27.78 mph.",
-      "wiki": "Usain_Bolt"
-    },
-    {
-      "id": "sp-9",
-      "quote": "Champions keep playing until they get it right.",
-      "author": "Billie Jean King",
-      "role": "39-Time Grand Slam Champion",
-      "deeperInsight": "Mastery is not about never making mistakes, but about relentless iterative adjustment until high performance becomes automatic.",
-      "historicalContext": "A landmark champion for gender equity in sports, King won the famous 1973 'Battle of the Sexes' match, watched by an estimated 90 million people worldwide.",
-      "wiki": "Billie_Jean_King"
+      "wiki": "Usain_Bolt",
+      "mindset": "Relaxed confidence and showmanship paired with serious training, and a conviction that limits are mostly mental.",
+      "achievements": "Eight Olympic gold medals across three Games (2008, 2012, 2016) and world records in the 100 m, 200 m, and 4×100 m relay.",
+      "trivia": "He grew up in Jamaica as a keen cricket fan, and his “lightning bolt” pose became one of sport’s best-known gestures."
     },
     {
       "id": "sp-10",
@@ -90,24 +105,34 @@
       "role": "28-Time Olympic Medalist",
       "deeperInsight": "Visualizing peak performance conditions the central nervous system to execute ambitious goals with confidence.",
       "historicalContext": "Phelps won 8 gold medals in a single Games at Beijing 2008 and is the most decorated Olympian in human history.",
-      "wiki": "Michael_Phelps"
+      "wiki": "Michael_Phelps",
+      "mindset": "Long-term goal setting, a strict daily routine, and mentally rehearsing every race in advance.",
+      "achievements": "He competed at five Olympics (2000–2016), winning 23 golds and 28 total medals, and set dozens of world records.",
+      "trivia": "He has worked with coach Bob Bowman since age 11, and has spoken openly about ADHD and mental health."
     },
     {
-      "id": "sp-11",
-      "quote": "Hard work beats talent when talent fails to work hard.",
-      "author": "Tim Notke",
-      "role": "High School Basketball Coach",
-      "deeperInsight": "Raw capacity is passive potential energy. Consistent work ethic is kinetic power that inevitably outpaces dormant talent.",
-      "historicalContext": "Often credited to high school coach Tim Notke, the saying has since been repeated by athletes and coaches in many sports, and its exact origin is hard to verify."
+      "id": "sp-16",
+      "quote": "Everything negative — pressure, challenges — is all an opportunity for me to rise.",
+      "author": "Kobe Bryant",
+      "role": "5-Time NBA Champion",
+      "wiki": "Kobe_Bryant",
+      "deeperInsight": "Pressure is information about what matters. Treat it as the thing that lifts your level, not the thing that lowers it.",
+      "historicalContext": "On January 22, 2006, Bryant scored 81 points against the Toronto Raptors, the second-highest single-game total in NBA history behind Wilt Chamberlain’s 100.",
+      "mindset": "The “Mamba Mentality”: obsessive preparation, constant self-improvement, and full intensity every day.",
+      "achievements": "18 All-Star selections, two Finals MVPs, the 2008 regular-season MVP, and two Olympic gold medals.",
+      "trivia": "He spent his entire 20-year career with the Los Angeles Lakers, and won an Academy Award in 2018 for the animated short Dear Basketball."
     },
     {
       "id": "sp-12",
       "quote": "Pressure is a privilege — it only comes to those who earn it.",
       "author": "Billie Jean King",
-      "role": "Tennis Legend & Pioneer",
+      "role": "39-Time Grand Slam Champion",
       "deeperInsight": "High-stakes friction is a sign of trust and responsibility. Reframing pressure as an opportunity eliminates performance dread.",
-      "historicalContext": "It is also the title of King's 2008 book, 'Pressure Is a Privilege: Lessons I've Learned from Life and the Battle of the Sexes.'",
-      "wiki": "Billie_Jean_King"
+      "historicalContext": "King won the famous 1973 “Battle of the Sexes” match, watched by an estimated 90 million people worldwide. The quote is also the title of her 2008 book.",
+      "wiki": "Billie_Jean_King",
+      "mindset": "Equality, courage under pressure, and using sport as a platform for social change.",
+      "achievements": "She co-founded the Women’s Tennis Association in 1973 and received the Presidential Medal of Freedom in 2009.",
+      "trivia": "The international women’s team competition is now called the Billie Jean King Cup in her honor."
     },
     {
       "id": "sp-13",
@@ -116,7 +141,10 @@
       "role": "Ultramarathon Runner",
       "deeperInsight": "Pacing can adapt to constraints, but direction and momentum must remain uncompromised.",
       "historicalContext": "Karnazes ran 50 marathons in 50 US states in 50 consecutive days in 2006, finishing with the New York City Marathon.",
-      "wiki": "Dean_Karnazes"
+      "wiki": "Dean_Karnazes",
+      "mindset": "Endurance is as much mental as physical: adjust the pace to the conditions but never the direction.",
+      "achievements": "In 2005 he ran 350 miles without stopping, and he has completed brutal ultramarathons such as Badwater 135 through Death Valley.",
+      "trivia": "On his 30th birthday he reportedly ran 30 miles through the night, which restarted his running life."
     },
     {
       "id": "sp-14",
@@ -125,7 +153,10 @@
       "role": "4-Time World Heavyweight Champion",
       "deeperInsight": "Internal grit and desire compensate for physical or environmental disadvantages every single time.",
       "historicalContext": "Holyfield moved up from cruiserweight to defeat much larger heavyweights, including Mike Tyson and Riddick Bowe.",
-      "wiki": "Evander_Holyfield"
+      "wiki": "Evander_Holyfield",
+      "mindset": "Deep faith and a belief that heart and preparation can outweigh size.",
+      "achievements": "Olympic bronze in 1984, and undisputed heavyweight champion in 1990 after beating Buster Douglas.",
+      "trivia": "His 1997 rematch with Mike Tyson, the “Bite Fight,” ended when Tyson was disqualified for biting his ear."
     },
     {
       "id": "sp-15",
@@ -134,7 +165,10 @@
       "role": "5-Time World Series Champion",
       "deeperInsight": "Effort is 100% within your personal agency. Maximizing effort neutralizes external talent gaps.",
       "historicalContext": "Captain of the New York Yankees for 11 seasons, Jeter earned 3,465 hits during his 20-year Hall of Fame career.",
-      "wiki": "Derek_Jeter"
+      "wiki": "Derek_Jeter",
+      "mindset": "Preparation and accountability: he focused on the effort and habits he could control.",
+      "achievements": "Five World Series titles, 14 All-Star selections, and the 2000 World Series MVP award.",
+      "trivia": "He reached 3,000 hits in 2011 with a home run, and the Yankees retired his No. 2 in 2017."
     }
   ]
 }
