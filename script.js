@@ -10,27 +10,54 @@ const AVATAR_PLACEHOLDERS = {
   philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80'
 };
 
-// Custom image overrides for specific figures / fictional film characters
+// Comprehensive portrait & poster map for sports legends, film characters, and philosophers
 const CUSTOM_IMAGE_MAP = {
-  // Michael Jordan in Chicago Bulls Uniform
-  "Michael Jordan": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Jordan_lip_bite.jpg/400px-Jordan_lip_bite.jpg",
-  
-  // Film Character mappings to real Wikipedia articles or iconic stills
-  "Yoda": "https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png",
-  "Benjamin Button": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/Curious_case_of_benjamin_button.jpg/300px-Curious_case_of_benjamin_button.jpg",
-  "Gandalf": "https://upload.wikimedia.org/wikipedia/en/e/e9/Gandalf6000.jpg",
-  "Rocky Balboa": "https://upload.wikimedia.org/wikipedia/en/1/18/Rocky_balboa.jpeg",
-  "Dory": "https://upload.wikimedia.org/wikipedia/en/2/22/Dory_Finding_Nemo.png",
-  "Tyler Durden": "https://upload.wikimedia.org/wikipedia/en/c/c0/Tyler_Durden_Fight_Club.jpg",
+  // --- SPORTS & ATHLETICS ---
+  "Michael Jordan": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&auto=format&fit=crop&q=80",
+  "Vince Lombardi": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vince_Lombardi_1964.jpg/400px-Vince_Lombardi_1964.jpg",
+  "Pelé": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Pele_by_John_Mathew_Smith_crop.jpg/400px-Pele_by_John_Mathew_Smith_crop.jpg",
+  "Muhammad Ali": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Muhammad_Ali_NYWTS.jpg/400px-Muhammad_Ali_NYWTS.jpg",
+  "Serena Williams": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Serena_Williams_at_2013_US_Open.jpg/400px-Serena_Williams_at_2013_US_Open.jpg",
+  "Jerry Rice": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Jerry_Rice_2012.jpg/400px-Jerry_Rice_2012.jpg",
+  "Wayne Gretzky": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Wayne_Gretzky_2006-02-18_torino_001.jpg/400px-Wayne_Gretzky_2006-02-18_torino_001.jpg",
+  "Usain Bolt": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Usain_Bolt_after_4_x_100_m_relay_final_2013_World_Championships_in_Athletics.jpg/400px-Usain_Bolt_after_4_x_100_m_relay_final_2013_World_Championships_in_Athletics.jpg",
+  "Billie Jean King": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Billie_Jean_King_2011.jpg/400px-Billie_Jean_King_2011.jpg",
+  "Michael Phelps": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Michael_Phelps_Rio_2016.jpg/400px-Michael_Phelps_Rio_2016.jpg",
+  "Tim Notke": "https://images.unsplash.com/photo-1519766304817-4f37bda74a29?w=400&auto=format&fit=crop&q=80",
+  "Dean Karnazes": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dean_Karnazes_2009.jpg/400px-Dean_Karnazes_2009.jpg",
+  "Evander Holyfield": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Evander_Holyfield_2011.jpg/400px-Evander_Holyfield_2011.jpg",
+  "Derek Jeter": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Derek_Jeter_2014.jpg/400px-Derek_Jeter_2014.jpg",
+
+  // --- FILM & CINEMA CHARACTERS ---
+  "Yoda": "https://images.unsplash.com/photo-1601814933824-fd0b574dd592?w=400&auto=format&fit=crop&q=80",
+  "Benjamin Button": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&auto=format&fit=crop&q=80",
+  "Gandalf": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&auto=format&fit=crop&q=80",
+  "Rocky Balboa": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=400&auto=format&fit=crop&q=80",
+  "Dory": "https://images.unsplash.com/photo-1524704685729-b8785d2d3ecb?w=400&auto=format&fit=crop&q=80",
+  "Tyler Durden": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80",
   "Atticus Finch": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Gregory_Peck_in_To_Kill_a_Mockingbird_trailer.jpg/400px-Gregory_Peck_in_To_Kill_a_Mockingbird_trailer.jpg",
-  "Albus Dumbledore": "https://upload.wikimedia.org/wikipedia/en/f/fe/Dumbledore_and_Harry_Potter.jpg",
-  "Morpheus": "https://upload.wikimedia.org/wikipedia/en/a/ab/Morpheus_Matrix.png",
-  "Andy Dufresne": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
-  "Walter Mitty": "https://upload.wikimedia.org/wikipedia/en/5/52/The_Secret_Life_of_Walter_Mitty_poster.jpg",
-  "Rafiki": "https://upload.wikimedia.org/wikipedia/en/d/d2/Rafiki_Lion_King.jpg",
-  "John Keating": "https://upload.wikimedia.org/wikipedia/en/4/49/Dead_poets_society.jpg",
+  "Albus Dumbledore": "https://images.unsplash.com/photo-1514539079130-25950c84af65?w=400&auto=format&fit=crop&q=80",
+  "Morpheus": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&auto=format&fit=crop&q=80",
+  "Andy Dufresne": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format&fit=crop&q=80",
+  "Walter Mitty": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&auto=format&fit=crop&q=80",
+  "Rafiki": "https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=400&auto=format&fit=crop&q=80",
+  "John Keating": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80",
   "Chris Gardner": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Chris_Gardner_2011.jpg/400px-Chris_Gardner_2011.jpg",
-  "Maximus Decimus Meridius": "https://upload.wikimedia.org/wikipedia/en/8/8d/Gladiator_poster.jpg"
+  "Maximus Decimus Meridius": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&auto=format&fit=crop&q=80",
+
+  // --- PHILOSOPHY & MIND ---
+  "Aristotle": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/400px-Aristotle_Altemps_Inv8575.jpg",
+  "Friedrich Nietzsche": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche1879.jpg/400px-Nietzsche1879.jpg",
+  "Socrates": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Socrates_Louvre.jpg/400px-Socrates_Louvre.jpg",
+  "Marcus Aurelius": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Marcus_Aurelius_Louvre_MR561.jpg/400px-Marcus_Aurelius_Louvre_MR561.jpg",
+  "Confucius": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Confucius_Tang_Dynasty.jpg/400px-Confucius_Tang_Dynasty.jpg",
+  "Epictetus": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Epictetus_frontispiece.jpg/400px-Epictetus_frontispiece.jpg",
+  "Seneca the Younger": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Seneca_Louvre_Ma92.jpg/400px-Seneca_Louvre_Ma92.jpg",
+  "Lao Tzu": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Laozi_Eremitage.jpg/400px-Laozi_Eremitage.jpg",
+  "Gautama Buddha": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Buddha_in_Victoria_and_Albert_Museum.jpg/400px-Buddha_in_Victoria_and_Albert_Museum.jpg",
+  "René Descartes": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/400px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
+  "Immanuel Kant": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Immanuel_Kant_3.jpg/400px-Immanuel_Kant_3.jpg",
+  "Søren Kierkegaard": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Kierkegaard.jpg/400px-Kierkegaard.jpg"
 };
 
 // In-memory cache for Wikipedia image lookups
@@ -83,7 +110,7 @@ async function getAuthorImage(item) {
     console.warn(`Could not fetch Wikipedia portrait for ${searchName}:`, err);
   }
 
-  // Fallback avatar using modern UI Initials service
+  // Fallback avatar using modern UI Initials service with category styling
   const themeColors = {
     sports: { bg: '6366f1', color: 'ffffff' },
     film: { bg: 'ec4899', color: 'ffffff' },
