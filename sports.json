@@ -1,0 +1,86 @@
+{
+"badge": "Sports & Athletics",
+"themeClass": "theme-sports",
+"items": [
+{
+"id": "sp-1",
+"quote": "Failure is not the opposite of success; it is the exact calibration engine that powers it.",
+"author": "Michael Jordan",
+"role": "6-Time Champion & Basketball Icon",
+"deeperInsight": "Every missed shot delivers real-time behavioral feedback. Treating errors as data rather than identity destroys performance anxiety.",
+"historicalContext": "Cut from his high school varsity basketball team as a sophomore, he channeled the disappointment into an obsessive work ethic, eventually winning six championship rings."
+},
+{
+"id": "sp-2",
+"quote": "The moment of impact does not define you; your recovery speed in the next second does.",
+"author": "Vince Lombardi",
+"role": "Legendary Gridiron Coach",
+"deeperInsight": "Resilience is not a static trait but a latency metric—how quickly you transition from setback to immediate execution.",
+"historicalContext": "Led Green Bay to victory in the first two modern championship bowls in 1967 and 1968, establishing a culture based on fundamental repetition."
+},
+{
+"id": "sp-3",
+"quote": "Friction during the journey is what imparts true psychological value to the final victory.",
+"author": "Pelé",
+"role": "3-Time World Cup Winner",
+"deeperInsight": "Effortless victories produce zero growth. The difficulty of an obstacle directly scales the satisfaction of overcoming it.",
+"historicalContext": "Became the youngest tournament champion in 1958 at age 17, scoring two goals in the final match using traditional Brazilian freestyle technique."
+},
+{
+"id": "sp-4",
+"quote": "Endure short-term voluntary discomfort to purchase long-term personal mastery.",
+"author": "Muhammad Ali",
+"role": "World Heavyweight Boxing Champion",
+"deeperInsight": "Champions do not love training; they love the identity forged through repetitive hardship.",
+"historicalContext": "Reclaimed the heavy division title in 1974 by adopting the tactical 'rope-a-dope' defense to absorb energy against a heavier opponent."
+},
+{
+"id": "sp-5",
+"quote": "Longevity in any domain is determined by how fast you reset your mind after a loss.",
+"author": "Serena Williams",
+"role": "23-Time Major Singles Champion",
+"deeperInsight": "Carrying past mistakes into present plays guarantees future errors. Flush memory after every point.",
+"historicalContext": "Captured her 23rd major singles trophy in 2017 while eight weeks pregnant, demonstrating historic physical and mental stamina."
+},
+{
+"id": "sp-6",
+"quote": "Excellence is not an accident; it is the inevitable byproduct of relentless preparation.",
+"author": "Jerry Rice",
+"role": "Hall of Fame Wide Receiver",
+"deeperInsight": "Inspiration is unreliable; high-volume daily repetition creates autopilot execution under high pressure.",
+"historicalContext": "Famous for his grueling offseason hill-running routine, which allowed him to maintain elite performance across 20 professional seasons."
+},
+{
+"id": "sp-7",
+"quote": "You miss one hundred percent of the chances you choose not to initiate.",
+"author": "Wayne Gretzky",
+"role": "All-Time Ice Hockey Scoring Leader",
+"deeperInsight": "Zero attempts yield a zero percent conversion rate. Inaction is the only guaranteed route to failure.",
+"historicalContext": "Holds the record for more career assists than any other player has total combined points in professional hockey history."
+},
+{
+"id": "sp-8",
+"quote": "Limits, like fears, are often just an illusion created by your current comfort zone.",
+"author": "Usain Bolt",
+"role": "8-Time Olympic Gold Medalist",
+"deeperInsight": "Physical boundaries are frequently mental ceilings. Pushing past perceived limits rewires your baseline capability.",
+"historicalContext": "Set the world record of 9.58 seconds in the 100-meter dash in Berlin in 2009, reaching a top sprint speed over 27 miles per hour."
+},
+{
+"id": "sp-9",
+"quote": "Concentrate all your energy on what you can control, and ignore everything else.",
+"author": "Billie Jean King",
+"role": "39-Time Grand Slam Champion",
+"deeperInsight": "Worrying about external factors (weather, referees, opponents) wastes limited cognitive bandwidth.",
+"historicalContext": "A pioneer for equal pay in sports, she won the famous 1973 'Battle of the Sexes' match viewed by over 90 million people worldwide."
+},
+{
+"id": "sp-10",
+"quote": "True strength isn't shown in victory; it shines when you keep fighting through adversity.",
+"author": "Pat Summitt",
+"role": "Legendary College Basketball Coach",
+"deeperInsight": "Character is revealed under pressure. Anyone can lead when winning, but true leaders anchor teams during storms.",
+"historicalContext": "Accrued 1,098 collegiate victories while leading her team to eight national championships with a 100% athlete graduation rate."
+}
+]
+}
