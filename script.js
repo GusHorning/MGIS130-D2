@@ -1,332 +1,410 @@
-// Global App State
-let APP_DATA = {};
+/* =====================================================================
+   Daily Sparks
+   Quotes live in sports.json, film.json, and philosophy.json.
+   To add a quote, copy any item there, give it a new unique `id`, and set
+   `wiki` to the exact Wikipedia article title (used for the photo and the
+   "Read more" link). `wiki` is optional.
+   ===================================================================== */
+
+/* ---------- Category settings ---------- */
+const CATEGORIES = {
+  sports:     { label: 'Sports',     emoji: '🏆', button: '⚡ Discover Sports Spark',     colors: ['#5f95aa', '#9c7587'] },
+  film:       { label: 'Film',       emoji: '🎬', button: '🎬 Discover Film Spark',       colors: ['#a35d74', '#7d6fa6'] },
+  philosophy: { label: 'Philosophy', emoji: '🏛️', button: '🏛️ Discover Philosophy Spark', colors: ['#5a9179', '#4f8aa0'] }
+};
+
+/* ---------- State ---------- */
+const APP_DATA = {};          // { sports: {badge, items}, film: {...}, philosophy: {...} }
+const ITEM_INDEX = {};        // id -> { cat, item }
+const lastId = {};            // last quote shown per category, to avoid repeats
+const photoCache = {};
 let currentCategory = 'sports';
-let currentIndex = 0;
+let activeItem = null;
+let savedFilter = 'all';
+let lastTrigger = null;
 
-// High-quality category photographic fallbacks (No initial/letter boxes)
-const AVATAR_PLACEHOLDERS = {
-  sports: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?w=400&auto=format&fit=crop&q=80',
-  film: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&auto=format&fit=crop&q=80',
-  philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80'
-};
+/* ---------- Storage (guarded: it can be blocked in private mode) ---------- */
+const STORE = { favorites: 'dailySparks.favorites', onboarded: 'dailySparks.onboarded' };
 
-// Direct, verified portrait overrides for key figures to guarantee accuracy
-const DIRECT_PORTRAIT_MAP = {
-  "Michael Jordan": "https://upload.wikimedia.org/wikipedia/commons/8/87/Michael_Jordan_in_2014.jpg",
-  "Yoda": "https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png"
-};
-
-// Comprehensive map for exact Wikipedia article titles
-const WIKI_TITLE_MAP = {
-  // --- SPORTS & ATHLETICS ---
-  "Michael Jordan": "Michael Jordan",
-  "Vince Lombardi": "Vince Lombardi",
-  "Pelé": "Pelé",
-  "Muhammad Ali": "Muhammad Ali",
-  "Serena Williams": "Serena Williams",
-  "Jerry Rice": "Jerry Rice",
-  "Wayne Gretzky": "Wayne Gretzky",
-  "Usain Bolt": "Usain Bolt",
-  "Billie Jean King": "Billie Jean King",
-  "Michael Phelps": "Michael Phelps",
-  "Tim Notke": "Basketball",
-  "Dean Karnazes": "Dean Karnazes",
-  "Evander Holyfield": "Evander Holyfield",
-  "Derek Jeter": "Derek Jeter",
-
-  // --- FILM CHARACTERS (Map character -> exact page title) ---
-  "Yoda": "Yoda_(Star_Wars)",
-  "Benjamin Button": "The Curious Case of Benjamin Button (film)",
-  "Gandalf": "Gandalf",
-  "Rocky Balboa": "Rocky Balboa",
-  "Dory": "Dory (Finding Nemo)",
-  "Tyler Durden": "Tyler Durden",
-  "Atticus Finch": "Atticus Finch",
-  "Albus Dumbledore": "Albus Dumbledore",
-  "Morpheus": "Morpheus (The Matrix)",
-  "Andy Dufresne": "The Shawshank Redemption",
-  "Walter Mitty": "The Secret Life of Walter Mitty",
-  "Rafiki": "Rafiki",
-  "John Keating": "Dead Poets Society",
-  "Chris Gardner": "Chris Gardner",
-  "Maximus Decimus Meridius": "Maximus Decimus Meridius",
-
-  // --- PHILOSOPHY & MIND ---
-  "Aristotle": "Aristotle",
-  "Friedrich Nietzsche": "Friedrich Nietzsche",
-  "Socrates": "Socrates",
-  "Marcus Aurelius": "Marcus Aurelius",
-  "Confucius": "Confucius",
-  "Epictetus": "Epictetus",
-  "Seneca the Younger": "Seneca the Younger",
-  "Lao Tzu": "Laozi",
-  "Gautama Buddha": "Gautama Buddha",
-  "René Descartes": "René Descartes",
-  "Immanuel Kant": "Immanuel Kant",
-  "Søren Kierkegaard": "Søren Kierkegaard"
-};
-
-// In-memory cache for Wikipedia image lookups
-const imageCache = {};
-
-/**
- * Cleans author names (e.g. "Yoda (Jedi Master)" -> "Yoda")
- */
-function cleanAuthorName(name) {
-  if (!name) return '';
-  return name.replace(/\(.*\)/, '').trim();
+function readStore(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw === null ? fallback : JSON.parse(raw);
+  } catch (e) { return fallback; }
+}
+function writeStore(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* keep working in memory */ }
 }
 
-/**
- * Dynamically retrieves portrait images from Direct Maps or Wikipedia Open API.
- */
-async function getAuthorImage(item) {
-  if (item && item.image) return item.image;
-  if (!item || !item.author) return AVATAR_PLACEHOLDERS[currentCategory];
+let favorites = readStore(STORE.favorites, []);   // array of quote ids
+if (!Array.isArray(favorites)) favorites = [];
 
-  const authorName = item.author;
-  const searchName = cleanAuthorName(authorName);
+/* ---------- DOM ---------- */
+const $ = id => document.getElementById(id);
+const DOM = {
+  bg: $('bgLayer'), btn: $('generateBtn'), card: $('displayCard'),
+  badge: $('categoryBadge'), league: $('leagueBadge'),
+  avatar: $('authorAvatar'), blur: $('mediaBlur'), favBtn: $('favBtn'),
+  quote: $('quoteText'), author: $('quoteAuthor'),
+  insightBox: $('insightBox'), insightBtn: $('insightToggle'), toggleIcon: $('toggleIcon'),
+  insight: $('insightText'), fact: $('factText'),
+  tabs: document.querySelectorAll('.tab-btn'),
+  savedBtn: $('savedBtn'), savedCount: $('savedCount'), helpBtn: $('helpBtn'), live: $('liveStatus'),
+  modal: $('detailModal'), modalBadge: $('modalBadge'), modalImg: $('modalImg'),
+  modalName: $('modalName'), modalRole: $('modalRole'),
+  modalIdea: $('modalIdea'), modalContext: $('modalContext'), modalLink: $('modalLink'),
+  savedModal: $('savedModal'), savedList: $('savedList'), chips: document.querySelectorAll('.filter-chip'),
+  tour: $('tourModal'), tourIcon: $('tourIcon'), tourStep: $('tourStep'), tourTitle: $('tourTitle'),
+  tourText: $('tourText'), tourDots: $('tourDots'), tourBack: $('tourBack'), tourNext: $('tourNext')
+};
 
-  // Check direct high-fidelity overrides first
-  if (DIRECT_PORTRAIT_MAP[searchName]) {
-    return DIRECT_PORTRAIT_MAP[searchName];
-  }
+function el(tag, className, text) {
+  const n = document.createElement(tag);
+  if (className) n.className = className;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+function announce(msg) { DOM.live.textContent = ''; DOM.live.textContent = msg; }
 
-  const wikiTarget = WIKI_TITLE_MAP[searchName] || searchName;
-
-  if (imageCache[wikiTarget]) {
-    return imageCache[wikiTarget];
-  }
-
-  // 1. Primary Wikipedia Direct Image Fetch
-  try {
-    const wikiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(wikiTarget)}&prop=pageimages&format=json&pithumbsize=500&origin=*`;
-    const response = await fetch(wikiUrl);
-    const data = await response.json();
-
-    if (data && data.query && data.query.pages) {
-      const pages = data.query.pages;
-      const pageId = Object.keys(pages)[0];
-
-      if (pageId && pageId !== "-1" && pages[pageId].thumbnail) {
-        const imageUrl = pages[pageId].thumbnail.source;
-        imageCache[wikiTarget] = imageUrl;
-        return imageUrl;
-      }
-    }
-  } catch (err) {
-    console.warn(`Wikipedia pageimage fetch failed for ${wikiTarget}:`, err);
-  }
-
-  // 2. Secondary Wikipedia Search API Fallback
-  try {
-    const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(searchName)}&gsrlimit=1&prop=pageimages&pithumbsize=500&format=json&origin=*`;
-    const searchResp = await fetch(searchUrl);
-    const searchData = await searchResp.json();
-
-    if (searchData && searchData.query && searchData.query.pages) {
-      const pages = searchData.query.pages;
-      const firstPageId = Object.keys(pages)[0];
-      if (pages[firstPageId].thumbnail) {
-        const imageUrl = pages[firstPageId].thumbnail.source;
-        imageCache[wikiTarget] = imageUrl;
-        return imageUrl;
-      }
-    }
-  } catch (err) {
-    console.warn(`Wikipedia search fallback failed for ${searchName}:`, err);
-  }
-
-  // Return thematic photographic fallback if API calls yield no image
-  return AVATAR_PLACEHOLDERS[currentCategory];
+/* =====================================================================
+   DATA LOADING
+   ===================================================================== */
+async function loadData() {
+  const names = Object.keys(CATEGORIES);
+  const results = await Promise.all(names.map(async name => {
+    const res = await fetch(`./${name}.json`);
+    if (!res.ok) throw new Error(`${name}.json returned HTTP ${res.status}`);
+    return res.json();
+  }));
+  names.forEach((name, i) => {
+    APP_DATA[name] = results[i];
+    lastId[name] = null;
+    results[i].items.forEach(item => { ITEM_INDEX[item.id] = { cat: name, item }; });
+  });
 }
 
-// Fetch JSON data asynchronously from external files
-async function initApp() {
-  try {
-    const [sportsRes, filmRes, philosophyRes] = await Promise.all([
-      fetch('./sports.json'),
-      fetch('./film.json'),
-      fetch('./philosophy.json')
-    ]);
-
-    const sports = await sportsRes.json();
-    const film = await filmRes.json();
-    const philosophy = await philosophyRes.json();
-
-    APP_DATA = { sports, film, philosophy };
-
-    setupEventListeners();
-    await renderCurrentCard();
-  } catch (error) {
-    console.error('Error loading JSON datasets:', error);
-    const quoteEl = document.getElementById('quoteText');
-    if (quoteEl) quoteEl.textContent = 'Unable to load datasets. Please check that sports.json, film.json, and philosophy.json exist in your folder.';
-  }
+function showLoadError(err) {
+  console.error('Could not load quote data:', err);
+  const onFile = location.protocol === 'file:';
+  DOM.quote.textContent = onFile
+    ? 'Browsers block JSON files when a page is opened straight from disk. Run a small local server in this folder (for example: python3 -m http.server) and open http://localhost:8000 instead.'
+    : 'Could not load sports.json, film.json, or philosophy.json. Check that all three files sit next to index.html.';
+  DOM.author.textContent = '';
 }
 
-function setupEventListeners() {
-  // Category Tab switching
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
+/* =====================================================================
+   PHOTOS
+   A soft illustrated portrait shows instantly; the real Wikipedia photo
+   replaces it when it loads.
+   ===================================================================== */
+function fallbackPortrait(item, cat) {
+  const [c1, c2] = CATEGORIES[cat].colors;
+  const initials = item.author.split(/[\s—(]+/).filter(w => /^\p{Lu}/u.test(w)).slice(0, 2).map(w => w[0]).join('');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="400" height="300" fill="url(#g)"/><circle cx="320" cy="60" r="90" fill="#fff" opacity=".15"/><circle cx="70" cy="260" r="110" fill="#fff" opacity=".12"/><text x="200" y="185" font-family="Georgia,serif" font-size="120" font-weight="700" fill="#fff" text-anchor="middle">${initials}</text><text x="200" y="250" font-family="sans-serif" font-size="24" fill="#fff" text-anchor="middle" opacity=".95">${CATEGORIES[cat].emoji}</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
 
-      const cat = e.target.getAttribute('data-category');
-      switchCategory(cat);
-    });
+async function getPhotoUrl(wiki) {
+  if (!wiki) return null;
+  if (wiki in photoCache) return photoCache[wiki];
+  try {
+    const res = await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(wiki));
+    const data = await res.json();
+    const thumb = data.thumbnail && data.thumbnail.source;
+    photoCache[wiki] = thumb ? thumb.replace(/\/\d+px-/, '/960px-') : null;
+    photoCache[wiki + ':small'] = thumb || null;
+  } catch (e) {
+    photoCache[wiki] = null;
+  }
+  return photoCache[wiki];
+}
+
+function loadImage(url) {
+  return new Promise(resolve => {
+    if (!url) return resolve(false);
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+}
+
+function setPhoto(src, alt) {
+  DOM.avatar.src = src; DOM.avatar.alt = alt; DOM.blur.src = src;
+  DOM.modalImg.src = src; DOM.modalImg.alt = alt;
+}
+
+async function showPhoto(item, cat) {
+  setPhoto(fallbackPortrait(item, cat), item.author);
+  let url = await getPhotoUrl(item.wiki);
+  if (!(await loadImage(url))) {
+    url = photoCache[item.wiki + ':small'];
+    if (!(await loadImage(url))) return;
+  }
+  if (activeItem === item) setPhoto(url, item.author);
+}
+
+/* =====================================================================
+   CARD DISPLAY
+   ===================================================================== */
+function pickItem(cat) {
+  const list = APP_DATA[cat].items;
+  let item;
+  do { item = list[Math.floor(Math.random() * list.length)]; }
+  while (list.length > 1 && item.id === lastId[cat]);
+  return item;
+}
+
+function setInsightOpen(open) {
+  DOM.insightBox.classList.toggle('hidden', !open);
+  DOM.insightBtn.setAttribute('aria-expanded', open);
+  DOM.toggleIcon.textContent = open ? '▲ Hide' : '▼ Reveal';
+}
+
+function showItem(item, cat) {
+  currentCategory = cat;
+  activeItem = item;
+  lastId[cat] = item.id;
+
+  const meta = CATEGORIES[cat];
+  const theme = `theme-${cat}`;
+
+  DOM.tabs.forEach(t => t.classList.toggle('active', t.dataset.category === cat));
+  DOM.bg.className = `bg-layer bg-${cat}`;
+  DOM.card.className = `card ${theme}`;
+  DOM.btn.className = `generate-btn ${theme}`;
+  DOM.btn.textContent = meta.button;
+  DOM.badge.textContent = APP_DATA[cat].badge || meta.label;
+  DOM.league.textContent = item.role || '';
+  DOM.league.hidden = !item.role;
+  DOM.quote.textContent = `“${item.quote}”`;
+  DOM.author.textContent = `— ${item.author}`;
+  DOM.insight.textContent = item.deeperInsight || '';
+  DOM.fact.textContent = item.historicalContext || '';
+  setInsightOpen(false);
+  updateFavUI();
+
+  DOM.card.classList.remove('fade-in');
+  void DOM.card.offsetWidth;
+  DOM.card.classList.add('fade-in');
+
+  showPhoto(item, cat);
+}
+
+const nextSpark = () => showItem(pickItem(currentCategory), currentCategory);
+const selectCategory = cat => showItem(pickItem(cat), cat);
+
+/* =====================================================================
+   FAVORITES
+   ===================================================================== */
+const isFavorite = id => favorites.includes(id);
+
+function toggleFavorite(id) {
+  const i = favorites.indexOf(id);
+  if (i === -1) favorites.push(id); else favorites.splice(i, 1);
+  writeStore(STORE.favorites, favorites);
+  return i === -1;
+}
+
+// Saved ids that no longer exist in the JSON files are skipped.
+function savedEntries() {
+  return favorites.map(id => ITEM_INDEX[id]).filter(Boolean);
+}
+
+function updateFavUI() {
+  const saved = !!activeItem && isFavorite(activeItem.id);
+  DOM.favBtn.setAttribute('aria-pressed', saved);
+  DOM.favBtn.setAttribute('aria-label', saved ? 'Remove from favorites' : 'Save to favorites');
+  DOM.favBtn.textContent = saved ? '♥' : '♡';
+  DOM.savedCount.textContent = savedEntries().length;
+}
+
+function renderSaved() {
+  const all = savedEntries().reverse();   // newest first
+  const shown = savedFilter === 'all' ? all : all.filter(e => e.cat === savedFilter);
+  DOM.savedList.replaceChildren();
+
+  DOM.chips.forEach(c => {
+    const on = c.dataset.filter === savedFilter;
+    c.classList.toggle('active', on);
+    c.setAttribute('aria-pressed', on);
   });
 
-  // Discover Next Spark Button
-  const genBtn = document.getElementById('generateBtn');
-  if (genBtn) genBtn.addEventListener('click', nextSpark);
+  if (!shown.length) {
+    DOM.savedList.append(el('p', 'saved-empty', all.length
+      ? 'No saved quotes in this category yet.'
+      : 'Nothing saved yet. Tap the heart on any quote to keep it here.'));
+    return;
+  }
 
-  // Toggle Insight Accordion
-  const insightToggle = document.getElementById('insightToggle');
-  if (insightToggle) {
-    insightToggle.addEventListener('click', () => {
-      const insightBox = document.getElementById('insightBox');
-      const toggleIcon = document.getElementById('toggleIcon');
-      const isHidden = insightBox.classList.contains('hidden');
+  shown.forEach(({ cat, item }) => {
+    const row = el('article', `saved-item cat-${cat}`);
+    row.append(el('p', 'saved-quote', `“${item.quote}”`), el('p', 'saved-author', `— ${item.author}`));
 
-      if (isHidden) {
-        insightBox.classList.remove('hidden');
-        insightToggle.setAttribute('aria-expanded', 'true');
-        if (toggleIcon) toggleIcon.textContent = '▲ Hide';
-      } else {
-        insightBox.classList.add('hidden');
-        insightToggle.setAttribute('aria-expanded', 'false');
-        if (toggleIcon) toggleIcon.textContent = '▼ Reveal';
-      }
+    const actions = el('div', 'saved-actions');
+    const view = el('button', 'mini-btn', 'View on card');
+    view.type = 'button';
+    view.setAttribute('aria-label', `View the quote by ${item.author} on the card`);
+    view.addEventListener('click', () => {
+      closeOverlay(DOM.savedModal);
+      showItem(item, cat);
     });
-  }
 
-  // Modal Controls ("Learn More About This Mind")
-  const exploreBtn = document.getElementById('exploreBtn');
-  const closeModalBtn = document.getElementById('closeModal');
-  const backBtn = document.getElementById('backBtn');
-
-  if (exploreBtn) exploreBtn.addEventListener('click', openModal);
-  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-  if (backBtn) backBtn.addEventListener('click', closeModal);
-
-  // Close modal when clicking dark backdrop
-  const modal = document.getElementById('detailModal');
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
+    const remove = el('button', 'mini-btn danger', 'Remove');
+    remove.type = 'button';
+    remove.setAttribute('aria-label', `Remove the quote by ${item.author} from favorites`);
+    remove.addEventListener('click', () => {
+      toggleFavorite(item.id);
+      updateFavUI();
+      renderSaved();
+      announce('Removed from favorites.');
+      (DOM.savedList.querySelector('button') || DOM.savedModal.querySelector('.close-modal-btn')).focus();
     });
+
+    actions.append(view, remove);
+    row.append(actions);
+    DOM.savedList.append(row);
+  });
+}
+
+/* =====================================================================
+   OVERLAYS (detail, saved, onboarding)
+   The CSS shows an overlay when it has the `active` class.
+   ===================================================================== */
+function openOverlay(overlay, focusEl) {
+  lastTrigger = document.activeElement;
+  overlay.classList.add('active');
+  overlay.setAttribute('aria-hidden', 'false');
+  (focusEl || overlay.querySelector('button')).focus();
+}
+
+function closeOverlay(overlay) {
+  if (!overlay.classList.contains('active')) return;
+  overlay.classList.remove('active');
+  overlay.setAttribute('aria-hidden', 'true');
+  const back = lastTrigger && lastTrigger !== document.body && document.contains(lastTrigger) ? lastTrigger : DOM.btn;
+  back.focus();
+}
+
+function openDetailView() {
+  if (!activeItem) return;
+  DOM.modalBadge.textContent = APP_DATA[currentCategory].badge || CATEGORIES[currentCategory].label;
+  DOM.modalName.textContent = activeItem.author;
+  DOM.modalRole.textContent = activeItem.role || '';
+  DOM.modalIdea.textContent = activeItem.deeperInsight || '';
+  DOM.modalContext.textContent = activeItem.historicalContext || '';
+  DOM.modalLink.href = activeItem.wiki
+    ? 'https://en.wikipedia.org/wiki/' + encodeURIComponent(activeItem.wiki)
+    : 'https://en.wikipedia.org/w/index.php?search=' + encodeURIComponent(activeItem.author);
+  openOverlay(DOM.modal, $('closeModal'));
+}
+
+function openSaved() {
+  renderSaved();
+  openOverlay(DOM.savedModal, $('closeSaved'));
+}
+
+/* =====================================================================
+   ONBOARDING
+   ===================================================================== */
+const TOUR = [
+  { icon: '👋', title: 'Welcome to Daily Sparks',
+    text: 'One short quote at a time from athletes, films, and philosophers. Here is a 30-second tour.' },
+  { icon: '🧭', title: 'Pick a category',
+    text: 'Use the Sports, Film, and Philosophy tabs to switch topics. The colors change with you.' },
+  { icon: '✨', title: 'Discover a spark',
+    text: 'Press the big button for a new quote. Open Further Insight for the takeaway, or Learn more to read about the person behind it.' },
+  { icon: '♥', title: 'Save your favorites',
+    text: 'Tap the heart on a card to save it. Open Saved at the top to revisit, filter, or remove quotes. They stay on this device.' }
+];
+let tourStep = 0;
+
+function renderTour() {
+  const s = TOUR[tourStep];
+  DOM.tourIcon.textContent = s.icon;
+  DOM.tourStep.textContent = `Step ${tourStep + 1} of ${TOUR.length}`;
+  DOM.tourTitle.textContent = s.title;
+  DOM.tourText.textContent = s.text;
+  DOM.tourBack.hidden = tourStep === 0;
+  DOM.tourNext.textContent = tourStep === TOUR.length - 1 ? 'Get started' : 'Next';
+  DOM.tourDots.replaceChildren(...TOUR.map((_, i) => el('span', i === tourStep ? 'dot active' : 'dot')));
+}
+
+function startTour() {
+  tourStep = 0;
+  renderTour();
+  openOverlay(DOM.tour, DOM.tourNext);
+}
+
+function finishTour() {
+  writeStore(STORE.onboarded, true);
+  closeOverlay(DOM.tour);
+}
+
+/* =====================================================================
+   EVENTS
+   ===================================================================== */
+function bindEvents() {
+  DOM.tabs.forEach(t => t.addEventListener('click', () => selectCategory(t.dataset.category)));
+  DOM.btn.addEventListener('click', nextSpark);
+  DOM.insightBtn.addEventListener('click', () => setInsightOpen(DOM.insightBox.classList.contains('hidden')));
+
+  DOM.favBtn.addEventListener('click', () => {
+    if (!activeItem) return;
+    const added = toggleFavorite(activeItem.id);
+    updateFavUI();
+    announce(added ? 'Saved to favorites.' : 'Removed from favorites.');
+  });
+
+  $('exploreBtn').addEventListener('click', openDetailView);
+  $('closeModal').addEventListener('click', () => closeOverlay(DOM.modal));
+  $('backBtn').addEventListener('click', () => closeOverlay(DOM.modal));
+
+  DOM.savedBtn.addEventListener('click', openSaved);
+  $('closeSaved').addEventListener('click', () => closeOverlay(DOM.savedModal));
+  $('savedBack').addEventListener('click', () => closeOverlay(DOM.savedModal));
+  DOM.chips.forEach(c => c.addEventListener('click', () => { savedFilter = c.dataset.filter; renderSaved(); }));
+
+  DOM.helpBtn.addEventListener('click', startTour);
+  DOM.tourNext.addEventListener('click', () => {
+    if (tourStep === TOUR.length - 1) finishTour();
+    else { tourStep++; renderTour(); }
+  });
+  DOM.tourBack.addEventListener('click', () => { if (tourStep > 0) { tourStep--; renderTour(); } });
+  $('tourSkip').addEventListener('click', finishTour);
+
+  // Click on the dim backdrop closes detail and saved overlays
+  [DOM.modal, DOM.savedModal].forEach(o => o.addEventListener('click', e => { if (e.target === o) closeOverlay(o); }));
+
+  document.addEventListener('keydown', e => {
+    const open = document.querySelector('.detail-modal.active');
+    if (!open) return;
+    if (e.key === 'Escape') {
+      if (open === DOM.tour) finishTour(); else closeOverlay(open);
+    } else if (e.key === 'Tab') {
+      // Keep keyboard focus inside the open dialog
+      const focusable = [...open.querySelectorAll('button, a[href]')].filter(b => !b.hidden && !b.disabled);
+      if (!focusable.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+}
+
+/* =====================================================================
+   START
+   ===================================================================== */
+async function init() {
+  bindEvents();
+  try {
+    await loadData();
+  } catch (err) {
+    showLoadError(err);
+    return;
   }
+  nextSpark();
+  if (!readStore(STORE.onboarded, false)) startTour();
 }
 
-function switchCategory(cat) {
-  currentCategory = cat;
-  currentIndex = 0;
-
-  // Update Body & Card Theme Classes
-  const bgLayer = document.getElementById('bgLayer');
-  if (bgLayer) bgLayer.className = `bg-layer bg-${cat}`;
-
-  const displayCard = document.getElementById('displayCard');
-  if (displayCard) displayCard.className = `card theme-${cat}`;
-
-  const genBtn = document.getElementById('generateBtn');
-  if (genBtn) {
-    genBtn.className = `generate-btn theme-${cat}`;
-    const titleCategory = cat.charAt(0).toUpperCase() + cat.slice(1);
-    genBtn.textContent = `⚡ Discover ${titleCategory} Spark`;
-  }
-
-  renderCurrentCard();
-}
-
-async function renderCurrentCard() {
-  const data = APP_DATA[currentCategory];
-  if (!data || !data.items || data.items.length === 0) return;
-
-  const item = data.items[currentIndex];
-
-  const quoteText = document.getElementById('quoteText');
-  const quoteAuthor = document.getElementById('quoteAuthor');
-  const categoryBadge = document.getElementById('categoryBadge');
-  const leagueBadge = document.getElementById('leagueBadge');
-  const insightText = document.getElementById('insightText');
-  const factText = document.getElementById('factText');
-
-  if (quoteText) quoteText.textContent = `"${item.quote}"`;
-  if (quoteAuthor) quoteAuthor.textContent = `\u2014 ${item.author}`;
-  if (categoryBadge) categoryBadge.textContent = data.badge || currentCategory;
-  if (leagueBadge) leagueBadge.textContent = item.role || '';
-
-  if (insightText) insightText.textContent = item.deeperInsight || 'No additional insights available.';
-  if (factText) factText.textContent = item.historicalContext || 'No historical facts available.';
-
-  // Render Image
-  const avatar = document.getElementById('authorAvatar');
-  if (avatar) {
-    const imageUrl = await getAuthorImage(item);
-    avatar.src = imageUrl;
-    avatar.alt = item.author;
-
-    avatar.onerror = function() {
-      this.onerror = null;
-      this.src = AVATAR_PLACEHOLDERS[currentCategory];
-    };
-  }
-
-  // Reset insight toggle state
-  const insightBox = document.getElementById('insightBox');
-  const toggleIcon = document.getElementById('toggleIcon');
-  if (insightBox) insightBox.classList.add('hidden');
-  if (toggleIcon) toggleIcon.textContent = '▼ Reveal';
-}
-
-function nextSpark() {
-  const items = APP_DATA[currentCategory].items;
-  if (!items || items.length === 0) return;
-  currentIndex = (currentIndex + 1) % items.length;
-  renderCurrentCard();
-}
-
-async function openModal() {
-  const data = APP_DATA[currentCategory];
-  if (!data || !data.items) return;
-  const item = data.items[currentIndex];
-  if (!item) return;
-
-  const modalName = document.getElementById('modalName');
-  const modalRole = document.getElementById('modalRole');
-  const modalBadge = document.getElementById('modalBadge');
-  const modalImg = document.getElementById('modalImg');
-  const modalBeliefs = document.getElementById('modalBeliefs');
-  const modalAchievements = document.getElementById('modalAchievements');
-  const modalTrivia = document.getElementById('modalTrivia');
-
-  if (modalName) modalName.textContent = item.author;
-  if (modalRole) modalRole.textContent = item.role || '';
-  if (modalBadge) modalBadge.textContent = data.badge || currentCategory;
-
-  if (modalBeliefs) modalBeliefs.textContent = item.deeperInsight || 'Core mindset focused on growth, resilience, and discipline.';
-  if (modalAchievements) modalAchievements.textContent = item.historicalContext || 'Renowned contributor in their field.';
-  if (modalTrivia) modalTrivia.textContent = `Historical Context & Significance: ${item.historicalContext || 'N/A'}`;
-
-  if (modalImg) {
-    modalImg.src = await getAuthorImage(item);
-    modalImg.alt = item.author;
-    modalImg.onerror = function() {
-      this.onerror = null;
-      modalImg.src = AVATAR_PLACEHOLDERS[currentCategory];
-    };
-  }
-
-  const modal = document.getElementById('detailModal');
-  if (modal) modal.setAttribute('aria-hidden', 'false');
-}
-
-function closeModal() {
-  const modal = document.getElementById('detailModal');
-  if (modal) modal.setAttribute('aria-hidden', 'true');
-}
-
-// Initialize on DOM Ready
-window.addEventListener('DOMContentLoaded', initApp);
+init();
