@@ -1,126 +1,141 @@
 {
-"badge": "Philosophy & Mind",
-"themeClass": "theme-philosophy",
-"items": [
-{
-"id": "ph-1",
-"quote": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
-"author": "Aristotle",
-"role": "Ancient Greek Polymath",
-"deeperInsight": "Character is built through daily micro-routines rather than occasional heroic efforts.",
-"historicalContext": "Summarized by Will Durant in 1926 from Aristotle's 'Nicomachean Ethics'. Aristotle tutored Alexander the Great and founded the Lyceum in Athens."
-},
-{
-"id": "ph-2",
-"quote": "He who has a why to live can bear almost any how.",
-"author": "Friedrich Nietzsche",
-"role": "19th-Century German Philosopher",
-"deeperInsight": "A clear underlying purpose acts as psychological armor against unavoidable suffering and chaos.",
-"historicalContext": "Published in 'Twilight of the Idols' in 1889. The principle became a core foundation for Viktor Frankl's logotherapy."
-},
-{
-"id": "ph-3",
-"quote": "The unexamined life is not worth living.",
-"author": "Socrates",
-"role": "Classical Athenian Philosopher",
-"deeperInsight": "Living on default autopilot wastes conscious human potential. Regular self-inquiry is essential for growth.",
-"historicalContext": "Spoken during his trial in 399 BCE as recorded in Plato's 'Apology'. Socrates chose death over giving up philosophical inquiry."
-},
-{
-"id": "ph-4",
-"quote": "The impediment to action advances action. What stands in the way becomes the way.",
-"author": "Marcus Aurelius",
-"role": "Roman Emperor & Stoic Philosopher",
-"deeperInsight": "Obstacles are not interruptions to work; they are the exact raw material for building mental fortitude.",
-"historicalContext": "Written in his private journals between 170 and 180 CE while commanding Roman legions on the Danube frontier."
-},
-{
-"id": "ph-5",
-"quote": "It does not matter how slowly you go as long as you do not stop.",
-"author": "Confucius",
-"role": "Ancient Chinese Philosopher",
-"deeperInsight": "Constant low-velocity momentum outpaces erratic high-speed bursts every time.",
-"historicalContext": "Recorded in the 'Analects' by his disciples after 479 BCE, forming the core foundation of East Asian thought."
-},
-{
-"id": "ph-6",
-"quote": "Waste no more time arguing about what a good man should be. Be one.",
-"author": "Marcus Aurelius",
-"role": "Stoic Philosopher",
-"deeperInsight": "Theoretical debate can become procrastination. Direct practice of virtue is the only real proof.",
-"historicalContext": "Recorded in Book 10 of 'Meditations', personal writings never originally intended for publication."
-},
-{
-"id": "ph-7",
-"quote": "No man is free who is not master of himself.",
-"author": "Epictetus",
-"role": "Greek Stoic Philosopher",
-"deeperInsight": "External autonomy without internal impulse control remains a subtle form of psychological captivity.",
-"historicalContext": "Born into slavery in modern Turkey, Epictetus was freed and later established an influential philosophy school in Greece."
-},
-{
-"id": "ph-8",
-"quote": "We suffer more often in imagination than in reality.",
-"author": "Seneca the Younger",
-"role": "Roman Stoic Statesman",
-"deeperInsight": "Anticipatory anxiety projects worst-case scenarios that consume energy before events actually occur.",
-"historicalContext": "Written in 'Letters from a Stoic' to his friend Lucilius around 65 CE while advising imperial Rome."
-},
-{
-"id": "ph-9",
-"quote": "Knowing others is intelligence; knowing yourself is true wisdom.",
-"author": "Lao Tzu",
-"role": "Founder of Taoism",
-"deeperInsight": "Analyzing external systems is easy compared to observing and mastering your own mind and biases.",
-"historicalContext": "Attributed to the 6th-century BCE text 'Tao Te Ching', emphasizing natural harmony and effortless action."
-},
-{
-"id": "ph-10",
-"quote": "The mind is everything. What you think you become.",
-"author": "Gautama Buddha",
-"role": "Founder of Buddhism",
-"deeperInsight": "Perception shapes reality. Internal narrative framing directly constructs your lived experience.",
-"historicalContext": "Core theme of the 'Dhammapada', a collection of sayings of the Buddha compiled in ancient India."
-},
-{
-"id": "ph-11",
-"quote": "I think, therefore I am.",
-"author": "René Descartes",
-"role": "French Rationalist Philosopher",
-"deeperInsight": "Skepticism strips away unproven assumptions until foundational self-awareness remains undeniable.",
-"historicalContext": "Published in 'Discourse on the Method' in 1637, marking the dawn of modern Western philosophy."
-},
-{
-"id": "ph-12",
-"quote": "Happiness is not an ideal of reason, but of imagination.",
-"author": "Immanuel Kant",
-"role": "Enlightenment Philosopher",
-"deeperInsight": "Abstract logic alone cannot dictate happiness; subjective personal framing determines contentment.",
-"historicalContext": "Written in 'Groundwork of the Metaphysics of Morals' (1785), exploring the boundaries of human reason."
-},
-{
-"id": "ph-13",
-"quote": "Life can only be understood backwards; but it must be lived forwards.",
-"author": "Søren Kierkegaard",
-"role": "Danish Existentialist",
-"deeperInsight": "Reflection delivers hindsight clarity, but decisions must always be made under conditions of uncertainty.",
-"historicalContext": "Recorded in his private journals in 1843 while pioneering existentialist philosophy in Copenhagen."
-},
-{
-"id": "ph-14",
-"quote": "Beware the barrenness of a busy life.",
-"author": "Socrates",
-"role": "Classical Philosopher",
-"deeperInsight": "Constant activity can mask a lack of clear purpose. Motion is not synonymous with progress.",
-"historicalContext": "Preserved in Plato's dialogues, critiquing citizens who prioritized social status over inner growth."
-},
-{
-"id": "ph-15",
-"quote": "The journey of a thousand miles begins with one step.",
-"author": "Lao Tzu",
-"role": "Ancient Sage",
-"deeperInsight": "Massive long-term objectives are executed through trivial immediate micro-actions.",
-"historicalContext": "Chapter 64 of the 'Tao Te Ching', teaching that grand outcomes originate from small beginnings."
-}
-]
+  "badge": "Philosophy & Mind",
+  "themeClass": "theme-philosophy",
+  "items": [
+    {
+      "id": "ph-1",
+      "quote": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+      "author": "Aristotle",
+      "role": "Ancient Greek Polymath",
+      "deeperInsight": "Character is built through daily micro-routines rather than occasional heroic efforts.",
+      "historicalContext": "Summarized by Will Durant in 1926 from Aristotle's 'Nicomachean Ethics'. Aristotle tutored Alexander the Great and founded the Lyceum in Athens.",
+      "wiki": "Aristotle"
+    },
+    {
+      "id": "ph-2",
+      "quote": "He who has a why to live can bear almost any how.",
+      "author": "Friedrich Nietzsche",
+      "role": "19th-Century German Philosopher",
+      "deeperInsight": "A clear underlying purpose acts as psychological armor against unavoidable suffering and chaos.",
+      "historicalContext": "Published in 'Twilight of the Idols' in 1889. Viktor Frankl later cited the line in 'Man's Search for Meaning'.",
+      "wiki": "Friedrich_Nietzsche"
+    },
+    {
+      "id": "ph-3",
+      "quote": "The unexamined life is not worth living.",
+      "author": "Socrates",
+      "role": "Classical Athenian Philosopher",
+      "deeperInsight": "Living on default autopilot wastes conscious human potential. Regular self-inquiry is essential for growth.",
+      "historicalContext": "Spoken during his trial in 399 BCE as recorded in Plato's 'Apology'. Socrates chose death over giving up philosophical inquiry.",
+      "wiki": "Socrates"
+    },
+    {
+      "id": "ph-4",
+      "quote": "The impediment to action advances action. What stands in the way becomes the way.",
+      "author": "Marcus Aurelius",
+      "role": "Roman Emperor & Stoic Philosopher",
+      "deeperInsight": "Obstacles are not interruptions to work; they are the exact raw material for building mental fortitude.",
+      "historicalContext": "Written in his private journals between 170 and 180 CE while commanding Roman legions on the Danube frontier.",
+      "wiki": "Marcus_Aurelius"
+    },
+    {
+      "id": "ph-5",
+      "quote": "It does not matter how slowly you go as long as you do not stop.",
+      "author": "Confucius",
+      "role": "Ancient Chinese Philosopher",
+      "deeperInsight": "Constant low-velocity momentum outpaces erratic high-speed bursts every time.",
+      "historicalContext": "Recorded in the 'Analects' by his disciples after 479 BCE, forming the core foundation of East Asian thought.",
+      "wiki": "Confucius"
+    },
+    {
+      "id": "ph-6",
+      "quote": "Waste no more time arguing about what a good man should be. Be one.",
+      "author": "Marcus Aurelius",
+      "role": "Stoic Philosopher",
+      "deeperInsight": "Theoretical debate can become procrastination. Direct practice of virtue is the only real proof.",
+      "historicalContext": "Recorded in Book 10 of 'Meditations', personal writings never originally intended for publication.",
+      "wiki": "Marcus_Aurelius"
+    },
+    {
+      "id": "ph-7",
+      "quote": "No man is free who is not master of himself.",
+      "author": "Epictetus",
+      "role": "Greek Stoic Philosopher",
+      "deeperInsight": "External autonomy without internal impulse control remains a subtle form of psychological captivity.",
+      "historicalContext": "Born into slavery in modern Turkey, Epictetus was freed and later established an influential philosophy school in Greece.",
+      "wiki": "Epictetus"
+    },
+    {
+      "id": "ph-8",
+      "quote": "We suffer more often in imagination than in reality.",
+      "author": "Seneca the Younger",
+      "role": "Roman Stoic Statesman",
+      "deeperInsight": "Anticipatory anxiety projects worst-case scenarios that consume energy before events actually occur.",
+      "historicalContext": "Written in 'Letters from a Stoic' to his friend Lucilius around 65 CE while advising imperial Rome.",
+      "wiki": "Seneca_the_Younger"
+    },
+    {
+      "id": "ph-9",
+      "quote": "Knowing others is intelligence; knowing yourself is true wisdom.",
+      "author": "Lao Tzu",
+      "role": "Founder of Taoism",
+      "deeperInsight": "Analyzing external systems is easy compared to observing and mastering your own mind and biases.",
+      "historicalContext": "Attributed to the 6th-century BCE text 'Tao Te Ching', emphasizing natural harmony and effortless action.",
+      "wiki": "Laozi"
+    },
+    {
+      "id": "ph-10",
+      "quote": "All that we are is the result of what we have thought.",
+      "author": "Gautama Buddha",
+      "role": "Founder of Buddhism",
+      "deeperInsight": "Habitual thoughts shape perception and action, so the quality of your thinking quietly shapes the life you build.",
+      "historicalContext": "Opening verse of the Dhammapada, a collection of the Buddha's sayings preserved in the Pali canon. This wording is from Max Müller's 1881 English translation.",
+      "wiki": "Gautama_Buddha"
+    },
+    {
+      "id": "ph-11",
+      "quote": "I think, therefore I am.",
+      "author": "René Descartes",
+      "role": "French Rationalist Philosopher",
+      "deeperInsight": "Skepticism strips away unproven assumptions until foundational self-awareness remains undeniable.",
+      "historicalContext": "Published in 'Discourse on the Method' in 1637, marking the dawn of modern Western philosophy.",
+      "wiki": "René_Descartes"
+    },
+    {
+      "id": "ph-12",
+      "quote": "Happiness is not an ideal of reason, but of imagination.",
+      "author": "Immanuel Kant",
+      "role": "Enlightenment Philosopher",
+      "deeperInsight": "Abstract logic alone cannot dictate happiness; subjective personal framing determines contentment.",
+      "historicalContext": "Written in 'Groundwork of the Metaphysics of Morals' (1785), exploring the boundaries of human reason.",
+      "wiki": "Immanuel_Kant"
+    },
+    {
+      "id": "ph-13",
+      "quote": "Life can only be understood backwards; but it must be lived forwards.",
+      "author": "Søren Kierkegaard",
+      "role": "Danish Existentialist",
+      "deeperInsight": "Reflection delivers hindsight clarity, but decisions must always be made under conditions of uncertainty.",
+      "historicalContext": "Recorded in his private journals in 1843 while pioneering existentialist philosophy in Copenhagen.",
+      "wiki": "Søren_Kierkegaard"
+    },
+    {
+      "id": "ph-14",
+      "quote": "Wonder is the beginning of wisdom.",
+      "author": "Socrates",
+      "role": "Classical Athenian Philosopher",
+      "deeperInsight": "Curiosity comes before understanding. Staying willing to be amazed keeps the mind learning.",
+      "historicalContext": "From Plato's 'Theaetetus', where Socrates says philosophy begins in wonder. The popular short form is a paraphrase.",
+      "wiki": "Socrates"
+    },
+    {
+      "id": "ph-15",
+      "quote": "The journey of a thousand miles begins with one step.",
+      "author": "Lao Tzu",
+      "role": "Ancient Sage",
+      "deeperInsight": "Massive long-term objectives are executed through trivial immediate micro-actions.",
+      "historicalContext": "Chapter 64 of the 'Tao Te Ching', teaching that grand outcomes originate from small beginnings.",
+      "wiki": "Laozi"
+    }
+  ]
 }
