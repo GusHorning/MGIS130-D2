@@ -1,126 +1,141 @@
 {
-"badge": "Cinema & Drama",
-"themeClass": "theme-film",
-"items": [
-{
-"id": "fl-1",
-"quote": "Do or do not. There is no try.",
-"author": "Yoda",
-"role": "Jedi Master (The Empire Strikes Back)",
-"deeperInsight": "Tentative efforts keep failure modes open by treating commitment as conditional. Wholehearted execution simplifies decision-making.",
-"historicalContext": "Voiced and puppeteered by Frank Oz in 1980. Makeup supervisor Stuart Freeborn modeled Yoda's face partly on Albert Einstein to convey instant intellect."
-},
-{
-"id": "fl-2",
-"quote": "Our lives are defined by opportunities, even the ones we miss.",
-"author": "Benjamin Button",
-"role": "Protagonist (The Curious Case of Benjamin Button)",
-"deeperInsight": "Unchosen detours and missed opportunities refine personal values as profoundly as deliberate choices.",
-"historicalContext": "Directed by David Fincher in 2008, adapting F. Scott Fitzgerald's 1922 short story with groundbreaking visual aging effects."
-},
-{
-"id": "fl-3",
-"quote": "All we have to decide is what to do with the time that is given us.",
-"author": "Gandalf",
-"role": "Wizard & Guide (The Fellowship of the Ring)",
-"deeperInsight": "Worrying about macro circumstances outside your control is fruitless; focus entirely on agency within your present scope.",
-"historicalContext": "Played by Sir Ian McKellen in Peter Jackson's 2001 epic adaptation of J.R.R. Tolkien's legendary high-fantasy series."
-},
-{
-"id": "fl-4",
-"quote": "It ain't about how hard you hit. It's about how hard you can get hit and keep moving forward.",
-"author": "Rocky Balboa",
-"role": "Heavyweight Champion (Rocky Balboa)",
-"deeperInsight": "Resilience isn't raw offensive strength; it's operational continuity under continuous environmental stress.",
-"historicalContext": "Written and directed by Sylvester Stallone in 2006, returning to the iconic franchise 30 years after the 1976 original won Best Picture."
-},
-{
-"id": "fl-5",
-"quote": "Just keep swimming.",
-"author": "Dory",
-"role": "Regal Blue Tang (Finding Nemo)",
-"deeperInsight": "When long-term challenges overwhelm your cognitive bandwidth, reduce focus to immediate micro-progression.",
-"historicalContext": "Voiced by Ellen DeGeneres in Pixar's 2003 hit, which won the Academy Award for Best Animated Feature."
-},
-{
-"id": "fl-6",
-"quote": "It's only after we've lost everything that we're free to do anything.",
-"author": "Tyler Durden",
-"role": "Anarchist Visionary (Fight Club)",
-"deeperInsight": "Clinging to material attachments or fixed self-images limits growth. Releasing outcomes grants total operational freedom.",
-"historicalContext": "Adapted from Chuck Palahniuk's novel and directed by David Fincher in 1999, becoming a classic cult critique of consumer culture."
-},
-{
-"id": "fl-7",
-"quote": "Real courage is when you know you're licked before you begin, but you begin anyway and see it through no matter what.",
-"author": "Atticus Finch",
-"role": "Defense Attorney (To Kill a Mockingbird)",
-"deeperInsight": "Moral integrity is acting on principles regardless of the certainty of short-term victory.",
-"historicalContext": "Gregory Peck won the Best Actor Oscar in 1962 for playing Finch, based on author Harper Lee's real-life father."
-},
-{
-"id": "fl-8",
-"quote": "It is our choices, Harry, that show what we truly are, far more than our abilities.",
-"author": "Albus Dumbledore",
-"role": "Headmaster (The Chamber of Secrets)",
-"deeperInsight": "Natural capacity is passive raw material. Ethically deliberate choices under pressure reveal true personal character.",
-"historicalContext": "Played by Richard Harris in the 2002 film before Michael Gambon assumed the role following Harris's passing."
-},
-{
-"id": "fl-9",
-"quote": "There's a difference between knowing the path and walking the path.",
-"author": "Morpheus",
-"role": "Resistance Leader (The Matrix)",
-"deeperInsight": "Intellectual understanding without embodied action is incomplete. Real knowledge comes from direct execution.",
-"historicalContext": "Written and directed by the Wachowskis in 1999, redefining sci-fi cinema with its visual aesthetics and bullet-time technology."
-},
-{
-"id": "fl-10",
-"quote": "Hope is a good thing, maybe the best of things, and no good thing ever dies.",
-"author": "Andy Dufresne",
-"role": "Prisoner & Strategist (The Shawshank Redemption)",
-"deeperInsight": "Psychological orientation can remain sovereign even within severe environmental constraints and confinement.",
-"historicalContext": "Based on a Stephen King novella and directed by Frank Darabont in 1994, it became IMDb's top-rated movie of all time."
-},
-{
-"id": "fl-11",
-"quote": "To see the world, things dangerous to come to, to draw closer, to find each other, and to feel. That is the purpose of life.",
-"author": "Walter Mitty",
-"role": "Photo Editor (The Secret Life of Walter Mitty)",
-"deeperInsight": "Daydreaming must be replaced by direct real-world engagement with adventure, uncertainty, and exposure.",
-"historicalContext": "Directed by and starring Ben Stiller in 2013, featuring sweeping cinematography filmed on location across Iceland."
-},
-{
-"id": "fl-12",
-"quote": "The past can hurt. But the way I see it, you can either run from it or learn from it.",
-"author": "Rafiki",
-"role": "Mandrill Shaman (The Lion King)",
-"deeperInsight": "Past mistakes are either sources of ongoing pain or structural data, depending entirely on your cognitive framing.",
-"historicalContext": "Released in 1994 during the peak Disney Renaissance, becoming one of the highest-grossing animated films in history."
-},
-{
-"id": "fl-13",
-"quote": "Carpe diem. Seize the day, boys. Make your lives extraordinary.",
-"author": "John Keating",
-"role": "English Teacher (Dead Poets Society)",
-"deeperInsight": "Awareness of life's brevity should drive urgent action today rather than passive deferral into an uncertain future.",
-"historicalContext": "Robin Williams received an Oscar nomination for his iconic 1989 role encouraging students to challenge conformity."
-},
-{
-"id": "fl-14",
-"quote": "Don't ever let somebody tell you you can't do something, not even me.",
-"author": "Chris Gardner",
-"role": "Entrepreneur (The Pursuit of Happyness)",
-"deeperInsight": "Protect personal vision from both external skepticism and internal self-limiting narratives with relentless dedication.",
-"historicalContext": "Based on the true story of Chris Gardner's struggle with homelessness while interning as a stockbroker in 1981 San Francisco."
-},
-{
-"id": "fl-15",
-"quote": "What we do in life echoes in eternity.",
-"author": "Maximus Decimus Meridius",
-"role": "Roman General (Gladiator)",
-"deeperInsight": "Micro-actions taken today create ripple effects that extend far past immediate personal experience.",
-"historicalContext": "Ridley Scott's 2000 epic won five Oscars, including Best Picture and Best Actor for Russell Crowe."
-}
-]
+  "badge": "Cinema & Drama",
+  "themeClass": "theme-film",
+  "items": [
+    {
+      "id": "fl-1",
+      "quote": "Do or do not. There is no try.",
+      "author": "Yoda",
+      "role": "Jedi Master (The Empire Strikes Back)",
+      "deeperInsight": "Tentative efforts keep failure modes open by treating commitment as conditional. Wholehearted execution simplifies decision-making.",
+      "historicalContext": "Voiced and puppeteered by Frank Oz in 1980. Makeup supervisor Stuart Freeborn modeled Yoda's face partly on Albert Einstein to convey instant intellect.",
+      "wiki": "Yoda"
+    },
+    {
+      "id": "fl-2",
+      "quote": "Our lives are defined by opportunities, even the ones we miss.",
+      "author": "Benjamin Button",
+      "role": "Protagonist (The Curious Case of Benjamin Button)",
+      "deeperInsight": "Unchosen detours and missed opportunities refine personal values as profoundly as deliberate choices.",
+      "historicalContext": "Directed by David Fincher in 2008, adapting F. Scott Fitzgerald's 1922 short story with groundbreaking visual aging effects.",
+      "wiki": "The_Curious_Case_of_Benjamin_Button_(film)"
+    },
+    {
+      "id": "fl-3",
+      "quote": "All we have to decide is what to do with the time that is given to us.",
+      "author": "Gandalf",
+      "role": "Wizard & Guide (The Fellowship of the Ring)",
+      "deeperInsight": "Worrying about macro circumstances outside your control is fruitless; focus entirely on agency within your present scope.",
+      "historicalContext": "Played by Sir Ian McKellen in Peter Jackson's 2001 epic adaptation of J.R.R. Tolkien's legendary high-fantasy series.",
+      "wiki": "Gandalf"
+    },
+    {
+      "id": "fl-4",
+      "quote": "It ain't about how hard you hit. It's about how hard you can get hit and keep moving forward.",
+      "author": "Rocky Balboa",
+      "role": "Heavyweight Champion (Rocky Balboa)",
+      "deeperInsight": "Resilience isn't raw offensive strength; it's operational continuity under continuous environmental stress.",
+      "historicalContext": "Written and directed by Sylvester Stallone in 2006, returning to the iconic franchise 30 years after the 1976 original won Best Picture.",
+      "wiki": "Rocky_Balboa"
+    },
+    {
+      "id": "fl-5",
+      "quote": "Just keep swimming.",
+      "author": "Dory",
+      "role": "Regal Blue Tang (Finding Nemo)",
+      "deeperInsight": "When long-term challenges overwhelm your cognitive bandwidth, reduce focus to immediate micro-progression.",
+      "historicalContext": "Voiced by Ellen DeGeneres in Pixar's 2003 hit, which won the Academy Award for Best Animated Feature.",
+      "wiki": "Dory_(Finding_Nemo)"
+    },
+    {
+      "id": "fl-6",
+      "quote": "It's only after we've lost everything that we're free to do anything.",
+      "author": "Tyler Durden",
+      "role": "Anarchist Visionary (Fight Club)",
+      "deeperInsight": "Clinging to material attachments or fixed self-images limits growth. Releasing outcomes grants total operational freedom.",
+      "historicalContext": "Adapted from Chuck Palahniuk's novel and directed by David Fincher in 1999, becoming a classic cult critique of consumer culture.",
+      "wiki": "Tyler_Durden"
+    },
+    {
+      "id": "fl-7",
+      "quote": "Real courage is when you know you're licked before you begin, but you begin anyway and see it through no matter what.",
+      "author": "Atticus Finch",
+      "role": "Defense Attorney (To Kill a Mockingbird)",
+      "deeperInsight": "Moral integrity is acting on principles regardless of the certainty of short-term victory.",
+      "historicalContext": "Gregory Peck won the Best Actor Oscar for playing Finch in the 1962 film, adapted from Harper Lee's 1960 novel. Finch is widely said to be modeled on Lee's father.",
+      "wiki": "Atticus_Finch"
+    },
+    {
+      "id": "fl-8",
+      "quote": "It is our choices, Harry, that show what we truly are, far more than our abilities.",
+      "author": "Albus Dumbledore",
+      "role": "Headmaster (The Chamber of Secrets)",
+      "deeperInsight": "Natural capacity is passive raw material. Ethically deliberate choices under pressure reveal true personal character.",
+      "historicalContext": "Played by Richard Harris in the 2002 film before Michael Gambon assumed the role following Harris's passing.",
+      "wiki": "Albus_Dumbledore"
+    },
+    {
+      "id": "fl-9",
+      "quote": "There's a difference between knowing the path and walking the path.",
+      "author": "Morpheus",
+      "role": "Resistance Leader (The Matrix)",
+      "deeperInsight": "Intellectual understanding without embodied action is incomplete. Real knowledge comes from direct execution.",
+      "historicalContext": "Written and directed by the Wachowskis in 1999, redefining sci-fi cinema with its visual aesthetics and bullet-time technology.",
+      "wiki": "Morpheus_(The_Matrix)"
+    },
+    {
+      "id": "fl-10",
+      "quote": "Hope is a good thing, maybe the best of things, and no good thing ever dies.",
+      "author": "Andy Dufresne",
+      "role": "Prisoner & Strategist (The Shawshank Redemption)",
+      "deeperInsight": "Psychological orientation can remain sovereign even within severe environmental constraints and confinement.",
+      "historicalContext": "Based on a Stephen King novella and directed by Frank Darabont in 1994, it earned seven Oscar nominations and later became a perennial favorite on IMDb's user-rated list.",
+      "wiki": "The_Shawshank_Redemption"
+    },
+    {
+      "id": "fl-11",
+      "quote": "To see the world, things dangerous to come to, to draw closer, to find each other, and to feel. That is the purpose of life.",
+      "author": "Walter Mitty",
+      "role": "Photo Editor (The Secret Life of Walter Mitty)",
+      "deeperInsight": "Daydreaming must be replaced by direct real-world engagement with adventure, uncertainty, and exposure.",
+      "historicalContext": "Directed by and starring Ben Stiller in 2013, featuring sweeping cinematography filmed on location across Iceland.",
+      "wiki": "The_Secret_Life_of_Walter_Mitty_(2013_film)"
+    },
+    {
+      "id": "fl-12",
+      "quote": "The past can hurt. But the way I see it, you can either run from it or learn from it.",
+      "author": "Rafiki",
+      "role": "Mandrill Shaman (The Lion King)",
+      "deeperInsight": "Past mistakes are either sources of ongoing pain or structural data, depending entirely on your cognitive framing.",
+      "historicalContext": "Released in 1994 during the peak Disney Renaissance, becoming one of the highest-grossing animated films in history.",
+      "wiki": "Rafiki"
+    },
+    {
+      "id": "fl-13",
+      "quote": "Carpe diem. Seize the day, boys. Make your lives extraordinary.",
+      "author": "John Keating",
+      "role": "English Teacher (Dead Poets Society)",
+      "deeperInsight": "Awareness of life's brevity should drive urgent action today rather than passive deferral into an uncertain future.",
+      "historicalContext": "Robin Williams received an Oscar nomination for his iconic 1989 role encouraging students to challenge conformity.",
+      "wiki": "Dead_Poets_Society"
+    },
+    {
+      "id": "fl-14",
+      "quote": "Don't ever let somebody tell you you can't do something, not even me.",
+      "author": "Chris Gardner",
+      "role": "Entrepreneur (The Pursuit of Happyness)",
+      "deeperInsight": "Protect personal vision from both external skepticism and internal self-limiting narratives with relentless dedication.",
+      "historicalContext": "Based on the true story of Chris Gardner's struggle with homelessness while interning as a stockbroker in 1981 San Francisco.",
+      "wiki": "Chris_Gardner"
+    },
+    {
+      "id": "fl-15",
+      "quote": "What we do in life echoes in eternity.",
+      "author": "Maximus Decimus Meridius",
+      "role": "Roman General (Gladiator)",
+      "deeperInsight": "Micro-actions taken today create ripple effects that extend far past immediate personal experience.",
+      "historicalContext": "Ridley Scott's 2000 epic won five Oscars, including Best Picture and Best Actor for Russell Crowe.",
+      "wiki": "Gladiator_(2000_film)"
+    }
+  ]
 }
