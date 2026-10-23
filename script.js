@@ -2,34 +2,40 @@ let APP_DATA = {};
 let currentCategory = 'sports';
 let currentIndex = 0;
 
-// Category fallback image placeholders
+// Category fallback image placeholders (Clean high-res themed defaults)
 const AVATAR_PLACEHOLDERS = {
-  sports: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?w=150&auto=format&fit=crop&q=80',
-  film: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=150&auto=format&fit=crop&q=80',
-  philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&auto=format&fit=crop&q=80'
+  sports: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?w=300&auto=format&fit=crop&q=80',
+  film: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=300&auto=format&fit=crop&q=80',
+  philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=300&auto=format&fit=crop&q=80'
 };
 
-// Simple cache so we don't query Wikipedia multiple times for the same person
+// In-memory cache for Wikipedia lookups
 const imageCache = {};
 
 /**
- * Dynamically queries Wikipedia's open API for a free-to-use main portrait photo.
+ * Cleans author names (e.g. "Yoda (Jedi Master)" -> "Yoda") for clean Wikipedia API lookups.
+ */
+function cleanAuthorName(name) {
+  if (!name) return '';
+  return name.replace(/\(.*\)/, '').trim();
+}
+
+/**
+ * Dynamically queries Wikipedia's API for free public-domain portraits.
  */
 async function getAuthorImage(item) {
-  // If the item explicitly provides an image URL, use it
   if (item && item.image) return item.image;
   if (!item || !item.author) return AVATAR_PLACEHOLDERS[currentCategory];
 
   const authorName = item.author;
+  const searchName = cleanAuthorName(authorName);
 
-  // Check in-memory cache first
-  if (imageCache[authorName]) {
-    return imageCache[authorName];
+  if (imageCache[searchName]) {
+    return imageCache[searchName];
   }
 
   try {
-    // Wikipedia PageImages API query
-    const wikiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(authorName)}&prop=pageimages&format=json&pithumbsize=300&origin=*`;
+    const wikiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(searchName)}&prop=pageimages&format=json&pithumbsize=400&origin=*`;
     const response = await fetch(wikiUrl);
     const data = await response.json();
 
@@ -39,24 +45,24 @@ async function getAuthorImage(item) {
 
       if (pageId && pageId !== "-1" && pages[pageId].thumbnail) {
         const imageUrl = pages[pageId].thumbnail.source;
-        imageCache[authorName] = imageUrl; // Cache the result
+        imageCache[searchName] = imageUrl;
         return imageUrl;
       }
     }
   } catch (err) {
-    console.warn(`Could not fetch Wikipedia image for ${authorName}:`, err);
+    console.warn(`Could not fetch Wikipedia portrait for ${searchName}:`, err);
   }
 
-  // Generate clean UI initials avatar as a reliable fallback
+  // Fallback: Custom UI Initials Avatar with clean theme colors
   const themeColors = {
     sports: { bg: '6366f1', color: 'ffffff' },
     film: { bg: 'ec4899', color: 'ffffff' },
     philosophy: { bg: '10b981', color: 'ffffff' }
   };
   const theme = themeColors[currentCategory] || themeColors.sports;
-  const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(authorName)}&background=${theme.bg}&color=${theme.color}&size=150&bold=true`;
+  const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(searchName)}&background=${theme.bg}&color=${theme.color}&size=300&bold=true`;
 
-  imageCache[authorName] = fallbackUrl;
+  imageCache[searchName] = fallbackUrl;
   return fallbackUrl;
 }
 
@@ -79,7 +85,7 @@ async function initApp() {
     await renderCurrentCard();
   } catch (error) {
     console.error('Error loading JSON datasets:', error);
-    document.getElementById('quoteText').textContent = 'Unable to load wisdom datasets. Please check JSON files.';
+    document.getElementById('quoteText').textContent = 'Unable to load datasets. Please check your JSON files.';
   }
 }
 
@@ -154,17 +160,16 @@ async function renderCurrentCard() {
   document.getElementById('insightText').textContent = item.deeperInsight || 'No additional insights available.';
   document.getElementById('factText').textContent = item.historicalContext || 'No historical facts available.';
 
-  // Fetch real image from Wikipedia dynamically
+  // Fetch real image from Wikipedia or modern UI Initials fallback
   const avatar = document.getElementById('authorAvatar');
-  avatar.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="100%" height="100%" fill="%23e2e8f0"/></svg>'; // placeholder loader
-
   const imageUrl = await getAuthorImage(item);
   avatar.src = imageUrl;
   avatar.alt = item.author;
 
   avatar.onerror = function() {
     this.onerror = null;
-    this.src = AVATAR_PLACEHOLDERS[currentCategory];
+    const clean = cleanAuthorName(item.author);
+    this.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(clean)}&background=6366f1&color=ffffff&size=300&bold=true`;
   };
 
   // Reset insight toggle state
@@ -190,7 +195,7 @@ async function openModal() {
   modalImg.src = await getAuthorImage(item);
   modalImg.onerror = function() {
     this.onerror = null;
-    this.src = AVATAR_PLACEHOLDERS[currentCategory];
+    modalImg.src = AVATAR_PLACEHOLDERS[currentCategory];
   };
 
   document.getElementById('modalBeliefs').textContent = item.deeperInsight || 'Core mindset focused on growth and discipline.';
