@@ -13,7 +13,7 @@ const AVATAR_PLACEHOLDERS = {
 // Comprehensive portrait & poster map for sports legends, film characters, and philosophers
 const CUSTOM_IMAGE_MAP = {
   // --- SPORTS & ATHLETICS ---
-  "Michael Jordan": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&auto=format&fit=crop&q=80",
+  "Michael Jordan": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Jordan_lip_ss.jpg/400px-Jordan_lip_ss.jpg",
   "Vince Lombardi": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vince_Lombardi_1964.jpg/400px-Vince_Lombardi_1964.jpg",
   "Pelé": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Pele_by_John_Mathew_Smith_crop.jpg/400px-Pele_by_John_Mathew_Smith_crop.jpg",
   "Muhammad Ali": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Muhammad_Ali_NYWTS.jpg/400px-Muhammad_Ali_NYWTS.jpg",
