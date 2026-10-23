@@ -10,7 +10,13 @@ const AVATAR_PLACEHOLDERS = {
   philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80'
 };
 
-// Comprehensive map for exact Wikipedia article titles or direct portrait overrides
+// Direct, verified portrait overrides for key figures to guarantee accuracy
+const DIRECT_PORTRAIT_MAP = {
+  "Michael Jordan": "https://upload.wikimedia.org/wikipedia/commons/8/87/Michael_Jordan_in_2014.jpg",
+  "Yoda": "https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png"
+};
+
+// Comprehensive map for exact Wikipedia article titles
 const WIKI_TITLE_MAP = {
   // --- SPORTS & ATHLETICS ---
   "Michael Jordan": "Michael Jordan",
@@ -28,8 +34,8 @@ const WIKI_TITLE_MAP = {
   "Evander Holyfield": "Evander Holyfield",
   "Derek Jeter": "Derek Jeter",
 
-  // --- FILM CHARACTERS (Map character -> actor or famous subject) ---
-  "Yoda": "Yoda",
+  // --- FILM CHARACTERS (Map character -> exact page title) ---
+  "Yoda": "Yoda_(Star_Wars)",
   "Benjamin Button": "The Curious Case of Benjamin Button (film)",
   "Gandalf": "Gandalf",
   "Rocky Balboa": "Rocky Balboa",
@@ -72,7 +78,7 @@ function cleanAuthorName(name) {
 }
 
 /**
- * Dynamically retrieves portrait images from Wikipedia Open API.
+ * Dynamically retrieves portrait images from Direct Maps or Wikipedia Open API.
  */
 async function getAuthorImage(item) {
   if (item && item.image) return item.image;
@@ -80,6 +86,12 @@ async function getAuthorImage(item) {
 
   const authorName = item.author;
   const searchName = cleanAuthorName(authorName);
+
+  // Check direct high-fidelity overrides first
+  if (DIRECT_PORTRAIT_MAP[searchName]) {
+    return DIRECT_PORTRAIT_MAP[searchName];
+  }
+
   const wikiTarget = WIKI_TITLE_MAP[searchName] || searchName;
 
   if (imageCache[wikiTarget]) {
@@ -242,7 +254,7 @@ async function renderCurrentCard() {
   const factText = document.getElementById('factText');
 
   if (quoteText) quoteText.textContent = `"${item.quote}"`;
-  if (quoteAuthor) quoteAuthor.textContent = `— ${item.author}`;
+  if (quoteAuthor) quoteAuthor.textContent = `\u2014 ${item.author}`;
   if (categoryBadge) categoryBadge.textContent = data.badge || currentCategory;
   if (leagueBadge) leagueBadge.textContent = item.role || '';
 
