@@ -9,7 +9,7 @@ const AVATAR_PLACEHOLDERS = {
   philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&auto=format&fit=crop&q=80'
 };
 
-// Fetch JSON data asynchronously
+// Fetch JSON data asynchronously from external files
 async function initApp() {
   try {
     const [sportsRes, filmRes, philosophyRes] = await Promise.all([
