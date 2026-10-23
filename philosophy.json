@@ -9,7 +9,10 @@
       "role": "Ancient Greek Polymath",
       "deeperInsight": "Character is built through daily micro-routines rather than occasional heroic efforts.",
       "historicalContext": "Summarized by Will Durant in 1926 from Aristotle's 'Nicomachean Ethics'. Aristotle tutored Alexander the Great and founded the Lyceum in Athens.",
-      "wiki": "Aristotle"
+      "wiki": "Aristotle",
+      "mindset": "Virtue ethics and the Golden Mean: good character is the habit of finding balance between extremes.",
+      "achievements": "Wrote on logic, biology, ethics, politics, and poetry, and is often called the father of formal logic.",
+      "trivia": "Many of his surviving texts are thought to be lecture notes, and he studied under Plato for about twenty years."
     },
     {
       "id": "ph-2",
@@ -18,7 +21,10 @@
       "role": "19th-Century German Philosopher",
       "deeperInsight": "A clear underlying purpose acts as psychological armor against unavoidable suffering and chaos.",
       "historicalContext": "Published in 'Twilight of the Idols' in 1889. Viktor Frankl later cited the line in 'Man's Search for Meaning'.",
-      "wiki": "Friedrich_Nietzsche"
+      "wiki": "Friedrich_Nietzsche",
+      "mindset": "Self-overcoming, amor fati (love of fate), and building your own values instead of inheriting them.",
+      "achievements": "Deeply influenced existentialism, psychology, and modern literature with works like Thus Spoke Zarathustra.",
+      "trivia": "He became a professor of classical philology at Basel at just 24."
     },
     {
       "id": "ph-3",
@@ -27,7 +33,10 @@
       "role": "Classical Athenian Philosopher",
       "deeperInsight": "Living on default autopilot wastes conscious human potential. Regular self-inquiry is essential for growth.",
       "historicalContext": "Spoken during his trial in 399 BCE as recorded in Plato's 'Apology'. Socrates chose death over giving up philosophical inquiry.",
-      "wiki": "Socrates"
+      "wiki": "Socrates",
+      "mindset": "Relentless questioning, intellectual humility, and the idea that wisdom begins with knowing how little you know.",
+      "achievements": "Pioneered the Socratic method and turned philosophy toward ethics and how to live.",
+      "trivia": "He wrote nothing himself. We know him mainly through Plato and Xenophon."
     },
     {
       "id": "ph-4",
@@ -36,7 +45,10 @@
       "role": "Roman Emperor & Stoic Philosopher",
       "deeperInsight": "Obstacles are not interruptions to work; they are the exact raw material for building mental fortitude.",
       "historicalContext": "Written in his private journals between 170 and 180 CE while commanding Roman legions on the Danube frontier.",
-      "wiki": "Marcus_Aurelius"
+      "wiki": "Marcus_Aurelius",
+      "mindset": "Control your judgments, accept what you cannot change, and act with duty.",
+      "achievements": "Ruled Rome from 161 to 180 CE as the last of the “Five Good Emperors,” and wrote a classic of Stoic thought.",
+      "trivia": "Meditations was never meant for publication. Its Greek title is often translated “To Himself.”"
     },
     {
       "id": "ph-5",
@@ -45,16 +57,10 @@
       "role": "Ancient Chinese Philosopher",
       "deeperInsight": "Constant low-velocity momentum outpaces erratic high-speed bursts every time.",
       "historicalContext": "Recorded in the 'Analects' by his disciples after 479 BCE, forming the core foundation of East Asian thought.",
-      "wiki": "Confucius"
-    },
-    {
-      "id": "ph-6",
-      "quote": "Waste no more time arguing about what a good man should be. Be one.",
-      "author": "Marcus Aurelius",
-      "role": "Stoic Philosopher",
-      "deeperInsight": "Theoretical debate can become procrastination. Direct practice of virtue is the only real proof.",
-      "historicalContext": "Recorded in Book 10 of 'Meditations', personal writings never originally intended for publication.",
-      "wiki": "Marcus_Aurelius"
+      "wiki": "Confucius",
+      "mindset": "Self-cultivation, respect for others, and learning as a lifelong practice.",
+      "achievements": "His ideas shaped East Asian education, government, and ethics for over two thousand years.",
+      "trivia": "According to tradition, he served as a minister, then spent years traveling to find a ruler who would apply his ideas."
     },
     {
       "id": "ph-7",
@@ -63,7 +69,10 @@
       "role": "Greek Stoic Philosopher",
       "deeperInsight": "External autonomy without internal impulse control remains a subtle form of psychological captivity.",
       "historicalContext": "Born into slavery in modern Turkey, Epictetus was freed and later established an influential philosophy school in Greece.",
-      "wiki": "Epictetus"
+      "wiki": "Epictetus",
+      "mindset": "Focus on what is up to you, your judgments and actions, and accept what is not.",
+      "achievements": "Influenced Marcus Aurelius, and his emphasis on reframing thoughts is echoed in modern cognitive therapy.",
+      "trivia": "He wrote nothing himself. His student Arrian recorded the Discourses and the Enchiridion."
     },
     {
       "id": "ph-8",
@@ -72,16 +81,10 @@
       "role": "Roman Stoic Statesman",
       "deeperInsight": "Anticipatory anxiety projects worst-case scenarios that consume energy before events actually occur.",
       "historicalContext": "Written in 'Letters from a Stoic' to his friend Lucilius around 65 CE while advising imperial Rome.",
-      "wiki": "Seneca_the_Younger"
-    },
-    {
-      "id": "ph-9",
-      "quote": "Knowing others is intelligence; knowing yourself is true wisdom.",
-      "author": "Lao Tzu",
-      "role": "Founder of Taoism",
-      "deeperInsight": "Analyzing external systems is easy compared to observing and mastering your own mind and biases.",
-      "historicalContext": "Attributed to the 6th-century BCE text 'Tao Te Ching', emphasizing natural harmony and effortless action.",
-      "wiki": "Laozi"
+      "wiki": "Seneca_the_Younger",
+      "mindset": "Mental preparation for hardship, using time wisely, and valuing virtue above wealth.",
+      "achievements": "Wrote essays, letters, and tragedies that made Stoicism accessible to Roman readers.",
+      "trivia": "Despite preaching simplicity, he was one of the wealthiest men in Rome, and he tutored and then advised the young emperor Nero."
     },
     {
       "id": "ph-10",
@@ -90,7 +93,10 @@
       "role": "Founder of Buddhism",
       "deeperInsight": "Habitual thoughts shape perception and action, so the quality of your thinking quietly shapes the life you build.",
       "historicalContext": "Opening verse of the Dhammapada, a collection of the Buddha's sayings preserved in the Pali canon. This wording is from Max Müller's 1881 English translation.",
-      "wiki": "Gautama_Buddha"
+      "wiki": "Gautama_Buddha",
+      "mindset": "Mindfulness, compassion, and the Middle Way between indulgence and extreme self-denial.",
+      "achievements": "Founded Buddhism, which spread across Asia and became one of the world’s major religions.",
+      "trivia": "Born Siddhartha Gautama, a prince, he left his palace to seek an end to suffering. “Buddha” means “awakened one.”"
     },
     {
       "id": "ph-11",
@@ -99,7 +105,10 @@
       "role": "French Rationalist Philosopher",
       "deeperInsight": "Skepticism strips away unproven assumptions until foundational self-awareness remains undeniable.",
       "historicalContext": "Published in 'Discourse on the Method' in 1637, marking the dawn of modern Western philosophy.",
-      "wiki": "René_Descartes"
+      "wiki": "René_Descartes",
+      "mindset": "Systematic doubt: reject anything that can be doubted until a certain foundation is found.",
+      "achievements": "Helped create analytic geometry, which gave us the Cartesian coordinate system named after him.",
+      "trivia": "He reportedly did his best thinking in bed, and he died in Stockholm in 1650 after taking a job tutoring Queen Christina of Sweden."
     },
     {
       "id": "ph-12",
@@ -108,7 +117,10 @@
       "role": "Enlightenment Philosopher",
       "deeperInsight": "Abstract logic alone cannot dictate happiness; subjective personal framing determines contentment.",
       "historicalContext": "Written in 'Groundwork of the Metaphysics of Morals' (1785), exploring the boundaries of human reason.",
-      "wiki": "Immanuel_Kant"
+      "wiki": "Immanuel_Kant",
+      "mindset": "Reason and duty: act only on principles you could will everyone to follow.",
+      "achievements": "Wrote the Critique of Pure Reason (1781) and developed the categorical imperative.",
+      "trivia": "He lived nearly his whole life in Königsberg and was reportedly so punctual that neighbors set their clocks by his daily walk."
     },
     {
       "id": "ph-13",
@@ -117,16 +129,10 @@
       "role": "Danish Existentialist",
       "deeperInsight": "Reflection delivers hindsight clarity, but decisions must always be made under conditions of uncertainty.",
       "historicalContext": "Recorded in his private journals in 1843 while pioneering existentialist philosophy in Copenhagen.",
-      "wiki": "Søren_Kierkegaard"
-    },
-    {
-      "id": "ph-14",
-      "quote": "Wonder is the beginning of wisdom.",
-      "author": "Socrates",
-      "role": "Classical Athenian Philosopher",
-      "deeperInsight": "Curiosity comes before understanding. Staying willing to be amazed keeps the mind learning.",
-      "historicalContext": "From Plato's 'Theaetetus', where Socrates says philosophy begins in wonder. The popular short form is a paraphrase.",
-      "wiki": "Socrates"
+      "wiki": "Søren_Kierkegaard",
+      "mindset": "Individual choice, authentic faith, and facing anxiety honestly instead of hiding in the crowd.",
+      "achievements": "Widely regarded as a founder of existentialism, and wrote Fear and Trembling and The Sickness Unto Death.",
+      "trivia": "He published many works under invented pseudonyms to argue different viewpoints."
     },
     {
       "id": "ph-15",
@@ -135,7 +141,10 @@
       "role": "Ancient Sage",
       "deeperInsight": "Massive long-term objectives are executed through trivial immediate micro-actions.",
       "historicalContext": "Chapter 64 of the 'Tao Te Ching', teaching that grand outcomes originate from small beginnings.",
-      "wiki": "Laozi"
+      "wiki": "Laozi",
+      "mindset": "Flowing with the Tao, effortless action (wu wei), and humility.",
+      "achievements": "The Tao Te Ching is among the most translated books in the world.",
+      "trivia": "Whether Laozi was one historical person is still debated. The name simply means “Old Master.”"
     }
   ]
 }
