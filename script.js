@@ -2,12 +2,63 @@ let APP_DATA = {};
 let currentCategory = 'sports';
 let currentIndex = 0;
 
-// Default avatar placeholder SVGs
+// Category fallback image placeholders
 const AVATAR_PLACEHOLDERS = {
   sports: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?w=150&auto=format&fit=crop&q=80',
   film: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=150&auto=format&fit=crop&q=80',
   philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=150&auto=format&fit=crop&q=80'
 };
+
+// Simple cache so we don't query Wikipedia multiple times for the same person
+const imageCache = {};
+
+/**
+ * Dynamically queries Wikipedia's open API for a free-to-use main portrait photo.
+ */
+async function getAuthorImage(item) {
+  // If the item explicitly provides an image URL, use it
+  if (item && item.image) return item.image;
+  if (!item || !item.author) return AVATAR_PLACEHOLDERS[currentCategory];
+
+  const authorName = item.author;
+
+  // Check in-memory cache first
+  if (imageCache[authorName]) {
+    return imageCache[authorName];
+  }
+
+  try {
+    // Wikipedia PageImages API query
+    const wikiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(authorName)}&prop=pageimages&format=json&pithumbsize=300&origin=*`;
+    const response = await fetch(wikiUrl);
+    const data = await response.json();
+
+    if (data && data.query && data.query.pages) {
+      const pages = data.query.pages;
+      const pageId = Object.keys(pages)[0];
+
+      if (pageId && pageId !== "-1" && pages[pageId].thumbnail) {
+        const imageUrl = pages[pageId].thumbnail.source;
+        imageCache[authorName] = imageUrl; // Cache the result
+        return imageUrl;
+      }
+    }
+  } catch (err) {
+    console.warn(`Could not fetch Wikipedia image for ${authorName}:`, err);
+  }
+
+  // Generate clean UI initials avatar as a reliable fallback
+  const themeColors = {
+    sports: { bg: '6366f1', color: 'ffffff' },
+    film: { bg: 'ec4899', color: 'ffffff' },
+    philosophy: { bg: '10b981', color: 'ffffff' }
+  };
+  const theme = themeColors[currentCategory] || themeColors.sports;
+  const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(authorName)}&background=${theme.bg}&color=${theme.color}&size=150&bold=true`;
+
+  imageCache[authorName] = fallbackUrl;
+  return fallbackUrl;
+}
 
 // Fetch JSON data asynchronously from external files
 async function initApp() {
@@ -25,7 +76,7 @@ async function initApp() {
     APP_DATA = { sports, film, philosophy };
 
     setupEventListeners();
-    renderCurrentCard();
+    await renderCurrentCard();
   } catch (error) {
     console.error('Error loading JSON datasets:', error);
     document.getElementById('quoteText').textContent = 'Unable to load wisdom datasets. Please check JSON files.';
@@ -52,7 +103,7 @@ function setupEventListeners() {
   insightToggle.addEventListener('click', () => {
     const insightBox = document.getElementById('insightBox');
     const isHidden = insightBox.classList.contains('hidden');
-    
+
     if (isHidden) {
       insightBox.classList.remove('hidden');
       insightToggle.setAttribute('aria-expanded', 'true');
@@ -76,20 +127,20 @@ function switchCategory(cat) {
 
   // Update Body & Card Theme Classes
   document.getElementById('bgLayer').className = `bg-layer bg-${cat}`;
-  
+
   const displayCard = document.getElementById('displayCard');
   displayCard.className = `card theme-${cat}`;
 
   const genBtn = document.getElementById('generateBtn');
   genBtn.className = `generate-btn theme-${cat}`;
-  
+
   const titleCategory = cat.charAt(0).toUpperCase() + cat.slice(1);
   genBtn.textContent = `⚡ Discover ${titleCategory} Spark`;
 
   renderCurrentCard();
 }
 
-function renderCurrentCard() {
+async function renderCurrentCard() {
   const data = APP_DATA[currentCategory];
   if (!data || !data.items || data.items.length === 0) return;
 
@@ -99,14 +150,22 @@ function renderCurrentCard() {
   document.getElementById('quoteAuthor').textContent = `— ${item.author}`;
   document.getElementById('categoryBadge').textContent = data.badge || currentCategory;
   document.getElementById('leagueBadge').textContent = item.role || '';
-  
+
   document.getElementById('insightText').textContent = item.deeperInsight || 'No additional insights available.';
   document.getElementById('factText').textContent = item.historicalContext || 'No historical facts available.';
 
-  // Image handling
+  // Fetch real image from Wikipedia dynamically
   const avatar = document.getElementById('authorAvatar');
-  avatar.src = item.image || AVATAR_PLACEHOLDERS[currentCategory];
+  avatar.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="100%" height="100%" fill="%23e2e8f0"/></svg>'; // placeholder loader
+
+  const imageUrl = await getAuthorImage(item);
+  avatar.src = imageUrl;
   avatar.alt = item.author;
+
+  avatar.onerror = function() {
+    this.onerror = null;
+    this.src = AVATAR_PLACEHOLDERS[currentCategory];
+  };
 
   // Reset insight toggle state
   document.getElementById('insightBox').classList.add('hidden');
@@ -119,14 +178,20 @@ function nextSpark() {
   renderCurrentCard();
 }
 
-function openModal() {
+async function openModal() {
   const item = APP_DATA[currentCategory].items[currentIndex];
   if (!item) return;
 
   document.getElementById('modalName').textContent = item.author;
   document.getElementById('modalRole').textContent = item.role || '';
   document.getElementById('modalBadge').textContent = APP_DATA[currentCategory].badge || currentCategory;
-  document.getElementById('modalImg').src = item.image || AVATAR_PLACEHOLDERS[currentCategory];
+
+  const modalImg = document.getElementById('modalImg');
+  modalImg.src = await getAuthorImage(item);
+  modalImg.onerror = function() {
+    this.onerror = null;
+    this.src = AVATAR_PLACEHOLDERS[currentCategory];
+  };
 
   document.getElementById('modalBeliefs').textContent = item.deeperInsight || 'Core mindset focused on growth and discipline.';
   document.getElementById('modalAchievements').textContent = item.historicalContext || 'Famous contributor in their field.';
