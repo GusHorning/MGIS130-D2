@@ -9,7 +9,10 @@
       "role": "Jedi Master (The Empire Strikes Back)",
       "deeperInsight": "Tentative efforts keep failure modes open by treating commitment as conditional. Wholehearted execution simplifies decision-making.",
       "historicalContext": "Voiced and puppeteered by Frank Oz in 1980. Makeup supervisor Stuart Freeborn modeled Yoda's face partly on Albert Einstein to convey instant intellect.",
-      "wiki": "Yoda"
+      "wiki": "Yoda",
+      "mindset": "Calm, patience, and acting without fear or attachment. A teacher who trusts the Force over size or strength.",
+      "achievements": "Trains generations of Jedi, including Luke Skywalker, and lives to about 900 years old.",
+      "trivia": "Frank Oz, who performed Yoda, also performed Miss Piggy and Fozzie Bear for The Muppets."
     },
     {
       "id": "fl-2",
@@ -18,7 +21,10 @@
       "role": "Protagonist (The Curious Case of Benjamin Button)",
       "deeperInsight": "Unchosen detours and missed opportunities refine personal values as profoundly as deliberate choices.",
       "historicalContext": "Directed by David Fincher in 2008, adapting F. Scott Fitzgerald's 1922 short story with groundbreaking visual aging effects.",
-      "wiki": "The_Curious_Case_of_Benjamin_Button_(film)"
+      "wiki": "The_Curious_Case_of_Benjamin_Button_(film)",
+      "mindset": "Time is unrepeatable, so meaning comes from the moments themselves and the people in them.",
+      "achievements": "The film earned 13 Oscar nominations and won three: Art Direction, Makeup, and Visual Effects.",
+      "trivia": "A digitally rebuilt version of Brad Pitt’s head was used for the character’s early, elderly years."
     },
     {
       "id": "fl-3",
@@ -27,7 +33,10 @@
       "role": "Wizard & Guide (The Fellowship of the Ring)",
       "deeperInsight": "Worrying about macro circumstances outside your control is fruitless; focus entirely on agency within your present scope.",
       "historicalContext": "Played by Sir Ian McKellen in Peter Jackson's 2001 epic adaptation of J.R.R. Tolkien's legendary high-fantasy series.",
-      "wiki": "Gandalf"
+      "wiki": "Gandalf",
+      "mindset": "Small acts by ordinary people can change the world, and power is best used with restraint.",
+      "achievements": "Guides the Fellowship, rallies the free peoples, and faces the Balrog of Moria.",
+      "trivia": "Ian McKellen earned a Best Supporting Actor Oscar nomination for the role."
     },
     {
       "id": "fl-4",
@@ -36,7 +45,10 @@
       "role": "Heavyweight Champion (Rocky Balboa)",
       "deeperInsight": "Resilience isn't raw offensive strength; it's operational continuity under continuous environmental stress.",
       "historicalContext": "Written and directed by Sylvester Stallone in 2006, returning to the iconic franchise 30 years after the 1976 original won Best Picture.",
-      "wiki": "Rocky_Balboa"
+      "wiki": "Rocky_Balboa",
+      "mindset": "Heart, persistence, and self-respect matter more than trophies.",
+      "achievements": "Rises from a Philadelphia club fighter to heavyweight champion of the world.",
+      "trivia": "Stallone famously refused to sell the first Rocky script unless he could star in it."
     },
     {
       "id": "fl-5",
@@ -45,7 +57,10 @@
       "role": "Regal Blue Tang (Finding Nemo)",
       "deeperInsight": "When long-term challenges overwhelm your cognitive bandwidth, reduce focus to immediate micro-progression.",
       "historicalContext": "Voiced by Ellen DeGeneres in Pixar's 2003 hit, which won the Academy Award for Best Animated Feature.",
-      "wiki": "Dory_(Finding_Nemo)"
+      "wiki": "Dory_(Finding_Nemo)",
+      "mindset": "Optimism, loyalty, and persistence despite short-term memory loss.",
+      "achievements": "Helps Marlin find his son Nemo, then headlines her own film, Finding Dory (2016).",
+      "trivia": "The role was reportedly written with DeGeneres in mind after Pixar saw her stand-up."
     },
     {
       "id": "fl-6",
@@ -54,7 +69,10 @@
       "role": "Anarchist Visionary (Fight Club)",
       "deeperInsight": "Clinging to material attachments or fixed self-images limits growth. Releasing outcomes grants total operational freedom.",
       "historicalContext": "Adapted from Chuck Palahniuk's novel and directed by David Fincher in 1999, becoming a classic cult critique of consumer culture.",
-      "wiki": "Tyler_Durden"
+      "wiki": "Tyler_Durden",
+      "mindset": "Rejects materialism and comfort, arguing that letting go of possessions and image creates freedom.",
+      "achievements": "Founds Fight Club, which grows into the nationwide Project Mayhem.",
+      "trivia": "Brad Pitt plays Tyler opposite Edward Norton’s unnamed narrator, and the film found its cult audience largely on home video."
     },
     {
       "id": "fl-7",
@@ -63,7 +81,10 @@
       "role": "Defense Attorney (To Kill a Mockingbird)",
       "deeperInsight": "Moral integrity is acting on principles regardless of the certainty of short-term victory.",
       "historicalContext": "Gregory Peck won the Best Actor Oscar for playing Finch in the 1962 film, adapted from Harper Lee's 1960 novel. Finch is widely said to be modeled on Lee's father.",
-      "wiki": "Atticus_Finch"
+      "wiki": "Atticus_Finch",
+      "mindset": "Moral integrity and empathy: act on principle whatever the odds, and teach by example.",
+      "achievements": "Defends Tom Robinson, a Black man falsely accused of a crime, in 1930s Alabama.",
+      "trivia": "The American Film Institute ranked Atticus Finch the greatest movie hero of the 20th century."
     },
     {
       "id": "fl-8",
@@ -72,7 +93,10 @@
       "role": "Headmaster (The Chamber of Secrets)",
       "deeperInsight": "Natural capacity is passive raw material. Ethically deliberate choices under pressure reveal true personal character.",
       "historicalContext": "Played by Richard Harris in the 2002 film before Michael Gambon assumed the role following Harris's passing.",
-      "wiki": "Albus_Dumbledore"
+      "wiki": "Albus_Dumbledore",
+      "mindset": "Character is revealed by choices, and love and kindness are stronger than power.",
+      "achievements": "In the story, he defeats the dark wizard Grindelwald and founds the Order of the Phoenix.",
+      "trivia": "Richard Harris reportedly turned the role down at first, then accepted after his granddaughter said she would never speak to him again if he refused."
     },
     {
       "id": "fl-9",
@@ -81,7 +105,10 @@
       "role": "Resistance Leader (The Matrix)",
       "deeperInsight": "Intellectual understanding without embodied action is incomplete. Real knowledge comes from direct execution.",
       "historicalContext": "Written and directed by the Wachowskis in 1999, redefining sci-fi cinema with its visual aesthetics and bullet-time technology.",
-      "wiki": "Morpheus_(The_Matrix)"
+      "wiki": "Morpheus_(The_Matrix)",
+      "mindset": "Freedom of mind: see past comfortable illusions and act on what you know.",
+      "achievements": "Frees Neo from the Matrix and leads the crew of the Nebuchadnezzar.",
+      "trivia": "Laurence Fishburne plays Morpheus, and the film’s falling green code was partly built from characters in a Japanese cookbook."
     },
     {
       "id": "fl-10",
@@ -90,7 +117,10 @@
       "role": "Prisoner & Strategist (The Shawshank Redemption)",
       "deeperInsight": "Psychological orientation can remain sovereign even within severe environmental constraints and confinement.",
       "historicalContext": "Based on a Stephen King novella and directed by Frank Darabont in 1994, it earned seven Oscar nominations and later became a perennial favorite on IMDb's user-rated list.",
-      "wiki": "The_Shawshank_Redemption"
+      "wiki": "The_Shawshank_Redemption",
+      "mindset": "Patience, quiet resistance, and the belief that hope keeps a person free even inside prison.",
+      "achievements": "Tunnels out of Shawshank over nearly two decades and exposes the warden’s corruption.",
+      "trivia": "The source novella is titled “Rita Hayworth and Shawshank Redemption,” and Morgan Freeman’s narration as Red is among film’s best-known voice-overs."
     },
     {
       "id": "fl-11",
@@ -99,7 +129,10 @@
       "role": "Photo Editor (The Secret Life of Walter Mitty)",
       "deeperInsight": "Daydreaming must be replaced by direct real-world engagement with adventure, uncertainty, and exposure.",
       "historicalContext": "Directed by and starring Ben Stiller in 2013, featuring sweeping cinematography filmed on location across Iceland.",
-      "wiki": "The_Secret_Life_of_Walter_Mitty_(2013_film)"
+      "wiki": "The_Secret_Life_of_Walter_Mitty_(2013_film)",
+      "mindset": "Daydreaming is rehearsal. Real fulfillment comes only when you act on the call to adventure.",
+      "achievements": "Leaves his desk job to travel through Greenland, Iceland, and the Himalayas in search of a missing photo negative.",
+      "trivia": "It is the second film of James Thurber’s 1939 short story. The first, from 1947, starred Danny Kaye."
     },
     {
       "id": "fl-12",
@@ -108,7 +141,10 @@
       "role": "Mandrill Shaman (The Lion King)",
       "deeperInsight": "Past mistakes are either sources of ongoing pain or structural data, depending entirely on your cognitive framing.",
       "historicalContext": "Released in 1994 during the peak Disney Renaissance, becoming one of the highest-grossing animated films in history.",
-      "wiki": "Rafiki"
+      "wiki": "Rafiki",
+      "mindset": "Wisdom through humor and perspective, and the belief that growth means facing your past.",
+      "achievements": "Guides Simba back to Pride Rock to reclaim his place as king.",
+      "trivia": "Rafiki means “friend” in Swahili, and he was voiced by Robert Guillaume."
     },
     {
       "id": "fl-13",
@@ -117,7 +153,10 @@
       "role": "English Teacher (Dead Poets Society)",
       "deeperInsight": "Awareness of life's brevity should drive urgent action today rather than passive deferral into an uncertain future.",
       "historicalContext": "Robin Williams received an Oscar nomination for his iconic 1989 role encouraging students to challenge conformity.",
-      "wiki": "Dead_Poets_Society"
+      "wiki": "Dead_Poets_Society",
+      "mindset": "Independent thinking, a love of poetry, and the courage to question conformity.",
+      "achievements": "Inspires his students at Welton Academy to find their own voices, famously by having them stand on their desks.",
+      "trivia": "The film won the Oscar for Best Original Screenplay. Writer Tom Schulman based Keating partly on one of his own teachers."
     },
     {
       "id": "fl-14",
@@ -126,7 +165,10 @@
       "role": "Entrepreneur (The Pursuit of Happyness)",
       "deeperInsight": "Protect personal vision from both external skepticism and internal self-limiting narratives with relentless dedication.",
       "historicalContext": "Based on the true story of Chris Gardner's struggle with homelessness while interning as a stockbroker in 1981 San Francisco.",
-      "wiki": "Chris_Gardner"
+      "wiki": "Chris_Gardner",
+      "mindset": "Relentless determination, and guarding your own vision against doubters and self-doubt.",
+      "achievements": "Went from homelessness to founding the brokerage firm Gardner Rich & Co. in 1987.",
+      "trivia": "Will Smith plays him, with his real-life son Jaden Smith as Gardner’s son. The film’s title deliberately misspells “happiness.”"
     },
     {
       "id": "fl-15",
@@ -135,7 +177,10 @@
       "role": "Roman General (Gladiator)",
       "deeperInsight": "Micro-actions taken today create ripple effects that extend far past immediate personal experience.",
       "historicalContext": "Ridley Scott's 2000 epic won five Oscars, including Best Picture and Best Actor for Russell Crowe.",
-      "wiki": "Gladiator_(2000_film)"
+      "wiki": "Gladiator_(2000_film)",
+      "mindset": "Duty, loyalty, and honor, and the belief that actions echo beyond a single lifetime.",
+      "achievements": "A Roman general who becomes a gladiator and ultimately challenges the corrupt emperor Commodus.",
+      "trivia": "Maximus is fictional, but the emperors Marcus Aurelius and Commodus in the story were real people."
     }
   ]
 }
