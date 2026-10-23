@@ -3,68 +3,68 @@ let APP_DATA = {};
 let currentCategory = 'sports';
 let currentIndex = 0;
 
-// High quality fallback avatar placeholders per category
+// High-quality category photographic fallbacks (No initial/letter boxes)
 const AVATAR_PLACEHOLDERS = {
   sports: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?w=400&auto=format&fit=crop&q=80',
   film: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&auto=format&fit=crop&q=80',
   philosophy: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80'
 };
 
-// Comprehensive portrait & poster map for sports legends, film characters, and philosophers
-const CUSTOM_IMAGE_MAP = {
+// Comprehensive map for exact Wikipedia article titles or direct portrait overrides
+const WIKI_TITLE_MAP = {
   // --- SPORTS & ATHLETICS ---
-  "Michael Jordan": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Jordan_lip_ss.jpg/400px-Jordan_lip_ss.jpg",
-  "Vince Lombardi": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vince_Lombardi_1964.jpg/400px-Vince_Lombardi_1964.jpg",
-  "Pelé": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Pele_by_John_Mathew_Smith_crop.jpg/400px-Pele_by_John_Mathew_Smith_crop.jpg",
-  "Muhammad Ali": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Muhammad_Ali_NYWTS.jpg/400px-Muhammad_Ali_NYWTS.jpg",
-  "Serena Williams": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Serena_Williams_at_2013_US_Open.jpg/400px-Serena_Williams_at_2013_US_Open.jpg",
-  "Jerry Rice": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Jerry_Rice_2012.jpg/400px-Jerry_Rice_2012.jpg",
-  "Wayne Gretzky": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Wayne_Gretzky_2006-02-18_torino_001.jpg/400px-Wayne_Gretzky_2006-02-18_torino_001.jpg",
-  "Usain Bolt": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Usain_Bolt_after_4_x_100_m_relay_final_2013_World_Championships_in_Athletics.jpg/400px-Usain_Bolt_after_4_x_100_m_relay_final_2013_World_Championships_in_Athletics.jpg",
-  "Billie Jean King": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Billie_Jean_King_2011.jpg/400px-Billie_Jean_King_2011.jpg",
-  "Michael Phelps": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Michael_Phelps_Rio_2016.jpg/400px-Michael_Phelps_Rio_2016.jpg",
-  "Tim Notke": "https://images.unsplash.com/photo-1519766304817-4f37bda74a29?w=400&auto=format&fit=crop&q=80",
-  "Dean Karnazes": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dean_Karnazes_2009.jpg/400px-Dean_Karnazes_2009.jpg",
-  "Evander Holyfield": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Evander_Holyfield_2011.jpg/400px-Evander_Holyfield_2011.jpg",
-  "Derek Jeter": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Derek_Jeter_2014.jpg/400px-Derek_Jeter_2014.jpg",
+  "Michael Jordan": "Michael Jordan",
+  "Vince Lombardi": "Vince Lombardi",
+  "Pelé": "Pelé",
+  "Muhammad Ali": "Muhammad Ali",
+  "Serena Williams": "Serena Williams",
+  "Jerry Rice": "Jerry Rice",
+  "Wayne Gretzky": "Wayne Gretzky",
+  "Usain Bolt": "Usain Bolt",
+  "Billie Jean King": "Billie Jean King",
+  "Michael Phelps": "Michael Phelps",
+  "Tim Notke": "Basketball",
+  "Dean Karnazes": "Dean Karnazes",
+  "Evander Holyfield": "Evander Holyfield",
+  "Derek Jeter": "Derek Jeter",
 
-  // --- FILM & CINEMA CHARACTERS ---
-  "Yoda": "https://images.unsplash.com/photo-1601814933824-fd0b574dd592?w=400&auto=format&fit=crop&q=80",
-  "Benjamin Button": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&auto=format&fit=crop&q=80",
-  "Gandalf": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&auto=format&fit=crop&q=80",
-  "Rocky Balboa": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=400&auto=format&fit=crop&q=80",
-  "Dory": "https://images.unsplash.com/photo-1524704685729-b8785d2d3ecb?w=400&auto=format&fit=crop&q=80",
-  "Tyler Durden": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80",
-  "Atticus Finch": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Gregory_Peck_in_To_Kill_a_Mockingbird_trailer.jpg/400px-Gregory_Peck_in_To_Kill_a_Mockingbird_trailer.jpg",
-  "Albus Dumbledore": "https://images.unsplash.com/photo-1514539079130-25950c84af65?w=400&auto=format&fit=crop&q=80",
-  "Morpheus": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&auto=format&fit=crop&q=80",
-  "Andy Dufresne": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format&fit=crop&q=80",
-  "Walter Mitty": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&auto=format&fit=crop&q=80",
-  "Rafiki": "https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=400&auto=format&fit=crop&q=80",
-  "John Keating": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80",
-  "Chris Gardner": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Chris_Gardner_2011.jpg/400px-Chris_Gardner_2011.jpg",
-  "Maximus Decimus Meridius": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&auto=format&fit=crop&q=80",
+  // --- FILM CHARACTERS (Map character -> actor or famous subject) ---
+  "Yoda": "Yoda",
+  "Benjamin Button": "The Curious Case of Benjamin Button (film)",
+  "Gandalf": "Gandalf",
+  "Rocky Balboa": "Rocky Balboa",
+  "Dory": "Dory (Finding Nemo)",
+  "Tyler Durden": "Tyler Durden",
+  "Atticus Finch": "Atticus Finch",
+  "Albus Dumbledore": "Albus Dumbledore",
+  "Morpheus": "Morpheus (The Matrix)",
+  "Andy Dufresne": "The Shawshank Redemption",
+  "Walter Mitty": "The Secret Life of Walter Mitty",
+  "Rafiki": "Rafiki",
+  "John Keating": "Dead Poets Society",
+  "Chris Gardner": "Chris Gardner",
+  "Maximus Decimus Meridius": "Maximus Decimus Meridius",
 
   // --- PHILOSOPHY & MIND ---
-  "Aristotle": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/400px-Aristotle_Altemps_Inv8575.jpg",
-  "Friedrich Nietzsche": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche1879.jpg/400px-Nietzsche1879.jpg",
-  "Socrates": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Socrates_Louvre.jpg/400px-Socrates_Louvre.jpg",
-  "Marcus Aurelius": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Marcus_Aurelius_Louvre_MR561.jpg/400px-Marcus_Aurelius_Louvre_MR561.jpg",
-  "Confucius": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Confucius_Tang_Dynasty.jpg/400px-Confucius_Tang_Dynasty.jpg",
-  "Epictetus": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Epictetus_frontispiece.jpg/400px-Epictetus_frontispiece.jpg",
-  "Seneca the Younger": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Seneca_Louvre_Ma92.jpg/400px-Seneca_Louvre_Ma92.jpg",
-  "Lao Tzu": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Laozi_Eremitage.jpg/400px-Laozi_Eremitage.jpg",
-  "Gautama Buddha": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Buddha_in_Victoria_and_Albert_Museum.jpg/400px-Buddha_in_Victoria_and_Albert_Museum.jpg",
-  "René Descartes": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/400px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
-  "Immanuel Kant": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Immanuel_Kant_3.jpg/400px-Immanuel_Kant_3.jpg",
-  "Søren Kierkegaard": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Kierkegaard.jpg/400px-Kierkegaard.jpg"
+  "Aristotle": "Aristotle",
+  "Friedrich Nietzsche": "Friedrich Nietzsche",
+  "Socrates": "Socrates",
+  "Marcus Aurelius": "Marcus Aurelius",
+  "Confucius": "Confucius",
+  "Epictetus": "Epictetus",
+  "Seneca the Younger": "Seneca the Younger",
+  "Lao Tzu": "Laozi",
+  "Gautama Buddha": "Gautama Buddha",
+  "René Descartes": "René Descartes",
+  "Immanuel Kant": "Immanuel Kant",
+  "Søren Kierkegaard": "Søren Kierkegaard"
 };
 
 // In-memory cache for Wikipedia image lookups
 const imageCache = {};
 
 /**
- * Cleans author names (e.g. "Yoda (Jedi Master)" -> "Yoda") for clean Wikipedia API lookups.
+ * Cleans author names (e.g. "Yoda (Jedi Master)" -> "Yoda")
  */
 function cleanAuthorName(name) {
   if (!name) return '';
@@ -72,7 +72,7 @@ function cleanAuthorName(name) {
 }
 
 /**
- * Dynamically retrieves portrait images from custom maps or Wikipedia API.
+ * Dynamically retrieves portrait images from Wikipedia Open API.
  */
 async function getAuthorImage(item) {
   if (item && item.image) return item.image;
@@ -80,19 +80,15 @@ async function getAuthorImage(item) {
 
   const authorName = item.author;
   const searchName = cleanAuthorName(authorName);
+  const wikiTarget = WIKI_TITLE_MAP[searchName] || searchName;
 
-  // Check static custom image override map first
-  if (CUSTOM_IMAGE_MAP[searchName]) {
-    return CUSTOM_IMAGE_MAP[searchName];
+  if (imageCache[wikiTarget]) {
+    return imageCache[wikiTarget];
   }
 
-  if (imageCache[searchName]) {
-    return imageCache[searchName];
-  }
-
-  // Wikipedia API Lookup for historical/sports figures
+  // 1. Primary Wikipedia Direct Image Fetch
   try {
-    const wikiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(searchName)}&prop=pageimages&format=json&pithumbsize=400&origin=*`;
+    const wikiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(wikiTarget)}&prop=pageimages&format=json&pithumbsize=500&origin=*`;
     const response = await fetch(wikiUrl);
     const data = await response.json();
 
@@ -102,25 +98,35 @@ async function getAuthorImage(item) {
 
       if (pageId && pageId !== "-1" && pages[pageId].thumbnail) {
         const imageUrl = pages[pageId].thumbnail.source;
-        imageCache[searchName] = imageUrl;
+        imageCache[wikiTarget] = imageUrl;
         return imageUrl;
       }
     }
   } catch (err) {
-    console.warn(`Could not fetch Wikipedia portrait for ${searchName}:`, err);
+    console.warn(`Wikipedia pageimage fetch failed for ${wikiTarget}:`, err);
   }
 
-  // Fallback avatar using modern UI Initials service with category styling
-  const themeColors = {
-    sports: { bg: '6366f1', color: 'ffffff' },
-    film: { bg: 'ec4899', color: 'ffffff' },
-    philosophy: { bg: '10b981', color: 'ffffff' }
-  };
-  const theme = themeColors[currentCategory] || themeColors.sports;
-  const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(searchName)}&background=${theme.bg}&color=${theme.color}&size=300&bold=true`;
+  // 2. Secondary Wikipedia Search API Fallback
+  try {
+    const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(searchName)}&gsrlimit=1&prop=pageimages&pithumbsize=500&format=json&origin=*`;
+    const searchResp = await fetch(searchUrl);
+    const searchData = await searchResp.json();
 
-  imageCache[searchName] = fallbackUrl;
-  return fallbackUrl;
+    if (searchData && searchData.query && searchData.query.pages) {
+      const pages = searchData.query.pages;
+      const firstPageId = Object.keys(pages)[0];
+      if (pages[firstPageId].thumbnail) {
+        const imageUrl = pages[firstPageId].thumbnail.source;
+        imageCache[wikiTarget] = imageUrl;
+        return imageUrl;
+      }
+    }
+  } catch (err) {
+    console.warn(`Wikipedia search fallback failed for ${searchName}:`, err);
+  }
+
+  // Return thematic photographic fallback if API calls yield no image
+  return AVATAR_PLACEHOLDERS[currentCategory];
 }
 
 // Fetch JSON data asynchronously from external files
