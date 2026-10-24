@@ -181,6 +181,102 @@
       "mindset": "Duty, loyalty, and honor, and the belief that actions echo beyond a single lifetime.",
       "achievements": "A Roman general who becomes a gladiator and ultimately challenges the corrupt emperor Commodus.",
       "trivia": "Maximus is fictional, but the emperors Marcus Aurelius and Commodus in the story were real people."
+    },
+    {
+      "id": "fl-16",
+      "quote": "Not everyone can become a great artist, but a great artist can come from anywhere.",
+      "author": "Anton Ego",
+      "role": "Food Critic (Ratatouille)",
+      "wiki": "Ratatouille_(film)",
+      "deeperInsight": "Talent doesn’t check credentials. Judging by background instead of the work can blind you to where excellence actually comes from.",
+      "historicalContext": "Pixar’s Ratatouille (2007) won the Academy Award for Best Animated Feature. Brad Bird directed, and Peter O’Toole voiced Ego.",
+      "mindset": "A critic’s discipline: high standards, plus the humility to be moved by something unexpected.",
+      "achievements": "Writes the review that rescues Gusteau’s reputation after being won over by a rat’s ratatouille.",
+      "trivia": "Ego’s first bite, which flashes him back to his childhood, is one of animation’s best-known scenes."
+    },
+    {
+      "id": "fl-17",
+      "quote": "Ohana means family. Family means nobody gets left behind or forgotten.",
+      "author": "Lilo Pelekai",
+      "role": "Young Dreamer (Lilo & Stitch)",
+      "wiki": "Lilo_&_Stitch",
+      "deeperInsight": "Belonging is a commitment, not a circumstance. Family is whoever you refuse to leave behind.",
+      "historicalContext": "Disney’s 2002 film is set in Hawaii, where ohana is a word for family that includes chosen family. It was nominated for the Oscar for Best Animated Feature.",
+      "mindset": "Loyalty, imagination, and an unshakable belief in loving the odd and the misfit.",
+      "achievements": "Adopts the escaped alien experiment 626, names him Stitch, and teaches him what belonging means.",
+      "trivia": "Co-director Chris Sanders voiced Stitch, and the film’s watercolor backgrounds were an unusual choice for a Disney feature."
+    },
+    {
+      "id": "fl-18",
+      "quote": "Life moves pretty fast. If you don’t stop and look around once in a while, you could miss it.",
+      "author": "Ferris Bueller",
+      "role": "High School Rebel (Ferris Bueller’s Day Off)",
+      "wiki": "Ferris_Bueller's_Day_Off",
+      "deeperInsight": "Busyness can be a way of missing your own life. Pausing on purpose is how you notice what you would otherwise rush past.",
+      "historicalContext": "John Hughes wrote and directed the 1986 comedy, which was filmed in Chicago and added to the US National Film Registry in 2014.",
+      "mindset": "Playful, spontaneous, and convinced that enjoying the present is worth bending a few rules.",
+      "achievements": "Turns one day off into an adventure through Chicago and helps his friend Cameron find the courage to stand up to his father.",
+      "trivia": "Matthew Broderick plays Ferris, who breaks the fourth wall to speak directly to the audience throughout."
+    },
+    {
+      "id": "fl-19",
+      "quote": "Yesterday is history, tomorrow is a mystery, but today is a gift. That is why it is called the present.",
+      "author": "Master Oogway",
+      "role": "Sage Tortoise (Kung Fu Panda)",
+      "wiki": "Kung_Fu_Panda",
+      "deeperInsight": "Regret about yesterday and worry about tomorrow both steal the only moment you can actually use.",
+      "historicalContext": "DreamWorks’ Kung Fu Panda (2008) was nominated for the Oscar for Best Animated Feature, and Randall Duk Kim voiced Oogway.",
+      "mindset": "Patience, acceptance, and trust that nothing happens by accident.",
+      "achievements": "Chooses Po as the Dragon Warrior against everyone’s expectations.",
+      "trivia": "Oogway is a Galápagos tortoise, a nod to long life and wisdom, in an animated vision of ancient China."
+    },
+    {
+      "id": "fl-20",
+      "quote": "Every time we get a chance to get ahead, they move the finish line.",
+      "author": "Mary Jackson",
+      "role": "NASA Engineer (Hidden Figures)",
+      "wiki": "Mary_Jackson_(engineer)",
+      "deeperInsight": "When the goalposts keep moving, naming it is the first step toward changing the rules.",
+      "historicalContext": "Janelle Monáe plays Jackson in the 2016 film, which earned three Oscar nominations, including Best Picture. The line comes from the film.",
+      "mindset": "Persistence and advocacy. She challenged segregation rules to get the education she needed.",
+      "achievements": "In 1958 she became NASA’s first Black female engineer, after petitioning to attend night classes at an all-white high school.",
+      "trivia": "NASA named its Washington, DC, headquarters building after her in 2020."
+    },
+    {
+      "id": "fl-21",
+      "quote": "The flower that blooms in adversity is the most rare and beautiful of all.",
+      "author": "The Emperor of China",
+      "role": "Emperor (Mulan)",
+      "wiki": "Mulan_(1998_film)",
+      "deeperInsight": "Hardship tests what is real. What survives it carries a beauty that comfort alone rarely produces.",
+      "historicalContext": "Disney’s Mulan (1998) is based on the Chinese legend of Hua Mulan, and Pat Morita voiced the Emperor. The line comes in the film’s closing scene.",
+      "mindset": "Wisdom, restraint, and the habit of looking past appearances to judge character.",
+      "achievements": "Honors Mulan for saving China and offers her a place as his advisor, which she declines in order to go home.",
+      "trivia": "The film was nominated for the Oscar for Best Original Musical or Comedy Score."
+    },
+    {
+      "id": "fl-22",
+      "quote": "Why do we fall, Bruce? So we can learn to pick ourselves up.",
+      "author": "Alfred Pennyworth",
+      "role": "Butler & Guardian (Batman Begins)",
+      "wiki": "Alfred_Pennyworth",
+      "deeperInsight": "Falling is part of climbing. The lesson is in how you get back up.",
+      "historicalContext": "Michael Caine played Alfred in Christopher Nolan’s 2005 film Batman Begins, which launched the Dark Knight trilogy.",
+      "mindset": "Steady loyalty, patient guidance, and faith in someone’s capacity to grow.",
+      "achievements": "Raises Bruce Wayne after his parents’ death and supports his work as Batman.",
+      "trivia": "The character first appeared in Batman comics in 1943."
+    },
+    {
+      "id": "fl-23",
+      "quote": "I’m gonna live every minute of it.",
+      "author": "Joe Gardner",
+      "role": "Jazz Pianist & Teacher (Soul)",
+      "wiki": "Soul_(2020_film)",
+      "deeperInsight": "A purpose is only part of a life. The ordinary moments you keep rushing past are the life itself.",
+      "historicalContext": "Pixar’s Soul (2020) won Academy Awards for Best Animated Feature and Best Original Score.",
+      "mindset": "He starts out believing one big break defines his worth, and learns that living fully is the point.",
+      "achievements": "A middle-school music teacher who finally gets his shot at playing with a legendary jazz quartet.",
+      "trivia": "Jamie Foxx voiced Joe, and the jazz piano was performed by Jon Batiste, who also co-wrote the Oscar-winning score."
     }
   ]
 }
