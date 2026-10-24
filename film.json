@@ -141,7 +141,10 @@
       "role": "Mandrill Shaman (The Lion King)",
       "deeperInsight": "Past mistakes are either sources of ongoing pain or structural data, depending entirely on your cognitive framing.",
       "historicalContext": "Released in 1994 during the peak Disney Renaissance, becoming one of the highest-grossing animated films in history.",
-      "wiki": "Rafiki",
+      "wiki": [
+        "Rafiki_(The_Lion_King)",
+        "The_Lion_King"
+      ],
       "mindset": "Wisdom through humor and perspective, and the belief that growth means facing your past.",
       "achievements": "Guides Simba back to Pride Rock to reclaim his place as king.",
       "trivia": "Rafiki means “friend” in Swahili, and he was voiced by Robert Guillaume."
