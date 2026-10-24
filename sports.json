@@ -169,6 +169,102 @@
       "mindset": "Preparation and accountability: he focused on the effort and habits he could control.",
       "achievements": "Five World Series titles, 14 All-Star selections, and the 2000 World Series MVP award.",
       "trivia": "He reached 3,000 hits in 2011 with a home run, and the Yankees retired his No. 2 in 2017."
+    },
+    {
+      "id": "sp-17",
+      "quote": "No human is limited.",
+      "author": "Eliud Kipchoge",
+      "role": "Two-Time Olympic Marathon Champion",
+      "wiki": "Eliud_Kipchoge",
+      "deeperInsight": "A limit is a belief until it is tested. Treating a barrier as unproven rather than impossible is what makes people attempt it.",
+      "historicalContext": "On October 12, 2019, in Vienna, Kipchoge ran 26.2 miles in 1:59:40, the first time anyone went under two hours. It was not ratified as a world record because of its rotating pacemakers.",
+      "mindset": "Discipline, simplicity, and calm. He often says that only the disciplined are truly free.",
+      "achievements": "Olympic marathon champion in 2016 and 2020, with official world records of 2:01:39 in 2018 and 2:01:09 in 2022.",
+      "trivia": "He trains at a simple camp in Kaptagat, Kenya, where athletes share rooms and take turns with chores."
+    },
+    {
+      "id": "sp-18",
+      "quote": "Never underestimate the power of dreams and the influence of the human spirit.",
+      "author": "Wilma Rudolph",
+      "role": "Triple Olympic Gold Medalist",
+      "wiki": "Wilma_Rudolph",
+      "deeperInsight": "Belief opens a path before evidence does. A slow, uncertain start can still lead somewhere extraordinary.",
+      "historicalContext": "As a child, Rudolph had polio and wore a leg brace. At the 1960 Rome Olympics she won gold in the 100 m, 200 m, and 4×100 m relay.",
+      "mindset": "Perseverance, and a belief in family and community. Relatives took turns giving her leg therapy as a child.",
+      "achievements": "The first American woman to win three track and field golds at a single Olympics, she later used her fame to support civil rights and youth sports.",
+      "trivia": "The press nicknamed her “the Black Gazelle.” She insisted that her 1960 homecoming parade in Clarksville, Tennessee, be integrated, making it the town’s first integrated public event."
+    },
+    {
+      "id": "sp-19",
+      "quote": "It is the brain, not the heart or lungs, that is the critical organ.",
+      "author": "Roger Bannister",
+      "role": "First Sub-4-Minute Miler",
+      "wiki": "Roger_Bannister",
+      "deeperInsight": "Endurance is decided in the mind first. What the body can do is gated by what you believe it can do.",
+      "historicalContext": "On May 6, 1954, at Oxford’s Iffley Road track, Bannister ran the first mile under four minutes: 3:59.4. His record stood for just 46 days.",
+      "mindset": "A scientist’s approach to sport. He trained methodically while a medical student, using hard interval sessions with fellow runners.",
+      "achievements": "Won the 1954 European 1500 m title, later became a distinguished neurologist, and was knighted in 1975.",
+      "trivia": "He said he would rather be remembered for his work in neurology than for his running."
+    },
+    {
+      "id": "sp-20",
+      "quote": "I’m not the next Usain Bolt or Michael Phelps. I’m the first Simone Biles.",
+      "author": "Simone Biles",
+      "role": "Olympic Champion Gymnast",
+      "wiki": "Simone_Biles",
+      "deeperInsight": "Comparison borrows someone else’s ceiling. Defining success on your own terms leaves room to go beyond what came before.",
+      "historicalContext": "She said it in 2016, ahead of the Rio Olympics, where she won four golds and a bronze.",
+      "mindset": "Self-trust and resilience. She has spoken openly about advocating for herself and for athlete wellbeing.",
+      "achievements": "Seven Olympic golds and 11 Olympic medals in total, plus more World Championship golds than any other gymnast.",
+      "trivia": "At Tokyo 2021 she stepped back from several events to protect her mental health, sparking a global conversation about athlete wellbeing."
+    },
+    {
+      "id": "sp-21",
+      "quote": "A life is not important except in the impact it has on other lives.",
+      "author": "Jackie Robinson",
+      "role": "Baseball Pioneer",
+      "wiki": "Jackie_Robinson",
+      "deeperInsight": "Success is private, but impact is shared. Measuring a life by who it lifts changes what you do with your talent.",
+      "historicalContext": "On April 15, 1947, Robinson debuted for the Brooklyn Dodgers, breaking Major League Baseball’s color barrier. In 1997 MLB retired his No. 42 across the entire league.",
+      "mindset": "Disciplined courage. Dodgers executive Branch Rickey chose him partly for his ability to endure abuse without fighting back.",
+      "achievements": "Rookie of the Year in 1947, National League MVP in 1949, a six-time All-Star, and a 1955 World Series champion.",
+      "trivia": "He was a four-sport star at UCLA, excelling in baseball, football, basketball, and track."
+    },
+    {
+      "id": "sp-22",
+      "quote": "Success is a journey, not a destination.",
+      "author": "Arthur Ashe",
+      "role": "3-Time Grand Slam Singles Champion",
+      "wiki": "Arthur_Ashe",
+      "deeperInsight": "Chasing a finish line makes the days in between feel like waiting. Valuing the doing makes progress something you can enjoy now.",
+      "historicalContext": "In 1975, Ashe upset the heavily favored Jimmy Connors in the Wimbledon final, becoming the first Black man to win the singles title there.",
+      "mindset": "Dignity, education, and using a platform to advance civil rights and public health.",
+      "achievements": "Won the 1968 US Open, the 1970 Australian Open, and Wimbledon in 1975, and later captained the US Davis Cup team.",
+      "trivia": "The main stadium at the US Open in New York is named Arthur Ashe Stadium."
+    },
+    {
+      "id": "sp-23",
+      "quote": "A lifetime of training for just ten seconds.",
+      "author": "Jesse Owens",
+      "role": "4-Time Olympic Gold Medalist",
+      "wiki": "Jesse_Owens",
+      "deeperInsight": "The visible moment is a tiny fraction of the work. What happens in those seconds is decided in all the unseen ones before.",
+      "historicalContext": "At the 1936 Berlin Olympics, Owens won four golds (100 m, 200 m, long jump, and 4×100 m relay), undercutting Nazi propaganda about racial superiority.",
+      "mindset": "Quiet determination, sportsmanship, and letting performance answer prejudice.",
+      "achievements": "In roughly 45 minutes at the 1935 Big Ten meet, he set three world records and tied a fourth.",
+      "trivia": "German long jumper Luz Long became his friend after the 1936 qualifying round, and is often said to have offered him advice."
+    },
+    {
+      "id": "sp-24",
+      "quote": "The moment of victory is much too short to live for that and nothing else.",
+      "author": "Martina Navratilova",
+      "role": "18-Time Grand Slam Singles Champion",
+      "wiki": "Martina_Navratilova",
+      "deeperInsight": "Winning is a brief feeling. A life built only around it has little left to stand on afterward. The process and the people last longer.",
+      "historicalContext": "Navratilova won nine Wimbledon singles titles, including six in a row from 1982 to 1987, and defected from Czechoslovakia to the United States in 1975 at age 18.",
+      "mindset": "Fitness, reinvention, and playing with passion. She helped bring modern conditioning and nutrition into professional tennis.",
+      "achievements": "18 Grand Slam singles titles, and 59 major titles overall across singles, doubles, and mixed doubles.",
+      "trivia": "She stayed competitive for over three decades and won a mixed doubles major at the 2006 US Open at age 49."
     }
   ]
 }
