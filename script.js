@@ -3,7 +3,7 @@
    Quotes live in sports.json, film.json, and philosophy.json.
    To add a quote, copy any item there, give it a new unique `id`, and set
    `wiki` to the exact Wikipedia article title (used for the photo and the
-   "Read more" link). `wiki` is optional. Use one quote per person.
+   "Read more" link), or a list of titles to try in order. `wiki` is optional. Use one quote per person.
    `mindset`, `achievements`, and `trivia` fill the "Learn more" popup;
    any that are missing are simply hidden.
    ===================================================================== */
@@ -111,19 +111,40 @@ function fallbackPortrait(item, cat) {
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 }
 
-async function getPhotoUrl(wiki) {
-  if (!wiki) return null;
-  if (wiki in photoCache) return photoCache[wiki];
+// Ask Wikipedia for a page's lead photo by exact title.
+async function summaryThumb(title) {
   try {
-    const res = await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(wiki));
+    const res = await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(title));
+    if (!res.ok) return null;
     const data = await res.json();
-    const thumb = data.thumbnail && data.thumbnail.source;
-    photoCache[wiki] = thumb ? thumb.replace(/\/\d+px-/, '/960px-') : null;
-    photoCache[wiki + ':small'] = thumb || null;
-  } catch (e) {
-    photoCache[wiki] = null;
+    return (data.thumbnail && data.thumbnail.source) || null;
+  } catch (e) { return null; }
+}
+
+// Last resort: search Wikipedia and take the top result's photo.
+async function searchThumb(query) {
+  try {
+    const url = 'https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrlimit=1&prop=pageimages&piprop=thumbnail&pithumbsize=960&format=json&origin=*&gsrsearch=' + encodeURIComponent(query);
+    const data = await (await fetch(url)).json();
+    const page = data.query && Object.values(data.query.pages)[0];
+    return (page && page.thumbnail && page.thumbnail.source) || null;
+  } catch (e) { return null; }
+}
+
+// `wiki` may be one title or a list of titles to try in order.
+async function getPhotoUrl(item) {
+  if (item.id in photoCache) return photoCache[item.id];
+  let thumb = null;
+  for (const title of [].concat(item.wiki || [])) {
+    thumb = await summaryThumb(title);
+    if (thumb) break;
   }
-  return photoCache[wiki];
+  if (!thumb) {
+    const inFilm = (item.role || '').match(/\(([^)]+)\)/);
+    thumb = await searchThumb(inFilm ? `${item.author} ${inFilm[1]}` : item.author);
+  }
+  photoCache[item.id] = thumb;
+  return thumb;
 }
 
 function loadImage(url) {
@@ -143,12 +164,11 @@ function setPhoto(src, alt) {
 
 async function showPhoto(item, cat) {
   setPhoto(fallbackPortrait(item, cat), item.author);
-  let url = await getPhotoUrl(item.wiki);
-  if (!(await loadImage(url))) {
-    url = photoCache[item.wiki + ':small'];
-    if (!(await loadImage(url))) return;
-  }
-  if (activeItem === item) setPhoto(url, item.author);
+  const thumb = await getPhotoUrl(item);
+  if (!thumb) return;
+  const big = thumb.replace(/\/\d+px-/, '/960px-');
+  const url = (await loadImage(big)) ? big : ((await loadImage(thumb)) ? thumb : null);
+  if (url && activeItem === item) setPhoto(url, item.author);
 }
 
 /* =====================================================================
@@ -316,8 +336,9 @@ function openDetailView() {
     p.textContent = text;
     sec.hidden = !text;
   });
-  DOM.modalLink.href = activeItem.wiki
-    ? 'https://en.wikipedia.org/wiki/' + encodeURIComponent(activeItem.wiki)
+  const titles = [].concat(activeItem.wiki || []);
+  DOM.modalLink.href = titles.length
+    ? 'https://en.wikipedia.org/wiki/' + encodeURIComponent(titles[titles.length - 1])
     : 'https://en.wikipedia.org/w/index.php?search=' + encodeURIComponent(activeItem.author);
   openOverlay(DOM.modal, $('closeModal'));
 }
