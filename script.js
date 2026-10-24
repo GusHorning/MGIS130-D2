@@ -4,6 +4,9 @@
    To add a quote, copy any item there, give it a new unique `id`, and set
    `wiki` to the exact Wikipedia article title (used for the photo and the
    "Read more" link), or a list of titles to try in order. `wiki` is optional. Use one quote per person.
+   `image` (optional) is a picture path or URL that overrides the Wikipedia photo,
+   e.g. "images/rafiki.jpg" for a file you add to your repo. `emoji` (optional)
+   gives the quote a soft illustrated portrait instead of a Wikipedia lookup.
    `mindset`, `achievements`, and `trivia` fill the "Learn more" popup;
    any that are missing are simply hidden.
    ===================================================================== */
@@ -107,7 +110,10 @@ function showLoadError(err) {
 function fallbackPortrait(item, cat) {
   const [c1, c2] = CATEGORIES[cat].colors;
   const initials = item.author.split(/[\s—(]+/).filter(w => /^\p{Lu}/u.test(w)).slice(0, 2).map(w => w[0]).join('');
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="400" height="300" fill="url(#g)"/><circle cx="320" cy="60" r="90" fill="#fff" opacity=".15"/><circle cx="70" cy="260" r="110" fill="#fff" opacity=".12"/><text x="200" y="185" font-family="Georgia,serif" font-size="120" font-weight="700" fill="#fff" text-anchor="middle">${initials}</text><text x="200" y="250" font-family="sans-serif" font-size="24" fill="#fff" text-anchor="middle" opacity=".95">${CATEGORIES[cat].emoji}</text></svg>`;
+  const art = item.emoji
+    ? `<text x="200" y="205" font-size="150" text-anchor="middle">${item.emoji}</text>`
+    : `<text x="200" y="185" font-family="Georgia,serif" font-size="120" font-weight="700" fill="#fff" text-anchor="middle">${initials}</text><text x="200" y="250" font-family="sans-serif" font-size="24" fill="#fff" text-anchor="middle" opacity=".95">${CATEGORIES[cat].emoji}</text>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="400" height="300" fill="url(#g)"/><circle cx="320" cy="60" r="90" fill="#fff" opacity=".15"/><circle cx="70" cy="260" r="110" fill="#fff" opacity=".12"/>${art}</svg>`;
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 }
 
@@ -133,6 +139,8 @@ async function searchThumb(query) {
 
 // `wiki` may be one title or a list of titles to try in order.
 async function getPhotoUrl(item) {
+  if (item.image) return item.image;   // your own picture always wins
+  if (item.emoji) return null;         // illustrated portrait, no lookup needed
   if (item.id in photoCache) return photoCache[item.id];
   let thumb = null;
   for (const title of [].concat(item.wiki || [])) {
