@@ -145,6 +145,102 @@
       "mindset": "Flowing with the Tao, effortless action (wu wei), and humility.",
       "achievements": "The Tao Te Ching is among the most translated books in the world.",
       "trivia": "Whether Laozi was one historical person is still debated. The name simply means “Old Master.”"
+    },
+    {
+      "id": "ph-16",
+      "quote": "Attention is the rarest and purest form of generosity.",
+      "author": "Simone Weil",
+      "role": "French Philosopher & Mystic",
+      "wiki": "Simone_Weil",
+      "deeperInsight": "Giving someone your full attention costs you something real, which is why it means so much.",
+      "historicalContext": "Weil wrote it in a 1942 letter to the poet Joë Bousquet.",
+      "mindset": "Moral seriousness, attention as a spiritual discipline, and solidarity with those who suffer.",
+      "achievements": "Posthumously published works such as Gravity and Grace and The Need for Roots made her one of the 20th century’s most influential thinkers.",
+      "trivia": "She took factory jobs in 1934–35 to experience workers’ lives firsthand."
+    },
+    {
+      "id": "ph-17",
+      "quote": "The sad truth is that most evil is done by people who never make up their minds to be good or evil.",
+      "author": "Hannah Arendt",
+      "role": "Political Theorist",
+      "wiki": "Hannah_Arendt",
+      "deeperInsight": "Harm doesn’t require monstrous intent, only unexamined routine. Thinking for yourself is a kind of moral defense.",
+      "historicalContext": "From The Life of the Mind (1978), shaped by her coverage of the 1961 trial of Nazi official Adolf Eichmann and her phrase “the banality of evil.”",
+      "mindset": "Independent thinking, and the belief that people must judge for themselves even when everyone around them conforms.",
+      "achievements": "Author of The Origins of Totalitarianism (1951) and The Human Condition (1958), foundational works of political theory.",
+      "trivia": "She fled Nazi Germany in 1933, spent years as a stateless refugee, and became a US citizen in 1950."
+    },
+    {
+      "id": "ph-18",
+      "quote": "Love is the extremely difficult realization that something other than oneself is real.",
+      "author": "Iris Murdoch",
+      "role": "British Novelist & Moral Philosopher",
+      "wiki": "Iris_Murdoch",
+      "deeperInsight": "Real love means seeing another person as fully real, not as a mirror or a prop in your own story. That takes ongoing effort.",
+      "historicalContext": "Murdoch developed the idea in her essays on moral philosophy, collected in books such as The Sovereignty of Good (1970).",
+      "mindset": "Attention and “unselfing”: goodness grows by looking at the world and at other people without ego.",
+      "achievements": "Wrote 26 novels, including The Sea, the Sea, which won the 1978 Booker Prize.",
+      "trivia": "She taught philosophy at Oxford before becoming a full-time novelist, and was made a Dame in 1987."
+    },
+    {
+      "id": "ph-19",
+      "quote": "All of humanity’s problems stem from man’s inability to sit quietly in a room alone.",
+      "author": "Blaise Pascal",
+      "role": "French Mathematician & Philosopher",
+      "wiki": "Blaise_Pascal",
+      "deeperInsight": "Constant distraction is often a way of avoiding ourselves. Stillness shows what we have been running from.",
+      "historicalContext": "A popular rendering of a line in the Pensées, which was published after Pascal’s death in 1662.",
+      "mindset": "Humility before the limits of reason, and the belief that the heart has reasons reason does not know.",
+      "achievements": "Helped found probability theory, built an early mechanical calculator, and gave his name to the unit of pressure.",
+      "trivia": "After his death, a note describing an intense religious experience was found sewn into the lining of his coat."
+    },
+    {
+      "id": "ph-20",
+      "quote": "Do not spoil what you have by desiring what you have not.",
+      "author": "Epicurus",
+      "role": "Greek Philosopher of Happiness",
+      "wiki": "Epicurus",
+      "deeperInsight": "Craving what is missing can quietly poison what you already enjoy. Gratitude is a way of seeing clearly.",
+      "historicalContext": "From the Vatican Sayings, a collection of maxims rediscovered in a 14th-century manuscript in the Vatican Library in 1888.",
+      "mindset": "Simple pleasures, friendship, and freedom from fear and anxiety as the path to a good life.",
+      "achievements": "Founded the Garden, a philosophical school in Athens, around 306 BCE, which welcomed women and enslaved people.",
+      "trivia": "Most of his many writings are lost. Much of what we know comes from letters preserved by Diogenes Laërtius."
+    },
+    {
+      "id": "ph-21",
+      "quote": "The art of being wise is the art of knowing what to overlook.",
+      "author": "William James",
+      "role": "American Philosopher & Psychologist",
+      "wiki": "William_James",
+      "deeperInsight": "Wisdom isn’t knowing everything. It is choosing what deserves your attention and letting the rest go.",
+      "historicalContext": "From The Principles of Psychology (1890), the textbook that helped establish psychology as a science in the United States.",
+      "mindset": "Pragmatism: an idea’s value lies in how it works in real life, and our attitudes can shape our experience.",
+      "achievements": "Often called the father of American psychology, and a leading figure of pragmatism.",
+      "trivia": "He earned a medical degree but never practiced. His brother Henry James became a famous novelist."
+    },
+    {
+      "id": "ph-22",
+      "quote": "I do not wish [women] to have power over men; but over themselves.",
+      "author": "Mary Wollstonecraft",
+      "role": "English Philosopher & Women’s Rights Advocate",
+      "wiki": "Mary_Wollstonecraft",
+      "deeperInsight": "Real freedom begins with self-governance: the ability to reason, choose, and direct your own life.",
+      "historicalContext": "From A Vindication of the Rights of Woman (1792), which argued that women appear less capable only because they are denied education.",
+      "mindset": "Reason, education, and equality as the foundation of virtue for everyone.",
+      "achievements": "Her Vindication is regarded as a founding text of feminist philosophy.",
+      "trivia": "Her daughter, Mary Shelley, went on to write Frankenstein."
+    },
+    {
+      "id": "ph-23",
+      "quote": "The limits of my language mean the limits of my world.",
+      "author": "Ludwig Wittgenstein",
+      "role": "Austrian-British Philosopher",
+      "wiki": "Ludwig_Wittgenstein",
+      "deeperInsight": "What you cannot put into words, you struggle to think about. A bigger vocabulary expands what you can notice and reason about.",
+      "historicalContext": "Proposition 5.6 of the Tractatus Logico-Philosophicus (1921), in the best-known English translation of 1922.",
+      "mindset": "Clarity: many philosophical problems come from misusing language, and philosophy should untangle them.",
+      "achievements": "Wrote the Tractatus and later Philosophical Investigations, both highly influential in 20th-century philosophy.",
+      "trivia": "He gave away his large family fortune and, after finishing the Tractatus, worked as a schoolteacher in rural Austria."
     }
   ]
 }
