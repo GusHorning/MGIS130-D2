@@ -77,7 +77,8 @@ function announce(msg) { DOM.live.textContent = ''; DOM.live.textContent = msg; 
 async function loadData() {
   const names = Object.keys(CATEGORIES);
   const results = await Promise.all(names.map(async name => {
-    const res = await fetch(`./${name}.json`);
+    // no-cache makes the browser re-check the file instead of reusing a stale copy
+    const res = await fetch(`./${name}.json`, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`${name}.json returned HTTP ${res.status}`);
     return res.json();
   }));
@@ -425,6 +426,9 @@ async function init() {
     showLoadError(err);
     return;
   }
+  const total = Object.values(APP_DATA).reduce((n, c) => n + c.items.length, 0);
+  const foot = document.querySelector('.app-footer');
+  if (foot) foot.textContent += ` • ${total} quotes`;
   nextSpark();
   if (!readStore(STORE.onboarded, false)) startTour();
 }
