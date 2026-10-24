@@ -141,13 +141,11 @@
       "role": "Mandrill Shaman (The Lion King)",
       "deeperInsight": "Past mistakes are either sources of ongoing pain or structural data, depending entirely on your cognitive framing.",
       "historicalContext": "Released in 1994 during the peak Disney Renaissance, becoming one of the highest-grossing animated films in history.",
-      "wiki": [
-        "Rafiki_(The_Lion_King)",
-        "The_Lion_King"
-      ],
+      "wiki": "The_Lion_King",
       "mindset": "Wisdom through humor and perspective, and the belief that growth means facing your past.",
       "achievements": "Guides Simba back to Pride Rock to reclaim his place as king.",
-      "trivia": "Rafiki means “friend” in Swahili, and he was voiced by Robert Guillaume."
+      "trivia": "Rafiki means “friend” in Swahili, and he was voiced by Robert Guillaume.",
+      "emoji": "🐒"
     },
     {
       "id": "fl-13",
@@ -231,7 +229,8 @@
       "historicalContext": "DreamWorks’ Kung Fu Panda (2008) was nominated for the Oscar for Best Animated Feature, and Randall Duk Kim voiced Oogway.",
       "mindset": "Patience, acceptance, and trust that nothing happens by accident.",
       "achievements": "Chooses Po as the Dragon Warrior against everyone’s expectations.",
-      "trivia": "Oogway is a Galápagos tortoise, a nod to long life and wisdom, in an animated vision of ancient China."
+      "trivia": "Oogway is a Galápagos tortoise, a nod to long life and wisdom, in an animated vision of ancient China.",
+      "emoji": "🐢"
     },
     {
       "id": "fl-20",
